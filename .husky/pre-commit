@@ -1,0 +1,2 @@
+#!/bin/sh
+pnpm lint && pnpm format && pnpm type-check

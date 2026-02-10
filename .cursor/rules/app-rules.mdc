@@ -1,0 +1,112 @@
+---
+alwaysApply: true
+---
+
+# JavaScript, React, TypeScript Rules
+
+Follow these patterns for `app/` development of `house-of-froning.com`.
+
+## File Structure
+
+### Shared Code Organization (`lib/`)
+
+```md
+app/lib/
+├── services/                   # Service layer (database operations)
+│   └── [service-name]/
+│       └── server/
+│           └── service-name.ts # Db or HTTP "server-only" operations
+├── auth/                       # Authentication & authorization
+│   ├── actions/                # Auth server actions
+│   ├── components/             # Auth UI components
+│   └── utils/                  # Auth utilities
+├── hooks/                      # Shared React hooks
+│   └── use-shared-hook.ts      # Reusable hooks across routes
+├── routes.ts                   # Route definitions
+└── constants.ts                # Shared constants
+```
+
+### Key Patterns
+
+- **Route groups** `(actions)`, `(components)`, `(hooks)` don't affect URLs - they're organizational
+- **Co-locate** feature code with its route using route groups
+- **Services** in `lib/services/` are generic wrappers, not business logic
+- **Actions** in route `(actions)/` folders call services, handle validation
+- **Hooks** in route `(hooks)/` folders wrap actions with React Query
+
+## Core Development Patterns
+
+### App Types
+
+- Use  `@app/types/` directory only for app-wide types
+- Re-export shared types from `@app/types` when needed
+- Don't duplicate types that exist in `@app/types`
+
+### Workflow Interactions
+
+- Every `(component)` should singular-focused
+- `(component)` can call `(hook)`
+- `(hook)` can call `(action)`
+- `(action)` can call `(service)`
+- When possible, handle errors at the `component` level
+
+### UI Components
+
+- Pure UI components with props
+- No business logic or data fetching
+- Proper TypeScript interfaces
+- No direct API calls or `useState` for data
+- Break down to modular levels (ie `Save` buttons)
+- Use `react` natural error fields calling `hooks`
+
+### State Hooks
+
+- Encapsulate data fetching and state management
+- Use React Query for data fetching (preferred)
+- No error handling for `react` hooks (ie `useMutation`)
+- `Callee` (aka `component`) manages error handling
+- No UI rendering of components
+
+### Server Actions
+
+- Use `"use server"` directive
+- No error handling within `actions`
+
+### Service Functions
+
+- Marked with `"server-only"`
+- No HTTP calls between services
+- Services must be generic wrappers that any code can use
+- Separate generic utility functions from business-specific implementations
+- Business logic belongs in actions or dedicated modules, not services
+- Export as a single service class (ie `export const UserService`)
+- No error handling within `services`
+- Example: A Parallel service should only wrap the Parallel API
+
+### Imports and React
+
+- NEVER use `import * as React from "react";`
+- Import only the specific utility to use (ie `useState`)
+
+### Constants and Configuration
+
+- Store all raw strings, URLs, and config values in `constants.ts`
+
+### Tailwind Usage
+
+- Use semantic Tailwind classes instead of inline styles or raw color classes
+- Semantic classes handle light/dark mode automatically via CSS variables
+- Examples: `bg-button-tertiary`, `text-button-tertiary-text`
+
+### Code Quality
+
+- Write readable code with repeatable patterns
+- Avoid duplicating logic; extract into reusable utilities
+- Small, focused files are better than large ones
+- Avoid unsafe array access by checking for array length first
+- Use `enums` instead of `strings` or `numbers` whenever possible
+
+## Anti Patterns to Avoid
+
+- Direct HTTP calls from frontend components
+- Manual loading state management with useState
