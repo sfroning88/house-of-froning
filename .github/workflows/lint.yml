@@ -10,7 +10,7 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,8 +23,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
+          node-version: "20"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -35,4 +34,4 @@ jobs:
       - name: Notify Vercel
         uses: vercel/repository-dispatch/actions/status@v1
         with:
-          name: 'Vercel - house-of-froning: lint'
+          name: "Vercel - house-of-froning: lint"
