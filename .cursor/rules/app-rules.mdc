@@ -4,7 +4,7 @@ alwaysApply: true
 
 # JavaScript, React, TypeScript Rules
 
-Follow these patterns for `app/` development of `house-of-froning.com`.
+Follow these patterns for `app/` development of `house-of-froning.vercel.app`.
 
 ## File Structure
 
