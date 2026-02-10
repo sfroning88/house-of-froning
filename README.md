@@ -8,6 +8,4 @@ Personal website for **Sean Froning** deployed to `house-of-froning.vercel.app` 
 MIT License
 
 Copyright (c) 2025 Sean Froning
-
-Permission is hereby granted, free of charge...
 ```
