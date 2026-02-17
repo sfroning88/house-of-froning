@@ -32,9 +32,11 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${cinzel.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{
-          "--avatar-blink-time": `${MAP_AVATAR_BLINK_TIME}ms`,
-        } as React.CSSProperties}
+        style={
+          {
+            "--avatar-blink-time": `${MAP_AVATAR_BLINK_TIME}ms`,
+          } as React.CSSProperties
+        }
       >
         {children}
       </body>

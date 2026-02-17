@@ -8,10 +8,7 @@ import {
   TOWN_MODAL_WIDTH,
   TOWN_MODAL_HEIGHT,
 } from "@/lib/constants";
-import {
-  chicagoDescription,
-  chicagoBullets, 
-} from "@/lib/text";
+import { chicagoDescription, chicagoBullets } from "@/lib/text";
 
 export function Description() {
   const modalWidth = TOWN_MODAL_WIDTH * DS_TO_WEB_SCALE;

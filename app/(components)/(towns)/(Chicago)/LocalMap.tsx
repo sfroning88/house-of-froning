@@ -6,11 +6,7 @@ import { ChicagoWarriorsBaseballClubLocalIcon } from "./ChicagoWarriorsBaseballC
 import { RowanLabsLocalIcon } from "./RowanLabs";
 import { SaintAlphonsusAcademyLocalIcon } from "./SaintAlphonsusAcademy";
 import { LocationHoverPopup } from "./LocationHoverPopup";
-import { 
-  HOVER_LOCATION, 
-  HoverLocation,
-  HoverConfig,
-} from "@/lib/types";
+import { HOVER_LOCATION, HoverLocation, HoverConfig } from "@/lib/types";
 import {
   LOCAL_MAP_PIXEL_WIDTH,
   LOCAL_MAP_PIXEL_HEIGHT,
@@ -28,8 +24,9 @@ import {
 export function LocalMap() {
   const localMapWidth = LOCAL_MAP_PIXEL_WIDTH * LOCAL_MAP_SCALE;
   const localMapHeight = LOCAL_MAP_PIXEL_HEIGHT * LOCAL_MAP_SCALE;
-  const [hoveredLocation, setHoveredLocation] =
-    useState<HoverLocation | null>(null);
+  const [hoveredLocation, setHoveredLocation] = useState<HoverLocation | null>(
+    null,
+  );
   const seansHouseX = SEANS_HOUSE_X * LOCAL_MAP_SCALE;
   const seansHouseY = SEANS_HOUSE_Y * LOCAL_MAP_SCALE;
   const saintAlphonsusX = SAINT_ALPHONSUS_ACADEMY_X * LOCAL_MAP_SCALE;
