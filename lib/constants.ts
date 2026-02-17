@@ -17,9 +17,9 @@ export const CHICAGO_HEIGHT = 48;
 export const CHICAGO_X = 96;
 export const CHICAGO_Y = 64;
 export const MAP_AVATAR_DEFAULT_X =
-    (CHICAGO_X + CHICAGO_WIDTH / 2) * DS_TO_WEB_SCALE;
+  (CHICAGO_X + CHICAGO_WIDTH / 2) * DS_TO_WEB_SCALE;
 export const MAP_AVATAR_DEFAULT_Y =
-    (CHICAGO_Y + CHICAGO_HEIGHT / 2) * DS_TO_WEB_SCALE;
+  (CHICAGO_Y + CHICAGO_HEIGHT / 2) * DS_TO_WEB_SCALE;
 export const CHICAGO_IMAGE_PATH = "/images/towns/chicago.jpeg";
 
 export const LOCAL_MAP_PIXEL_WIDTH = 192;
@@ -29,7 +29,8 @@ export const LOCAL_ICON_SIZE = 24;
 
 export const CHICAGO_WARRIORS_BASEBALL_CLUB_X = 20;
 export const CHICAGO_WARRIORS_BASEBALL_CLUB_Y = 16;
-export const CHICAGO_WARRIORS_BASEBALL_CLUB_IMAGE_PATH = "/images/towns/warriors.jpg";
+export const CHICAGO_WARRIORS_BASEBALL_CLUB_IMAGE_PATH =
+  "/images/towns/warriors.jpg";
 
 export const SAINT_ALPHONSUS_ACADEMY_X = 100;
 export const SAINT_ALPHONSUS_ACADEMY_Y = 20;
