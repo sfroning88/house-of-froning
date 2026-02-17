@@ -7,13 +7,8 @@ import {
   CHICAGO_WARRIORS_BASEBALL_CLUB_IMAGE_PATH,
 } from "@/lib/constants";
 
-const size = LOCAL_ICON_SIZE * LOCAL_MAP_SCALE;
-
-export function ChicagoWarriorsBaseballClub() {
-  return <div />;
-}
-
 export function ChicagoWarriorsBaseballClubLocalIcon() {
+  const size = LOCAL_ICON_SIZE * LOCAL_MAP_SCALE;
   return (
     <Image
       src={CHICAGO_WARRIORS_BASEBALL_CLUB_IMAGE_PATH}

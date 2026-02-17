@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { Chicago } from "./(towns)";
 import { getTownCenter } from "@lib/utils";
 import { TOWN_ID, TownConfig } from "@lib/types";
@@ -9,31 +9,21 @@ import {
   DS_PIXEL_WIDTH,
   DS_PIXEL_HEIGHT,
   DS_TO_WEB_SCALE,
-  MAP_AVATAR_BLINK_TIME,
   MAP_AVATAR_DEFAULT_X,
   MAP_AVATAR_DEFAULT_Y,
 } from "@/lib/constants";
 
-const mapWidth = DS_PIXEL_WIDTH * DS_TO_WEB_SCALE;
-const mapHeight = DS_PIXEL_HEIGHT * DS_TO_WEB_SCALE;
-
-const defaultAvatarPosition = {
-  x: MAP_AVATAR_DEFAULT_X,
-  y: MAP_AVATAR_DEFAULT_Y,
-};
-
 export function Map() {
+  const mapWidth = DS_PIXEL_WIDTH * DS_TO_WEB_SCALE;
+  const mapHeight = DS_PIXEL_HEIGHT * DS_TO_WEB_SCALE;
+  const defaultAvatarPosition = {
+    x: MAP_AVATAR_DEFAULT_X,
+    y: MAP_AVATAR_DEFAULT_Y,
+  };
   const [avatarTownId, setAvatarTownId] = useState<TOWN_ID | null>(null);
-  const [isBlinking, setIsBlinking] = useState(false);
   const onVisitTown = useCallback((townId: TOWN_ID) => {
     setAvatarTownId(townId);
-    setIsBlinking(true);
   }, []);
-  useEffect(() => {
-    if (!isBlinking) return;
-    const t = setTimeout(() => setIsBlinking(false), MAP_AVATAR_BLINK_TIME);
-    return () => clearTimeout(t);
-  }, [isBlinking]);
   const avatarPosition =
     avatarTownId != null ? getTownCenter(avatarTownId) : defaultAvatarPosition;
   return (
@@ -54,7 +44,7 @@ export function Map() {
       >
         <Chicago onVisitTown={() => onVisitTown(TOWN_ID.CHICAGO)} />
       </div>
-      <Avatar position={avatarPosition} isBlinking={isBlinking} />
+      <Avatar position={avatarPosition} isBlinking={true} />
     </div>
   );
 }

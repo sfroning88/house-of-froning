@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { FormatBulletPoints } from "@lib/utils";
 import { LocalMap } from "./LocalMap";
 import {
   CHICAGO_IMAGE_PATH,
@@ -9,18 +8,11 @@ import {
   TOWN_MODAL_WIDTH,
   TOWN_MODAL_HEIGHT,
 } from "@/lib/constants";
-
-const chicagoBullets = FormatBulletPoints([
-  "Sean's House",
-  "Saint Alphonsus Academy",
-  "Chicago Warriors Baseball Club",
-  "Rowan Labs",
-]);
-
-const modalWidth = TOWN_MODAL_WIDTH * DS_TO_WEB_SCALE;
-const modalHeight = TOWN_MODAL_HEIGHT * DS_TO_WEB_SCALE;
+import { chicagoDescription, chicagoBullets } from "@/lib/text";
 
 export function Description() {
+  const modalWidth = TOWN_MODAL_WIDTH * DS_TO_WEB_SCALE;
+  const modalHeight = TOWN_MODAL_HEIGHT * DS_TO_WEB_SCALE;
   return (
     <div
       className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white border-4 border-slate-400 p-6 shadow-lg z-50 flex flex-col gap-4 overflow-auto"
@@ -36,10 +28,7 @@ export function Description() {
           className="object-contain rounded"
         />
       </div>
-      <p className="text-sm">
-        The Windy City, Chicago is known for its Midwestern attitude, bustling
-        downtown, and variable climate.
-      </p>
+      <p className="text-sm">{chicagoDescription}</p>
       <p className="text-sm whitespace-pre-line">{chicagoBullets}</p>
       <div className="flex justify-center">
         <LocalMap />
