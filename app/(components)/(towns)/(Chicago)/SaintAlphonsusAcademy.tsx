@@ -7,13 +7,8 @@ import {
   SAINT_ALPHONSUS_ACADEMY_IMAGE_PATH,
 } from "@/lib/constants";
 
-const size = LOCAL_ICON_SIZE * LOCAL_MAP_SCALE;
-
-export function SaintAlphonsusAcademy() {
-  return <div />;
-}
-
 export function SaintAlphonsusAcademyLocalIcon() {
+  const size = LOCAL_ICON_SIZE * LOCAL_MAP_SCALE;
   return (
     <Image
       src={SAINT_ALPHONSUS_ACADEMY_IMAGE_PATH}

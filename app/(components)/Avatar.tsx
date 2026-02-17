@@ -13,9 +13,8 @@ type AvatarProps = {
   isBlinking: boolean;
 };
 
-const avatarSize = MAP_AVATAR_SIZE * DS_TO_WEB_SCALE;
-
 export function Avatar({ position, isBlinking }: AvatarProps) {
+  const avatarSize = MAP_AVATAR_SIZE * DS_TO_WEB_SCALE;
   return (
     <div
       className={`absolute pointer-events-none ${isBlinking ? "animate-blink" : ""}`}

@@ -9,14 +9,13 @@ import {
   CHICAGO_HEIGHT,
 } from "@/lib/constants";
 
-const iconWidth = CHICAGO_WIDTH * DS_TO_WEB_SCALE;
-const iconHeight = CHICAGO_HEIGHT * DS_TO_WEB_SCALE;
-
 type ChicagoProps = {
   onVisitTown?: () => void;
 };
 
 export function Chicago({ onVisitTown }: ChicagoProps) {
+  const iconWidth = CHICAGO_WIDTH * DS_TO_WEB_SCALE;
+  const iconHeight = CHICAGO_HEIGHT * DS_TO_WEB_SCALE;
   const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => {
     setIsOpen(false);

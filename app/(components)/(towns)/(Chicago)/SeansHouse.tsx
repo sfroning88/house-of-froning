@@ -7,13 +7,8 @@ import {
   SEANS_HOUSE_IMAGE_PATH,
 } from "@/lib/constants";
 
-const size = LOCAL_ICON_SIZE * LOCAL_MAP_SCALE;
-
-export function SeansHouse() {
-  return <div />;
-}
-
 export function SeansHouseLocalIcon() {
+  const size = LOCAL_ICON_SIZE * LOCAL_MAP_SCALE;
   return (
     <Image
       src={SEANS_HOUSE_IMAGE_PATH}

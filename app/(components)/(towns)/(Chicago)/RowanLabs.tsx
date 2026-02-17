@@ -7,13 +7,8 @@ import {
   ROWAN_LABS_IMAGE_PATH,
 } from "@/lib/constants";
 
-const size = LOCAL_ICON_SIZE * LOCAL_MAP_SCALE;
-
-export function RowanLabs() {
-  return <div />;
-}
-
 export function RowanLabsLocalIcon() {
+  const size = LOCAL_ICON_SIZE * LOCAL_MAP_SCALE;
   return (
     <Image
       src={ROWAN_LABS_IMAGE_PATH}
