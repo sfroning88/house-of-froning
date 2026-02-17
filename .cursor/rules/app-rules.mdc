@@ -1,21 +1,46 @@
 ---
-alwaysApply: true
+globs: app/*
+alwaysApply: false
 ---
+# app Rules
 
-# JavaScript, React, TypeScript Rules
-
-Follow these patterns for `app/` development of `house-of-froning.vercel.app`.
+Follow these patterns for `app/` development in `Next.js` of `house-of-froning.vercel.app`.
 
 ## File Structure
+
+### Route-Level Organization (`app/[orgSlug]/[route]/`)
+
+Use Next.js route groups `(actions)`, `(components)`, `(hooks)` for co-located feature code:
+
+```md
+apps/dashboard/app/[orgSlug]/[route]/
+├── page.tsx                    # Main page (minimal logic)
+├── layout.tsx                  # Route layout (if needed)
+├── loading.tsx                 # Cache data read (if needed)
+├── (actions)/                  # Server actions (route group)
+│   └── route-actions.ts        # Server actions for this route
+├── (components)/               # UI components (route group)
+│   ├── ComponentName.tsx       # Pure UI components
+│   └── ComponentNameModal.tsx  # Modal components
+├── (hooks)/                    # Custom hooks (route group)
+│   └── use-feature-name.ts     # React Query hooks, custom hooks
+├── (context)/                  # Context providers (route group, if needed)
+│   └── FeatureContext.tsx      # Shared state for route
+└── types/                      # Local types (use @boom/types for shared types)
+    └── route-types.ts          # Route-specific type definitions
+```
 
 ### Shared Code Organization (`lib/`)
 
 ```md
-app/lib/
+apps/dashboard/lib/
 ├── services/                   # Service layer (database operations)
 │   └── [service-name]/
 │       └── server/
-│           └── service-name.ts # Db or HTTP "server-only" operations
+│           └── service-name.ts # Prisma operations, marked "server-only"
+├── api/                        # API utilities and legacy actions
+│   └── [feature]/
+│       └── feature-actions.ts  # Legacy server actions (migrate to route actions)
 ├── auth/                       # Authentication & authorization
 │   ├── actions/                # Auth server actions
 │   ├── components/             # Auth UI components
@@ -23,7 +48,7 @@ app/lib/
 ├── hooks/                      # Shared React hooks
 │   └── use-shared-hook.ts      # Reusable hooks across routes
 ├── routes.ts                   # Route definitions
-└── constants.ts                # Shared constants
+└── constants.ts                 # Shared constants
 ```
 
 ### Key Patterns
@@ -34,79 +59,58 @@ app/lib/
 - **Actions** in route `(actions)/` folders call services, handle validation
 - **Hooks** in route `(hooks)/` folders wrap actions with React Query
 
-## Core Development Patterns
+## Type Management
 
-### App Types
+### Type Definitions
 
-- Use  `@app/types/` directory only for app-wide types
-- Re-export shared types from `@app/types` when needed
-- Don't duplicate types that exist in `@app/types`
+- Place all types and interfaces in `types.ts` files
+- Exception: Component Props can be defined with the component
 
-### Workflow Interactions
+### Shared Types
 
-- Every `(component)` should singular-focused
-- `(component)` can call `(hook)`
-- `(hook)` can call `(action)`
-- `(action)` can call `(service)`
-- When possible, handle errors at the `component` level
+- **ALWAYS** use `@boom/types` for shared interfaces
+- Import from `@boom/types` for API responses, common interfaces
+- Add new shared types to `packages/types/index.ts`
 
-### UI Components
+### Local Types
 
-- Pure UI components with props
-- No business logic or data fetching
-- Proper TypeScript interfaces
-- No direct API calls or `useState` for data
-- Break down to modular levels (ie `Save` buttons)
-- Use `react` natural error fields calling `hooks`
+- Use local `types/` directory only for feature-specific types
+- Re-export shared types from `@boom/types` when needed
+- Don't duplicate types that exist in `@boom/types`
+- Local types are incredibly **limited use case(s)**
 
-### State Hooks
+## API Route Deprecation
 
-- Encapsulate data fetching and state management
-- Use React Query for data fetching (preferred)
-- No error handling for `react` hooks (ie `useMutation`)
-- `Callee` (aka `component`) manages error handling
-- No UI rendering of components
+When possible, always defer to `server actions` and `services/server` for hitting backend routes. If unavoidable and refactoring legacy code, **ALWAYS** use standardized `ApiResponse` types:
 
-### Server Actions
+```typescript
+import {
+  ApiResponse,
+  createSuccessResponse,
+  createErrorResponse,
+} from "@boom/types";
 
-- Use `"use server"` directive
-- No error handling within `actions`
+export async function GET(): Promise<NextResponse<ApiSuccessResponse<Data[]>>> {
+  try {
+    const data = await Service.getData();
+    return NextResponse.json(createSuccessResponse(data));
+  } catch (error) {
+    return NextResponse.json(createErrorResponse("Failed to fetch data"), {
+      status: 500,
+    });
+  }
+}
+```
 
-### Service Functions
+## Authentication Patterns
 
-- Marked with `"server-only"`
-- No HTTP calls between services
-- Services must be generic wrappers that any code can use
-- Separate generic utility functions from business-specific implementations
-- Business logic belongs in actions or dedicated modules, not services
-- Export as a single service class (ie `export const UserService`)
-- No error handling within `services`
-- Example: A Parallel service should only wrap the Parallel API
+- **Client-side:** Browser handles cookies automatically
+- **Server Actions:** Pass cookies explicitly with `cookieStore.toString()`
+- **API Routes:** Use Supabase auth with proper error handling
 
-### Imports and React
+## Migration Strategy
 
-- NEVER use `import * as React from "react";`
-- Import only the specific utility to use (ie `useState`)
-
-### Constants and Configuration
-
-- Store all raw strings, URLs, and config values in `constants.ts`
-
-### Tailwind Usage
-
-- Use semantic Tailwind classes instead of inline styles or raw color classes
-- Semantic classes handle light/dark mode automatically via CSS variables
-- Examples: `bg-button-tertiary`, `text-button-tertiary-text`
-
-### Code Quality
-
-- Write readable code with repeatable patterns
-- Avoid duplicating logic; extract into reusable utilities
-- Small, focused files are better than large ones
-- Avoid unsafe array access by checking for array length first
-- Use `enums` instead of `strings` or `numbers` whenever possible
-
-## Anti Patterns to Avoid
-
-- Direct HTTP calls from frontend components
-- Manual loading state management with useState
+- **New development:** Always use React Query + Server Actions + Services
+- **Existing code:** Refactor when touching for other reasons
+- **API routes:** Migrate to `ApiResponse` types when updating
+- **Action Guards:** Every `server action` is guarded by an `auth/util`
