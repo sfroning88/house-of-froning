@@ -17,3 +17,21 @@ export const chicagoWarriorsBaseballClubDescription =
   "Sean coaches 17u boys baseball for the Chicago Warriors, and spends his weekends travelling the Midwest for tourney play.";
 export const rowanLabsDescription =
   "Sean works for Rowan as an M&A Product Engineer, helping transform unsellable industrial small businesses into attractive M&A targets.";
+
+export const notreDameDescription =
+  "Home of Touchdown Jesus and the Fighting Irish, this college town holds a lot of hopes and dreams.";
+export const notreDameBullets = FormatBulletPoints([
+  "Duncan Hall",
+  "ND Listens",
+  "Golden Dome",
+  "The Grotto",
+])
+
+export const duncanHallDescription = 
+  "Sean served as a Resident Assistant in Duncan Hall alongisde lifelong Highlander brothers in Community, Brotherhood, and Respect.";
+export const ndListensDescription =
+  "Sean worked as a Data Engineer and Student Caller for Alumni Relations, always listening to, learning about, and loving the ND family.";
+export const goldenDomeDescription =
+  "Sean studied Computer Engineering, Finance, and Accounting while an undergraduate, graduating with Latin honors.";
+export const grottoDescription =
+  "Sean spent nearly every remotely sunny evening between the Grotto and the Lakes, taking in those good old Midwestern sunsets.";
