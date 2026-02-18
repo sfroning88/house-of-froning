@@ -25,9 +25,9 @@ export const notreDameBullets = FormatBulletPoints([
   "ND Listens",
   "Golden Dome",
   "The Grotto",
-])
+]);
 
-export const duncanHallDescription = 
+export const duncanHallDescription =
   "Sean served as a Resident Assistant in Duncan Hall alongisde lifelong Highlander brothers in Community, Brotherhood, and Respect.";
 export const ndListensDescription =
   "Sean worked as a Data Engineer and Student Caller for Alumni Relations, always listening to, learning about, and loving the ND family.";

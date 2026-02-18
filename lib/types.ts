@@ -68,20 +68,13 @@ export type HoverLocation = {
 };
 
 export const HoverConfig: Record<HOVER_LOCATION, string> = {
-  [HOVER_LOCATION.SEANS_HOUSE]: 
-    seansHouseDescription,
-  [HOVER_LOCATION.SAINT_ALPHONSUS_ACADEMY]: 
-    saintAlphonsusAcademyDescription,
+  [HOVER_LOCATION.SEANS_HOUSE]: seansHouseDescription,
+  [HOVER_LOCATION.SAINT_ALPHONSUS_ACADEMY]: saintAlphonsusAcademyDescription,
   [HOVER_LOCATION.CHICAGO_WARRIORS_BASEBALL_CLUB]:
     chicagoWarriorsBaseballClubDescription,
-  [HOVER_LOCATION.ROWAN_LABS]: 
-    rowanLabsDescription,
-  [HOVER_LOCATION.DUNCAN_HALL]: 
-    duncanHallDescription,
-  [HOVER_LOCATION.ND_LISTENS]: 
-    ndListensDescription,
-  [HOVER_LOCATION.GOLDEN_DOME]: 
-    goldenDomeDescription,
-  [HOVER_LOCATION.GROTTO]: 
-    grottoDescription,
+  [HOVER_LOCATION.ROWAN_LABS]: rowanLabsDescription,
+  [HOVER_LOCATION.DUNCAN_HALL]: duncanHallDescription,
+  [HOVER_LOCATION.ND_LISTENS]: ndListensDescription,
+  [HOVER_LOCATION.GOLDEN_DOME]: goldenDomeDescription,
+  [HOVER_LOCATION.GROTTO]: grottoDescription,
 };

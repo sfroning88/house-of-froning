@@ -35,24 +35,26 @@ export function LocalMap() {
   const goldenDomeY = GOLDEN_DOME_Y * LOCAL_MAP_SCALE;
   const grottoX = GROTTO_X * LOCAL_MAP_SCALE;
   const grottoY = GROTTO_Y * LOCAL_MAP_SCALE;
-  const locationCoordinates: Partial<Record<HOVER_LOCATION, { x: number; y: number }>> =
-    {
-      [HOVER_LOCATION.DUNCAN_HALL]: { 
-        x: duncanHallX, 
-        y: duncanHallY },
-      [HOVER_LOCATION.ND_LISTENS]: {
-        x: ndListensX,
-        y: ndListensY,
-      },
-      [HOVER_LOCATION.GOLDEN_DOME]: {
-        x: goldenDomeX,
-        y: goldenDomeY,
-      },
-      [HOVER_LOCATION.GROTTO]: { 
-        x: grottoX,
-        y: grottoY,
-      },
-    };
+  const locationCoordinates: Partial<
+    Record<HOVER_LOCATION, { x: number; y: number }>
+  > = {
+    [HOVER_LOCATION.DUNCAN_HALL]: {
+      x: duncanHallX,
+      y: duncanHallY,
+    },
+    [HOVER_LOCATION.ND_LISTENS]: {
+      x: ndListensX,
+      y: ndListensY,
+    },
+    [HOVER_LOCATION.GOLDEN_DOME]: {
+      x: goldenDomeX,
+      y: goldenDomeY,
+    },
+    [HOVER_LOCATION.GROTTO]: {
+      x: grottoX,
+      y: grottoY,
+    },
+  };
   return (
     <div
       className="relative bg-iceberg-deep/60 border-2 border-iceberg-medium"
@@ -126,17 +128,18 @@ export function LocalMap() {
       >
         <GrottoLocalIcon />
       </div>
-      {hoveredLocation?.hover && locationCoordinates[hoveredLocation.location] && (
-        <LocationHoverPopup
-          title={
-            hoveredLocation.location.charAt(0).toUpperCase() +
-            hoveredLocation.location.slice(1)
-          }
-          description={HoverConfig[hoveredLocation.location]}
-          x={locationCoordinates[hoveredLocation.location]!.x}
-          y={locationCoordinates[hoveredLocation.location]!.y}
-        />
-      )}
+      {hoveredLocation?.hover &&
+        locationCoordinates[hoveredLocation.location] && (
+          <LocationHoverPopup
+            title={
+              hoveredLocation.location.charAt(0).toUpperCase() +
+              hoveredLocation.location.slice(1)
+            }
+            description={HoverConfig[hoveredLocation.location]}
+            x={locationCoordinates[hoveredLocation.location]!.x}
+            y={locationCoordinates[hoveredLocation.location]!.y}
+          />
+        )}
     </div>
   );
 }

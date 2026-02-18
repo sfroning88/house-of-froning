@@ -1,10 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { 
-  Chicago, 
-  NotreDame 
-} from "./(towns)";
+import { Chicago, NotreDame } from "./(towns)";
 import { getTownCenter } from "@lib/utils";
 import { TOWN_ID, TownConfig } from "@lib/types";
 import { Avatar } from "./Avatar";
