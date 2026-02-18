@@ -1,16 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { DuncanHallLocalIcon } from "./DuncanHall";
 import { NdListensLocalIcon } from "./NdListens";
 import { GoldenDomeLocalIcon } from "./GoldenDome";
 import { GrottoLocalIcon } from "./Grotto";
 import { LocationHoverPopup } from "./LocationHoverPopup";
+import { LocationDescriptionModal } from "./LocationDescriptionModal";
 import { HOVER_LOCATION, HoverLocation, HoverConfig } from "@/lib/types";
 import {
   LOCAL_MAP_PIXEL_WIDTH,
   LOCAL_MAP_PIXEL_HEIGHT,
   LOCAL_MAP_SCALE,
+  LOCAL_ICON_SIZE,
   DUNCAN_HALL_X,
   DUNCAN_HALL_Y,
   ND_LISTENS_X,
@@ -21,12 +23,39 @@ import {
   GROTTO_Y,
 } from "@/lib/constants";
 
-export function LocalMap() {
+type LocalMapProps = {
+  onModalStateChange?: (isOpen: boolean) => void;
+  isModalOpen: boolean;
+  screenSize: { width: number; height: number };
+  dsInnerScreenSize: { width: number; height: number };
+  modalContainerRef?: React.RefObject<HTMLDivElement | null>;
+};
+
+export function LocalMap({
+  onModalStateChange,
+  isModalOpen,
+  screenSize,
+  dsInnerScreenSize,
+  modalContainerRef,
+}: LocalMapProps) {
+  const localMapRef = useRef<HTMLDivElement>(null);
   const localMapWidth = LOCAL_MAP_PIXEL_WIDTH * LOCAL_MAP_SCALE;
   const localMapHeight = LOCAL_MAP_PIXEL_HEIGHT * LOCAL_MAP_SCALE;
   const [hoveredLocation, setHoveredLocation] = useState<HoverLocation | null>(
     null,
   );
+  const [selectedLocation, setSelectedLocation] =
+    useState<HOVER_LOCATION | null>(null);
+  useEffect(() => {
+    if (selectedLocation !== null) {
+      onModalStateChange?.(true);
+    }
+    return () => {
+      if (selectedLocation !== null) {
+        onModalStateChange?.(false);
+      }
+    };
+  }, [selectedLocation, onModalStateChange]);
   const duncanHallX = DUNCAN_HALL_X * LOCAL_MAP_SCALE;
   const duncanHallY = DUNCAN_HALL_Y * LOCAL_MAP_SCALE;
   const ndListensX = ND_LISTENS_X * LOCAL_MAP_SCALE;
@@ -56,90 +85,110 @@ export function LocalMap() {
     },
   };
   return (
-    <div
-      className="relative bg-iceberg-deep/60 border-2 border-iceberg-medium"
-      style={{
-        width: localMapWidth,
-        height: localMapHeight,
-        aspectRatio: `${LOCAL_MAP_PIXEL_WIDTH} / ${LOCAL_MAP_PIXEL_HEIGHT}`,
-      }}
-    >
+    <>
       <div
-        className="absolute cursor-pointer"
+        ref={localMapRef}
+        className="relative bg-iceberg-deep/60 border-2 border-iceberg-medium"
         style={{
-          left: duncanHallX,
-          top: duncanHallY,
+          width: localMapWidth,
+          height: localMapHeight,
+          aspectRatio: `${LOCAL_MAP_PIXEL_WIDTH} / ${LOCAL_MAP_PIXEL_HEIGHT}`,
         }}
-        onMouseEnter={() =>
-          setHoveredLocation({
-            location: HOVER_LOCATION.DUNCAN_HALL,
-            hover: true,
-          })
-        }
-        onMouseLeave={() => setHoveredLocation(null)}
       >
-        <DuncanHallLocalIcon />
+        <div
+          className="absolute cursor-pointer"
+          style={{
+            left: duncanHallX,
+            top: duncanHallY,
+          }}
+          onMouseEnter={() =>
+            setHoveredLocation({
+              location: HOVER_LOCATION.DUNCAN_HALL,
+              hover: true,
+            })
+          }
+          onMouseLeave={() => setHoveredLocation(null)}
+          onClick={() => setSelectedLocation(HOVER_LOCATION.DUNCAN_HALL)}
+        >
+          <DuncanHallLocalIcon />
+        </div>
+        <div
+          className="absolute cursor-pointer"
+          style={{
+            left: ndListensX,
+            top: ndListensY,
+          }}
+          onMouseEnter={() =>
+            setHoveredLocation({
+              location: HOVER_LOCATION.ND_LISTENS,
+              hover: true,
+            })
+          }
+          onMouseLeave={() => setHoveredLocation(null)}
+          onClick={() => setSelectedLocation(HOVER_LOCATION.ND_LISTENS)}
+        >
+          <NdListensLocalIcon />
+        </div>
+        <div
+          className="absolute cursor-pointer"
+          style={{
+            left: goldenDomeX,
+            top: goldenDomeY,
+          }}
+          onMouseEnter={() =>
+            setHoveredLocation({
+              location: HOVER_LOCATION.GOLDEN_DOME,
+              hover: true,
+            })
+          }
+          onMouseLeave={() => setHoveredLocation(null)}
+          onClick={() => setSelectedLocation(HOVER_LOCATION.GOLDEN_DOME)}
+        >
+          <GoldenDomeLocalIcon />
+        </div>
+        <div
+          className="absolute cursor-pointer"
+          style={{
+            left: grottoX,
+            top: grottoY,
+          }}
+          onMouseEnter={() =>
+            setHoveredLocation({
+              location: HOVER_LOCATION.GROTTO,
+              hover: true,
+            })
+          }
+          onMouseLeave={() => setHoveredLocation(null)}
+          onClick={() => setSelectedLocation(HOVER_LOCATION.GROTTO)}
+        >
+          <GrottoLocalIcon />
+        </div>
+        {hoveredLocation?.hover &&
+          locationCoordinates[hoveredLocation.location] && (
+            <LocationHoverPopup
+              title={
+                hoveredLocation.location.charAt(0).toUpperCase() +
+                hoveredLocation.location.slice(1)
+              }
+              description={HoverConfig[hoveredLocation.location]}
+              x={locationCoordinates[hoveredLocation.location]!.x}
+              y={locationCoordinates[hoveredLocation.location]!.y}
+              containerRef={modalContainerRef}
+              localMapRef={localMapRef}
+              iconWidth={LOCAL_ICON_SIZE * LOCAL_MAP_SCALE}
+              iconHeight={LOCAL_ICON_SIZE * LOCAL_MAP_SCALE}
+            />
+          )}
       </div>
-      <div
-        className="absolute cursor-pointer"
-        style={{
-          left: ndListensX,
-          top: ndListensY,
-        }}
-        onMouseEnter={() =>
-          setHoveredLocation({
-            location: HOVER_LOCATION.ND_LISTENS,
-            hover: true,
-          })
-        }
-        onMouseLeave={() => setHoveredLocation(null)}
-      >
-        <NdListensLocalIcon />
-      </div>
-      <div
-        className="absolute cursor-pointer"
-        style={{
-          left: goldenDomeX,
-          top: goldenDomeY,
-        }}
-        onMouseEnter={() =>
-          setHoveredLocation({
-            location: HOVER_LOCATION.GOLDEN_DOME,
-            hover: true,
-          })
-        }
-        onMouseLeave={() => setHoveredLocation(null)}
-      >
-        <GoldenDomeLocalIcon />
-      </div>
-      <div
-        className="absolute cursor-pointer"
-        style={{
-          left: grottoX,
-          top: grottoY,
-        }}
-        onMouseEnter={() =>
-          setHoveredLocation({
-            location: HOVER_LOCATION.GROTTO,
-            hover: true,
-          })
-        }
-        onMouseLeave={() => setHoveredLocation(null)}
-      >
-        <GrottoLocalIcon />
-      </div>
-      {hoveredLocation?.hover &&
-        locationCoordinates[hoveredLocation.location] && (
-          <LocationHoverPopup
-            title={
-              hoveredLocation.location.charAt(0).toUpperCase() +
-              hoveredLocation.location.slice(1)
-            }
-            description={HoverConfig[hoveredLocation.location]}
-            x={locationCoordinates[hoveredLocation.location]!.x}
-            y={locationCoordinates[hoveredLocation.location]!.y}
-          />
-        )}
-    </div>
+      {selectedLocation && (
+        <LocationDescriptionModal
+          location={selectedLocation}
+          onClose={() => setSelectedLocation(null)}
+          isModalOpen={isModalOpen}
+          screenSize={screenSize}
+          dsInnerScreenSize={dsInnerScreenSize}
+        />
+      )}
+    </>
   );
 }

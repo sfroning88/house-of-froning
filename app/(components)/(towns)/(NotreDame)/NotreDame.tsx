@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Icon } from "../(NotreDame)/Icon";
 import { Description } from "../(NotreDame)/Description";
 import {
@@ -11,12 +11,27 @@ import {
 
 type NotreDameProps = {
   onVisitTown?: () => void;
+  onModalStateChange?: (isOpen: boolean) => void;
+  isModalOpen: boolean;
+  screenSize: { width: number; height: number };
+  dsInnerScreenSize: { width: number; height: number };
+  dsInnerScreenCenter: { x: number; y: number };
 };
 
-export function NotreDame({ onVisitTown }: NotreDameProps) {
+export function NotreDame({
+  onVisitTown,
+  onModalStateChange,
+  isModalOpen,
+  screenSize,
+  dsInnerScreenSize,
+  dsInnerScreenCenter,
+}: NotreDameProps) {
   const iconWidth = NOTRE_DAME_WIDTH * DS_TO_WEB_SCALE;
   const iconHeight = NOTRE_DAME_HEIGHT * DS_TO_WEB_SCALE;
   const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    onModalStateChange?.(isOpen);
+  }, [isOpen, onModalStateChange]);
   const closeModal = () => {
     setIsOpen(false);
     onVisitTown?.();
@@ -32,7 +47,13 @@ export function NotreDame({ onVisitTown }: NotreDameProps) {
             className="fixed inset-0 bg-black/50 z-40"
             onClick={closeModal}
           />
-          <Description />
+          <Description
+            onModalStateChange={onModalStateChange}
+            isModalOpen={isModalOpen}
+            screenSize={screenSize}
+            dsInnerScreenSize={dsInnerScreenSize}
+            dsInnerScreenCenter={dsInnerScreenCenter}
+          />
         </>
       )}
     </div>

@@ -78,3 +78,10 @@ export const HoverConfig: Record<HOVER_LOCATION, string> = {
   [HOVER_LOCATION.GOLDEN_DOME]: goldenDomeDescription,
   [HOVER_LOCATION.GROTTO]: grottoDescription,
 };
+
+export enum CORNER {
+  TOP_LEFT = "TOP_LEFT",
+  TOP_RIGHT = "TOP_RIGHT",
+  BOTTOM_LEFT = "BOTTOM_LEFT",
+  BOTTOM_RIGHT = "BOTTOM_RIGHT",
+}
