@@ -65,24 +65,21 @@ export function Screen() {
     }),
     [imageSize.width, imageSize.height],
   );
-  const dsInnerScreenCenter = useMemo(
-    () => {
-      if (imageSize.width === 0 || imageSize.height === 0) {
-        return { x: 0, y: 0 };
-      }
-      const relativeCenter = getDsInnerScreenCenter(
-        imageSize.width,
-        imageSize.height,
-        DS_SCREEN_CENTER_X_RATIO,
-        DS_SCREEN_CENTER_Y_RATIO,
-      );
-      return {
-        x: imagePosition.x + relativeCenter.x,
-        y: imagePosition.y + relativeCenter.y,
-      };
-    },
-    [imageSize.width, imageSize.height, imagePosition.x, imagePosition.y],
-  );
+  const dsInnerScreenCenter = useMemo(() => {
+    if (imageSize.width === 0 || imageSize.height === 0) {
+      return { x: 0, y: 0 };
+    }
+    const relativeCenter = getDsInnerScreenCenter(
+      imageSize.width,
+      imageSize.height,
+      DS_SCREEN_CENTER_X_RATIO,
+      DS_SCREEN_CENTER_Y_RATIO,
+    );
+    return {
+      x: imagePosition.x + relativeCenter.x,
+      y: imagePosition.y + relativeCenter.y,
+    };
+  }, [imageSize.width, imageSize.height, imagePosition.x, imagePosition.y]);
   return (
     <div ref={containerRef} className="relative">
       <Image

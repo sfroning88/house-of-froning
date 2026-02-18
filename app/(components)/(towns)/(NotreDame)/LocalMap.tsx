@@ -44,9 +44,8 @@ export function LocalMap({
   const [hoveredLocation, setHoveredLocation] = useState<HoverLocation | null>(
     null,
   );
-  const [selectedLocation, setSelectedLocation] = useState<HOVER_LOCATION | null>(
-    null,
-  );
+  const [selectedLocation, setSelectedLocation] =
+    useState<HOVER_LOCATION | null>(null);
   useEffect(() => {
     if (selectedLocation !== null) {
       onModalStateChange?.(true);

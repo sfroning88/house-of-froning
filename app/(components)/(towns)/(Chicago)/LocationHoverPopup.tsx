@@ -9,10 +9,7 @@ import {
   LOCAL_MAP_SCALE,
 } from "@/lib/constants";
 import { CORNER } from "@/lib/types";
-import {
-  getClosestCornerToCenter,
-  getPopupAnchorPosition,
-} from "@/lib/utils";
+import { getClosestCornerToCenter, getPopupAnchorPosition } from "@/lib/utils";
 
 type LocationHoverPopupProps = {
   title: string;
@@ -95,7 +92,10 @@ export function LocationHoverPopup({
     }
     popupLeft += localMapOffsetX;
     popupTop += localMapOffsetY;
-    if (popupCorner === CORNER.TOP_RIGHT || popupCorner === CORNER.BOTTOM_RIGHT) {
+    if (
+      popupCorner === CORNER.TOP_RIGHT ||
+      popupCorner === CORNER.BOTTOM_RIGHT
+    ) {
       if (popupLeft - popupWidth < containerLeft) {
         popupLeft = containerLeft + popupWidth;
         transformX = "0%";
@@ -112,7 +112,10 @@ export function LocationHoverPopup({
         transformX = "-100%";
       }
     }
-    if (popupCorner === CORNER.BOTTOM_LEFT || popupCorner === CORNER.BOTTOM_RIGHT) {
+    if (
+      popupCorner === CORNER.BOTTOM_LEFT ||
+      popupCorner === CORNER.BOTTOM_RIGHT
+    ) {
       if (popupTop - popupHeight < containerTop) {
         popupTop = containerTop + popupHeight;
         transformY = "-100%";

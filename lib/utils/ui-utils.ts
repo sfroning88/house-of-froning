@@ -50,8 +50,7 @@ export function getClosestCornerToCenter(
   const topLeft = {
     x: iconX,
     y: iconY,
-    distance:
-      Math.pow(iconX - mapCenterX, 2) + Math.pow(iconY - mapCenterY, 2),
+    distance: Math.pow(iconX - mapCenterX, 2) + Math.pow(iconY - mapCenterY, 2),
   };
   const topRight = {
     x: iconX + iconWidth,
