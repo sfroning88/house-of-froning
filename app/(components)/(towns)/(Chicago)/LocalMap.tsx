@@ -35,19 +35,26 @@ export function LocalMap() {
   const warriorsY = CHICAGO_WARRIORS_BASEBALL_CLUB_Y * LOCAL_MAP_SCALE;
   const rowanLabsX = ROWAN_LABS_X * LOCAL_MAP_SCALE;
   const rowanLabsY = ROWAN_LABS_Y * LOCAL_MAP_SCALE;
-  const locationCoordinates: Record<HOVER_LOCATION, { x: number; y: number }> =
-    {
-      [HOVER_LOCATION.SEANS_HOUSE]: { x: seansHouseX, y: seansHouseY },
-      [HOVER_LOCATION.SAINT_ALPHONSUS_ACADEMY]: {
-        x: saintAlphonsusX,
-        y: saintAlphonsusY,
-      },
-      [HOVER_LOCATION.CHICAGO_WARRIORS_BASEBALL_CLUB]: {
-        x: warriorsX,
-        y: warriorsY,
-      },
-      [HOVER_LOCATION.ROWAN_LABS]: { x: rowanLabsX, y: rowanLabsY },
-    };
+  const locationCoordinates: Partial<
+    Record<HOVER_LOCATION, { x: number; y: number }>
+  > = {
+    [HOVER_LOCATION.SEANS_HOUSE]: {
+      x: seansHouseX,
+      y: seansHouseY,
+    },
+    [HOVER_LOCATION.SAINT_ALPHONSUS_ACADEMY]: {
+      x: saintAlphonsusX,
+      y: saintAlphonsusY,
+    },
+    [HOVER_LOCATION.CHICAGO_WARRIORS_BASEBALL_CLUB]: {
+      x: warriorsX,
+      y: warriorsY,
+    },
+    [HOVER_LOCATION.ROWAN_LABS]: {
+      x: rowanLabsX,
+      y: rowanLabsY,
+    },
+  };
   return (
     <div
       className="relative bg-iceberg-deep/60 border-2 border-iceberg-medium"
@@ -121,17 +128,22 @@ export function LocalMap() {
       >
         <RowanLabsLocalIcon />
       </div>
-      {hoveredLocation?.hover && (
-        <LocationHoverPopup
-          title={
-            hoveredLocation.location.charAt(0).toUpperCase() +
-            hoveredLocation.location.slice(1)
-          }
-          description={HoverConfig[hoveredLocation.location]}
-          x={locationCoordinates[hoveredLocation.location].x}
-          y={locationCoordinates[hoveredLocation.location].y}
-        />
-      )}
+      {hoveredLocation?.hover &&
+        (() => {
+          const coordinates = locationCoordinates[hoveredLocation.location];
+          if (!coordinates) return null;
+          return (
+            <LocationHoverPopup
+              title={
+                hoveredLocation.location.charAt(0).toUpperCase() +
+                hoveredLocation.location.slice(1)
+              }
+              description={HoverConfig[hoveredLocation.location]}
+              x={coordinates.x}
+              y={coordinates.y}
+            />
+          );
+        })()}
     </div>
   );
 }

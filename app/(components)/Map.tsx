@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { Chicago } from "./(towns)";
+import { Chicago, NotreDame } from "./(towns)";
 import { getTownCenter } from "@lib/utils";
 import { TOWN_ID, TownConfig } from "@lib/types";
 import { Avatar } from "./Avatar";
@@ -43,6 +43,15 @@ export function Map() {
         }}
       >
         <Chicago onVisitTown={() => onVisitTown(TOWN_ID.CHICAGO)} />
+      </div>
+      <div
+        className="absolute"
+        style={{
+          left: TownConfig[TOWN_ID.NOTRE_DAME].x * DS_TO_WEB_SCALE,
+          top: TownConfig[TOWN_ID.NOTRE_DAME].y * DS_TO_WEB_SCALE,
+        }}
+      >
+        <NotreDame onVisitTown={() => onVisitTown(TOWN_ID.NOTRE_DAME)} />
       </div>
       <Avatar position={avatarPosition} isBlinking={true} />
     </div>
