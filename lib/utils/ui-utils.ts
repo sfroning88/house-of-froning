@@ -10,7 +10,7 @@ export function getMapScaleAndPosition(
   centerXRatio: number,
   centerYRatio: number,
   innerWidthRatio: number,
-  innerHeightRatio: number
+  innerHeightRatio: number,
 ): { scaleX: number; scaleY: number; x: number; y: number } {
   const innerWidth = imageWidth * innerWidthRatio;
   const innerHeight = imageHeight * innerHeightRatio;

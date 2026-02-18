@@ -5,7 +5,7 @@ export const DS_IMAGE_PATH = "/images/ds/bottomscreen.jpg";
 export const DS_SCREEN_CENTER_X_RATIO = 0.5;
 export const DS_SCREEN_CENTER_Y_RATIO = 0.3375;
 export const DS_SCREEN_INNER_WIDTH_RATIO = 0.875;
-export const DS_SCREEN_INNER_HEIGHT_RATIO = .57;
+export const DS_SCREEN_INNER_HEIGHT_RATIO = 0.57;
 
 export const MAP_AVATAR_BLINK_TIME = 3 * 1000;
 export const MAP_AVATAR_IMAGE_PATH = "/images/avatars/baby.jpg";
