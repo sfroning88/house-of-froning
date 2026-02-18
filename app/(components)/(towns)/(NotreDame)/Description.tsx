@@ -1,22 +1,61 @@
 "use client";
 
+import { useEffect, useMemo, useRef } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { LocalMap } from "./LocalMap";
-import {
-  NOTRE_DAME_IMAGE_PATH,
-  DS_TO_WEB_SCALE,
-  TOWN_MODAL_WIDTH,
-  TOWN_MODAL_HEIGHT,
-} from "@/lib/constants";
+import { NOTRE_DAME_IMAGE_PATH, DS_MODAL_ZOOM_RATIO } from "@/lib/constants";
 import { notreDameDescription, notreDameBullets } from "@/lib/text";
 
-export function Description() {
-  const modalWidth = TOWN_MODAL_WIDTH * DS_TO_WEB_SCALE;
-  const modalHeight = TOWN_MODAL_HEIGHT * DS_TO_WEB_SCALE;
-  return (
+type DescriptionProps = {
+  onModalStateChange?: (isOpen: boolean) => void;
+  isModalOpen: boolean;
+  screenSize: { width: number; height: number };
+  dsInnerScreenSize: { width: number; height: number };
+  dsInnerScreenCenter: { x: number; y: number };
+};
+
+export function Description({
+  onModalStateChange,
+  isModalOpen,
+  screenSize,
+  dsInnerScreenSize,
+  dsInnerScreenCenter,
+}: DescriptionProps) {
+  const modalRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    onModalStateChange?.(true);
+    return () => {
+      onModalStateChange?.(false);
+    };
+  }, [onModalStateChange]);
+  const { modalWidth, modalHeight } = useMemo(() => {
+    if (dsInnerScreenSize.width === 0 || dsInnerScreenSize.height === 0) {
+      return { modalWidth: 0, modalHeight: 0 };
+    }
+    return {
+      modalWidth: dsInnerScreenSize.width * DS_MODAL_ZOOM_RATIO,
+      modalHeight: dsInnerScreenSize.height * DS_MODAL_ZOOM_RATIO,
+    };
+  }, [dsInnerScreenSize]);
+  if (modalWidth === 0 || modalHeight === 0) {
+    return null;
+  }
+  const modalContent = (
     <div
-      className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white border-4 border-slate-400 p-6 shadow-lg z-50 flex flex-col gap-4 overflow-auto"
-      style={{ width: modalWidth, height: modalHeight }}
+      ref={modalRef}
+      className="fixed bg-white border-4 border-slate-400 p-6 shadow-lg z-50 flex flex-col gap-4 overflow-auto transition-all duration-300"
+      style={{
+        left: `${dsInnerScreenCenter.x}px`,
+        top: `${dsInnerScreenCenter.y}px`,
+        transform: `translate(-50%, -50%)`,
+        width: `${modalWidth}px`,
+        height: `${modalHeight}px`,
+        maxWidth: `${modalWidth}px`,
+        maxHeight: `${modalHeight}px`,
+        minWidth: `${modalWidth}px`,
+        minHeight: `${modalHeight}px`,
+      }}
     >
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-semibold">NotreDame</h2>
@@ -31,8 +70,18 @@ export function Description() {
       <p className="text-sm">{notreDameDescription}</p>
       <p className="text-sm whitespace-pre-line">{notreDameBullets}</p>
       <div className="flex justify-center">
-        <LocalMap />
+        <LocalMap
+          onModalStateChange={onModalStateChange}
+          isModalOpen={isModalOpen}
+          screenSize={screenSize}
+          dsInnerScreenSize={dsInnerScreenSize}
+          modalContainerRef={modalRef}
+        />
       </div>
     </div>
   );
+  if (typeof window !== "undefined") {
+    return createPortal(modalContent, document.body);
+  }
+  return modalContent;
 }

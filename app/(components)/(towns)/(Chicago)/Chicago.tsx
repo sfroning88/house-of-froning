@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Icon } from "./Icon";
 import { Description } from "./Description";
 import {
@@ -11,12 +11,27 @@ import {
 
 type ChicagoProps = {
   onVisitTown?: () => void;
+  onModalStateChange?: (isOpen: boolean) => void;
+  isModalOpen: boolean;
+  screenSize: { width: number; height: number };
+  dsInnerScreenSize: { width: number; height: number };
+  dsInnerScreenCenter: { x: number; y: number };
 };
 
-export function Chicago({ onVisitTown }: ChicagoProps) {
+export function Chicago({
+  onVisitTown,
+  onModalStateChange,
+  isModalOpen,
+  screenSize,
+  dsInnerScreenSize,
+  dsInnerScreenCenter,
+}: ChicagoProps) {
   const iconWidth = CHICAGO_WIDTH * DS_TO_WEB_SCALE;
   const iconHeight = CHICAGO_HEIGHT * DS_TO_WEB_SCALE;
   const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    onModalStateChange?.(isOpen);
+  }, [isOpen, onModalStateChange]);
   const closeModal = () => {
     setIsOpen(false);
     onVisitTown?.();
@@ -32,7 +47,13 @@ export function Chicago({ onVisitTown }: ChicagoProps) {
             className="fixed inset-0 bg-black/50 z-40"
             onClick={closeModal}
           />
-          <Description />
+          <Description
+            onModalStateChange={onModalStateChange}
+            isModalOpen={isModalOpen}
+            screenSize={screenSize}
+            dsInnerScreenSize={dsInnerScreenSize}
+            dsInnerScreenCenter={dsInnerScreenCenter}
+          />
         </>
       )}
     </div>
