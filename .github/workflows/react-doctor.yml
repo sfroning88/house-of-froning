@@ -1,0 +1,27 @@
+name: React Doctor
+
+on:
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  react-doctor:
+    name: React Doctor
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run React Doctor
+        id: doctor
+        uses: millionco/react-doctor@main
+        with:
+          directory: "."
+          verbose: "true"
+          node-version: "20"
+
+      - name: Print score
+        run: echo "Health score ${{ steps.doctor.outputs.score }}"
