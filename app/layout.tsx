@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cinzel, Geist, Geist_Mono } from "next/font/google";
 import { MAP_AVATAR_BLINK_TIME } from "@/lib/constants";
+import { PrivacyNotice } from "@/app/privacy/(components)/privacyNotice";
 import "./globals.css";
 
 const cinzel = Cinzel({
@@ -46,6 +47,7 @@ export default function RootLayout({
         }
       >
         {children}
+        <PrivacyNotice />
       </body>
     </html>
   );
