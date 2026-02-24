@@ -1,19 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { createPortal } from "react-dom";
+import { useGetPrivacyContent } from "@/app/privacy/(hooks)/use-get-privacy-content";
 
 export function PrivacyNotice() {
   const [isOpen, setIsOpen] = useState(false);
-  const [content, setContent] = useState<string>("");
-  useEffect(() => {
-    if (isOpen && !content) {
-      fetch("/api/privacy")
-        .then((res) => res.json())
-        .then((data) => setContent(data.content || ""))
-        .catch(() => setContent("Privacy Policy"));
-    }
-  }, [isOpen, content]);
+  const { content, isLoading } = useGetPrivacyContent(isOpen);
   const modalContent = isOpen ? (
     <>
       <div
@@ -31,7 +24,7 @@ export function PrivacyNotice() {
           </button>
         </div>
         <div className="text-sm whitespace-pre-wrap overflow-auto flex-1">
-          {content || "Loading..."}
+          {isLoading ? "Loading..." : content}
         </div>
       </div>
     </>
