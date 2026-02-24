@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useRef, useEffect, useMemo } from "react";
 import { Map } from "./Map";
+import { BottomBar } from "./Bottom";
 import {
   DS_IMAGE_PATH,
   DS_PIXEL_WIDTH,
@@ -14,6 +15,7 @@ import {
   DS_SCREEN_CENTER_Y_RATIO,
   DS_SCREEN_INNER_WIDTH_RATIO,
   DS_SCREEN_INNER_HEIGHT_RATIO,
+  DS_BOTTOM_BAR_HEIGHT_RATIO,
 } from "@/lib/constants";
 import {
   getMapScaleAndPosition,
@@ -73,19 +75,23 @@ export function Screen() {
   }, [viewportSize.width, viewportSize.height]);
   const scaledImageWidth = DS_IMAGE_FILE_WIDTH * viewportScale;
   const scaledImageHeight = DS_IMAGE_FILE_HEIGHT * viewportScale;
-  const mapLayout =
-    imageSize.width > 0 && imageSize.height > 0
-      ? getMapScaleAndPosition(
-          imageSize.width,
-          imageSize.height,
-          mapWidth,
-          mapHeight,
-          DS_SCREEN_CENTER_X_RATIO,
-          DS_SCREEN_CENTER_Y_RATIO,
-          DS_SCREEN_INNER_WIDTH_RATIO,
-          DS_SCREEN_INNER_HEIGHT_RATIO,
-        )
-      : { scaleX: 1, scaleY: 1, x: 0, y: 0 };
+  const mapLayout = useMemo(() => {
+    if (imageSize.width === 0 || imageSize.height === 0) {
+      return { scaleX: 1, scaleY: 1, x: 0, y: 0 };
+    }
+    const adjustedInnerHeightRatio =
+      DS_SCREEN_INNER_HEIGHT_RATIO - DS_BOTTOM_BAR_HEIGHT_RATIO;
+    return getMapScaleAndPosition(
+      imageSize.width,
+      imageSize.height,
+      mapWidth,
+      mapHeight,
+      DS_SCREEN_CENTER_X_RATIO,
+      DS_SCREEN_CENTER_Y_RATIO,
+      DS_SCREEN_INNER_WIDTH_RATIO,
+      adjustedInnerHeightRatio,
+    );
+  }, [imageSize.width, imageSize.height, mapWidth, mapHeight]);
   const dsInnerScreenSize = useMemo(
     () => ({
       width: imageSize.width * DS_SCREEN_INNER_WIDTH_RATIO,
@@ -108,6 +114,23 @@ export function Screen() {
       y: imagePosition.y + relativeCenter.y,
     };
   }, [imageSize.width, imageSize.height, imagePosition.x, imagePosition.y]);
+  const bottomBarLayout = useMemo(() => {
+    if (
+      imageSize.width === 0 ||
+      imageSize.height === 0 ||
+      mapLayout.scaleX === 0
+    ) {
+      return { x: 0, y: 0, width: 0 };
+    }
+    const scaledMapWidth = mapWidth * mapLayout.scaleX;
+    const scaledMapHeight = mapHeight * mapLayout.scaleY;
+    const bottomBarY = mapLayout.y + scaledMapHeight;
+    return {
+      x: mapLayout.x,
+      y: bottomBarY,
+      width: scaledMapWidth,
+    };
+  }, [mapLayout, mapWidth, mapHeight, imageSize.width, imageSize.height]);
   return (
     <div ref={containerRef} className="relative">
       <Image
@@ -136,23 +159,31 @@ export function Screen() {
         }}
       />
       {imageSize.width > 0 && (
-        <div
-          className="absolute"
-          style={{
-            left: `${mapLayout.x}px`,
-            top: `${mapLayout.y}px`,
-            transform: `scaleX(${mapLayout.scaleX}) scaleY(${mapLayout.scaleY})`,
-            transformOrigin: "top left",
-          }}
-        >
-          <Map
+        <>
+          <div
+            className="absolute"
+            style={{
+              left: `${mapLayout.x}px`,
+              top: `${mapLayout.y}px`,
+              transform: `scaleX(${mapLayout.scaleX}) scaleY(${mapLayout.scaleY})`,
+              transformOrigin: "top left",
+            }}
+          >
+            <Map
+              onModalStateChange={handleModalStateChange}
+              isModalOpen={isModalOpen}
+              screenSize={imageSize}
+              dsInnerScreenSize={dsInnerScreenSize}
+              dsInnerScreenCenter={dsInnerScreenCenter}
+            />
+          </div>
+          <BottomBar
             onModalStateChange={handleModalStateChange}
-            isModalOpen={isModalOpen}
-            screenSize={imageSize}
             dsInnerScreenSize={dsInnerScreenSize}
             dsInnerScreenCenter={dsInnerScreenCenter}
+            bottomBarLayout={bottomBarLayout}
           />
-        </div>
+        </>
       )}
     </div>
   );

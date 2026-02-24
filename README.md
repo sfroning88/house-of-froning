@@ -10,6 +10,10 @@ This is a `pnpm workspace` with `Next.js` configuration. Follow the `apps-rules.
 
 Based on the `pokegear` from **Pokemon HeartGold and SoulSilver**, the layout is a town map with interactive locations based on my life. There is a trainer card modal, which, when clicked, brings up my personal trainer card with complete 2D sprite.
 
+## Libraries
+
+This application uses `Tailwind colors` and `Lucide React` icons. See official Tailwind documentation at [tailwindcss.com/docs/colors](https://tailwindcss.com/docs/colors).See the available icons at [lucide.dev/icons/](https://lucide.dev/icons/).
+
 ## License
 
 ```md

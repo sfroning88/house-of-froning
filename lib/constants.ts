@@ -6,9 +6,10 @@ export const DS_IMAGE_FILE_HEIGHT = 800;
 export const DS_VIEWPORT_HEIGHT_RATIO = 0.9;
 export const DS_IMAGE_PATH = "/images/ds/bottomscreen.jpg";
 export const DS_SCREEN_CENTER_X_RATIO = 0.5;
-export const DS_SCREEN_CENTER_Y_RATIO = 0.3375;
+export const DS_SCREEN_CENTER_Y_RATIO = 0.2825;
 export const DS_SCREEN_INNER_WIDTH_RATIO = 0.875;
-export const DS_SCREEN_INNER_HEIGHT_RATIO = 0.57;
+export const DS_SCREEN_INNER_HEIGHT_RATIO = 0.57925;
+export const DS_BOTTOM_BAR_HEIGHT_RATIO = 0.12;
 export const DS_MODAL_ZOOM_RATIO = 0.9;
 
 export const LOCATION_HOVER_POPUP_MIN_WIDTH = 200;
