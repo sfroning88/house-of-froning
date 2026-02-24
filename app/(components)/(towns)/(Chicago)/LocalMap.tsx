@@ -91,7 +91,7 @@ export function LocalMap({
     [HOVER_LOCATION.FOCUS_HEALTHCARE_PARTNERS]: {
       x: focusHealthcareX,
       y: focusHealthcareY,
-    }
+    },
   };
   return (
     <>

@@ -37,5 +37,5 @@ export const goldenDomeDescription =
   "Sean studied Computer Engineering, Finance, and Accounting while an undergraduate, graduating with Latin honors.";
 export const grottoDescription =
   "Sean spent nearly every remotely sunny evening between the Grotto and the Lakes, taking in those good old Midwestern sunsets.";
-export const ndCareersCourseDescription = 
+export const ndCareersCourseDescription =
   "Sean submitted a research proposal and ran the introductory course for Careers in Computer Science and Engineering, helping aspiring professionals.";
