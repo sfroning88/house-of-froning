@@ -58,6 +58,10 @@ export const ROWAN_LABS_X = 152;
 export const ROWAN_LABS_Y = 96;
 export const ROWAN_LABS_IMAGE_PATH = "/images/towns/rowanlabs.jpg";
 
+export const FOCUS_HEALTHCARE_PARTNERS_X = 156;
+export const FOCUS_HEALTHCARE_PARTNERS_Y = 112;
+export const FOCUS_HEALTHCARE_PARTNERS_IMAGE_PATH = "/images/towns/focus.jpg";
+
 export const NOTRE_DAME_WIDTH = 24;
 export const NOTRE_DAME_HEIGHT = 24;
 export const NOTRE_DAME_X = 144;
@@ -79,3 +83,7 @@ export const GOLDEN_DOME_IMAGE_PATH = "/images/towns/goldendome.jpg";
 export const GROTTO_X = 60;
 export const GROTTO_Y = 40;
 export const GROTTO_IMAGE_PATH = "/images/towns/grotto.jpg";
+
+export const ND_CAREERS_COURSE_X = 112;
+export const ND_CAREERS_COURSE_Y = 48;
+export const ND_CAREERS_COURSE_IMAGE_PATH = "/images/towns/careers.jpg";

@@ -13,10 +13,12 @@ import {
   saintAlphonsusAcademyDescription,
   chicagoWarriorsBaseballClubDescription,
   rowanLabsDescription,
+  focusHealthcarePartnersDescription,
   duncanHallDescription,
   ndListensDescription,
   goldenDomeDescription,
   grottoDescription,
+  ndCareersCourseDescription,
 } from "@/lib/text";
 
 export type AvatarPosition = {
@@ -56,10 +58,12 @@ export enum HOVER_LOCATION {
   SAINT_ALPHONSUS_ACADEMY = "saint alphonsus academy",
   CHICAGO_WARRIORS_BASEBALL_CLUB = "chicago warriors baseball club",
   ROWAN_LABS = "rowan labs",
+  FOCUS_HEALTHCARE_PARTNERS = "focus healthcare partners",
   DUNCAN_HALL = "duncan hall",
   ND_LISTENS = "nd listens",
   GOLDEN_DOME = "golden dome",
   GROTTO = "grotto",
+  ND_CAREERS_COURSE = "nd careers course",
 }
 
 export type HoverLocation = {
@@ -73,10 +77,13 @@ export const HoverConfig: Record<HOVER_LOCATION, string> = {
   [HOVER_LOCATION.CHICAGO_WARRIORS_BASEBALL_CLUB]:
     chicagoWarriorsBaseballClubDescription,
   [HOVER_LOCATION.ROWAN_LABS]: rowanLabsDescription,
+  [HOVER_LOCATION.FOCUS_HEALTHCARE_PARTNERS]:
+    focusHealthcarePartnersDescription,
   [HOVER_LOCATION.DUNCAN_HALL]: duncanHallDescription,
   [HOVER_LOCATION.ND_LISTENS]: ndListensDescription,
   [HOVER_LOCATION.GOLDEN_DOME]: goldenDomeDescription,
   [HOVER_LOCATION.GROTTO]: grottoDescription,
+  [HOVER_LOCATION.ND_CAREERS_COURSE]: ndCareersCourseDescription,
 };
 
 export enum CORNER {

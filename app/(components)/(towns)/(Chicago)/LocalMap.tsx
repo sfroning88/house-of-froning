@@ -5,6 +5,7 @@ import { SeansHouseLocalIcon } from "./SeansHouse";
 import { ChicagoWarriorsBaseballClubLocalIcon } from "./ChicagoWarriorsBaseballClub";
 import { RowanLabsLocalIcon } from "./RowanLabs";
 import { SaintAlphonsusAcademyLocalIcon } from "./SaintAlphonsusAcademy";
+import { FocusHealthcarePartnersLocalIcon } from "./FocusHealthcarePartners";
 import { LocationHoverPopup } from "./LocationHoverPopup";
 import { LocationDescriptionModal } from "./LocationDescriptionModal";
 import { HOVER_LOCATION, HoverLocation, HoverConfig } from "@/lib/types";
@@ -21,6 +22,8 @@ import {
   CHICAGO_WARRIORS_BASEBALL_CLUB_Y,
   ROWAN_LABS_X,
   ROWAN_LABS_Y,
+  FOCUS_HEALTHCARE_PARTNERS_X,
+  FOCUS_HEALTHCARE_PARTNERS_Y,
 } from "@/lib/constants";
 
 type LocalMapProps = {
@@ -64,6 +67,8 @@ export function LocalMap({
   const warriorsY = CHICAGO_WARRIORS_BASEBALL_CLUB_Y * LOCAL_MAP_SCALE;
   const rowanLabsX = ROWAN_LABS_X * LOCAL_MAP_SCALE;
   const rowanLabsY = ROWAN_LABS_Y * LOCAL_MAP_SCALE;
+  const focusHealthcareX = FOCUS_HEALTHCARE_PARTNERS_X * LOCAL_MAP_SCALE;
+  const focusHealthcareY = FOCUS_HEALTHCARE_PARTNERS_Y * LOCAL_MAP_SCALE;
   const locationCoordinates: Partial<
     Record<HOVER_LOCATION, { x: number; y: number }>
   > = {
@@ -82,6 +87,10 @@ export function LocalMap({
     [HOVER_LOCATION.ROWAN_LABS]: {
       x: rowanLabsX,
       y: rowanLabsY,
+    },
+    [HOVER_LOCATION.FOCUS_HEALTHCARE_PARTNERS]: {
+      x: focusHealthcareX,
+      y: focusHealthcareY,
     },
   };
   return (
@@ -166,6 +175,25 @@ export function LocalMap({
           onClick={() => setSelectedLocation(HOVER_LOCATION.ROWAN_LABS)}
         >
           <RowanLabsLocalIcon />
+        </div>
+        <div
+          className="absolute cursor-pointer"
+          style={{
+            left: focusHealthcareX,
+            top: focusHealthcareY,
+          }}
+          onMouseEnter={() =>
+            setHoveredLocation({
+              location: HOVER_LOCATION.FOCUS_HEALTHCARE_PARTNERS,
+              hover: true,
+            })
+          }
+          onMouseLeave={() => setHoveredLocation(null)}
+          onClick={() =>
+            setSelectedLocation(HOVER_LOCATION.FOCUS_HEALTHCARE_PARTNERS)
+          }
+        >
+          <FocusHealthcarePartnersLocalIcon />
         </div>
         {hoveredLocation?.hover &&
           (() => {
