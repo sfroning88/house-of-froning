@@ -17,6 +17,8 @@ export const chicagoWarriorsBaseballClubDescription =
   "Sean coaches 17u boys baseball for the Chicago Warriors, and spends his weekends travelling the Midwest for tourney play.";
 export const rowanLabsDescription =
   "Sean works for Rowan as an M&A Product Engineer, helping transform unsellable industrial small businesses into attractive M&A targets.";
+export const focusHealthcarePartnersDescription =
+  "Sean discoverd a love for M&A while being a private equity analyst in lower middle market healthcare, running two full deals.";
 
 export const notreDameDescription =
   "Home of Touchdown Jesus and the Fighting Irish, this college town holds a lot of hopes and dreams.";
@@ -35,3 +37,5 @@ export const goldenDomeDescription =
   "Sean studied Computer Engineering, Finance, and Accounting while an undergraduate, graduating with Latin honors.";
 export const grottoDescription =
   "Sean spent nearly every remotely sunny evening between the Grotto and the Lakes, taking in those good old Midwestern sunsets.";
+export const ndCareersCourseDescription = 
+  "Sean submitted a research proposal and ran the introductory course for Careers in Computer Science and Engineering, helping aspiring professionals.";

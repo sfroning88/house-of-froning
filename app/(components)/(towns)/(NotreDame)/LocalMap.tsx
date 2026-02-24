@@ -5,6 +5,7 @@ import { DuncanHallLocalIcon } from "./DuncanHall";
 import { NdListensLocalIcon } from "./NdListens";
 import { GoldenDomeLocalIcon } from "./GoldenDome";
 import { GrottoLocalIcon } from "./Grotto";
+import { NdCareersCourseLocalIcon } from "./NdCareersCourse";
 import { LocationHoverPopup } from "./LocationHoverPopup";
 import { LocationDescriptionModal } from "./LocationDescriptionModal";
 import { HOVER_LOCATION, HoverLocation, HoverConfig } from "@/lib/types";
@@ -21,6 +22,8 @@ import {
   GOLDEN_DOME_Y,
   GROTTO_X,
   GROTTO_Y,
+  ND_CAREERS_COURSE_X,
+  ND_CAREERS_COURSE_Y,
 } from "@/lib/constants";
 
 type LocalMapProps = {
@@ -64,6 +67,8 @@ export function LocalMap({
   const goldenDomeY = GOLDEN_DOME_Y * LOCAL_MAP_SCALE;
   const grottoX = GROTTO_X * LOCAL_MAP_SCALE;
   const grottoY = GROTTO_Y * LOCAL_MAP_SCALE;
+  const ndCareersX = ND_CAREERS_COURSE_X * LOCAL_MAP_SCALE;
+  const ndCareersY = ND_CAREERS_COURSE_Y * LOCAL_MAP_SCALE;
   const locationCoordinates: Partial<
     Record<HOVER_LOCATION, { x: number; y: number }>
   > = {
@@ -82,6 +87,10 @@ export function LocalMap({
     [HOVER_LOCATION.GROTTO]: {
       x: grottoX,
       y: grottoY,
+    },
+    [HOVER_LOCATION.ND_CAREERS_COURSE]: {
+      x: ndCareersX,
+      y: ndCareersY,
     },
   };
   return (
@@ -162,6 +171,23 @@ export function LocalMap({
           onClick={() => setSelectedLocation(HOVER_LOCATION.GROTTO)}
         >
           <GrottoLocalIcon />
+        </div>
+        <div
+          className="absolute cursor-pointer"
+          style={{
+            left: ndCareersX,
+            top: ndCareersY,
+          }}
+          onMouseEnter={() =>
+            setHoveredLocation({
+              location: HOVER_LOCATION.ND_CAREERS_COURSE,
+              hover: true,
+            })
+          }
+          onMouseLeave={() => setHoveredLocation(null)}
+          onClick={() => setSelectedLocation(HOVER_LOCATION.ND_CAREERS_COURSE)}
+        >
+          <NdCareersCourseLocalIcon />
         </div>
         {hoveredLocation?.hover &&
           locationCoordinates[hoveredLocation.location] && (
