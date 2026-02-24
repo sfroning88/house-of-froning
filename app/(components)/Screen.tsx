@@ -8,16 +8,23 @@ import {
   DS_PIXEL_WIDTH,
   DS_PIXEL_HEIGHT,
   DS_TO_WEB_SCALE,
+  DS_IMAGE_FILE_WIDTH,
+  DS_IMAGE_FILE_HEIGHT,
   DS_SCREEN_CENTER_X_RATIO,
   DS_SCREEN_CENTER_Y_RATIO,
   DS_SCREEN_INNER_WIDTH_RATIO,
   DS_SCREEN_INNER_HEIGHT_RATIO,
 } from "@/lib/constants";
-import { getMapScaleAndPosition, getDsInnerScreenCenter } from "@lib/utils";
+import {
+  getMapScaleAndPosition,
+  getDsInnerScreenCenter,
+  getViewportScale,
+} from "@lib/utils";
 
 export function Screen() {
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
   const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
+  const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
   const [modalCount, setModalCount] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const isModalOpen = modalCount > 0;
@@ -26,6 +33,19 @@ export function Screen() {
   };
   const mapWidth = DS_PIXEL_WIDTH * DS_TO_WEB_SCALE;
   const mapHeight = DS_PIXEL_HEIGHT * DS_TO_WEB_SCALE;
+  useEffect(() => {
+    const updateViewportSize = () => {
+      setViewportSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+    updateViewportSize();
+    window.addEventListener("resize", updateViewportSize);
+    return () => {
+      window.removeEventListener("resize", updateViewportSize);
+    };
+  }, []);
   useEffect(() => {
     const updateSize = () => {
       if (containerRef.current) {
@@ -44,7 +64,15 @@ export function Screen() {
       window.removeEventListener("resize", updateSize);
       window.removeEventListener("scroll", updateSize);
     };
-  }, []);
+  }, [viewportSize]);
+  const viewportScale = useMemo(() => {
+    if (viewportSize.width === 0 || viewportSize.height === 0) {
+      return 1;
+    }
+    return getViewportScale(viewportSize.width, viewportSize.height);
+  }, [viewportSize.width, viewportSize.height]);
+  const scaledImageWidth = DS_IMAGE_FILE_WIDTH * viewportScale;
+  const scaledImageHeight = DS_IMAGE_FILE_HEIGHT * viewportScale;
   const mapLayout =
     imageSize.width > 0 && imageSize.height > 0
       ? getMapScaleAndPosition(
@@ -85,9 +113,13 @@ export function Screen() {
       <Image
         src={DS_IMAGE_PATH}
         alt="DS Screen"
-        width={1200}
-        height={800}
-        className="w-auto h-auto max-w-full"
+        width={DS_IMAGE_FILE_WIDTH}
+        height={DS_IMAGE_FILE_HEIGHT}
+        style={{
+          width: `${scaledImageWidth}px`,
+          height: `${scaledImageHeight}px`,
+        }}
+        className="w-auto h-auto"
         priority
         onLoad={() => {
           if (containerRef.current) {

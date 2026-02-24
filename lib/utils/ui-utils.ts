@@ -1,7 +1,23 @@
 import { CORNER } from "@/lib/types";
+import {
+  DS_IMAGE_FILE_WIDTH,
+  DS_IMAGE_FILE_HEIGHT,
+  DS_VIEWPORT_HEIGHT_RATIO,
+} from "@/lib/constants";
 
 export function FormatBulletPoints(items: string[]): string {
   return items.map((item) => `• ${item}`).join("\n");
+}
+
+export function getViewportScale(
+  viewportWidth: number,
+  viewportHeight: number,
+): number {
+  const targetHeight = viewportHeight * DS_VIEWPORT_HEIGHT_RATIO;
+  const scaleByHeight = targetHeight / DS_IMAGE_FILE_HEIGHT;
+  const targetWidth = viewportWidth * 0.95;
+  const scaleByWidth = targetWidth / DS_IMAGE_FILE_WIDTH;
+  return Math.min(scaleByHeight, scaleByWidth);
 }
 
 export function getMapScaleAndPosition(

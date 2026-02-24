@@ -1,6 +1,9 @@
 export const DS_TO_WEB_SCALE = 6;
 export const DS_PIXEL_WIDTH = 192;
 export const DS_PIXEL_HEIGHT = 128;
+export const DS_IMAGE_FILE_WIDTH = 1200;
+export const DS_IMAGE_FILE_HEIGHT = 800;
+export const DS_VIEWPORT_HEIGHT_RATIO = 0.9;
 export const DS_IMAGE_PATH = "/images/ds/bottomscreen.jpg";
 export const DS_SCREEN_CENTER_X_RATIO = 0.5;
 export const DS_SCREEN_CENTER_Y_RATIO = 0.3375;
