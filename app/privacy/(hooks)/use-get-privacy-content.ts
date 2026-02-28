@@ -12,7 +12,7 @@ export function useGetPrivacyContent(isOpen: boolean) {
       isFetchingRef.current = true;
       queueMicrotask(() => {
         setIsLoading(true);
-        getPrivacyContent()
+        getPrivacyContent({})
           .then((data) => setContent(data))
           .finally(() => {
             setIsLoading(false);
