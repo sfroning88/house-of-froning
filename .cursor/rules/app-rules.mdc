@@ -8,47 +8,19 @@ Follow these patterns for `app/` development in `Next.js` of `house-of-froning.v
 
 ## File Structure
 
-### Route-Level Organization (`app/[orgSlug]/[route]/`)
-
-Use Next.js route groups `(actions)`, `(components)`, `(hooks)` for co-located feature code:
-
-```md
-apps/dashboard/app/[orgSlug]/[route]/
-├── page.tsx                    # Main page (minimal logic)
-├── layout.tsx                  # Route layout (if needed)
-├── loading.tsx                 # Cache data read (if needed)
-├── (actions)/                  # Server actions (route group)
-│   └── route-actions.ts        # Server actions for this route
-├── (components)/               # UI components (route group)
-│   ├── ComponentName.tsx       # Pure UI components
-│   └── ComponentNameModal.tsx  # Modal components
-├── (hooks)/                    # Custom hooks (route group)
-│   └── use-feature-name.ts     # React Query hooks, custom hooks
-├── (context)/                  # Context providers (route group, if needed)
-│   └── FeatureContext.tsx      # Shared state for route
-└── types/                      # Local types (use @boom/types for shared types)
-    └── route-types.ts          # Route-specific type definitions
-```
-
 ### Shared Code Organization (`lib/`)
 
 ```md
-apps/dashboard/lib/
+apps/platform/lib/
 ├── services/                   # Service layer (database operations)
 │   └── [service-name]/
 │       └── server/
 │           └── service-name.ts # Prisma operations, marked "server-only"
-├── api/                        # API utilities and legacy actions
-│   └── [feature]/
-│       └── feature-actions.ts  # Legacy server actions (migrate to route actions)
 ├── auth/                       # Authentication & authorization
 │   ├── actions/                # Auth server actions
 │   ├── components/             # Auth UI components
-│   └── utils/                  # Auth utilities
-├── hooks/                      # Shared React hooks
-│   └── use-shared-hook.ts      # Reusable hooks across routes
 ├── routes.ts                   # Route definitions
-└── constants.ts                 # Shared constants
+└── constants.ts                # Shared constants
 ```
 
 ### Key Patterns
@@ -61,46 +33,8 @@ apps/dashboard/lib/
 
 ## Type Management
 
-### Type Definitions
-
-- Place all types and interfaces in `types.ts` files
-- Exception: Component Props can be defined with the component
-
-### Shared Types
-
-- **ALWAYS** use `@boom/types` for shared interfaces
-- Import from `@boom/types` for API responses, common interfaces
-- Add new shared types to `packages/types/index.ts`
-
-### Local Types
-
-- Use local `types/` directory only for feature-specific types
-- Re-export shared types from `@boom/types` when needed
-- Don't duplicate types that exist in `@boom/types`
-- Local types are incredibly **limited use case(s)**
-
-## API Route Deprecation
-
-When possible, always defer to `server actions` and `services/server` for hitting backend routes. If unavoidable and refactoring legacy code, **ALWAYS** use standardized `ApiResponse` types:
-
-```typescript
-import {
-  ApiResponse,
-  createSuccessResponse,
-  createErrorResponse,
-} from "@boom/types";
-
-export async function GET(): Promise<NextResponse<ApiSuccessResponse<Data[]>>> {
-  try {
-    const data = await Service.getData();
-    return NextResponse.json(createSuccessResponse(data));
-  } catch (error) {
-    return NextResponse.json(createErrorResponse("Failed to fetch data"), {
-      status: 500,
-    });
-  }
-}
-```
+- Exception: Component `Props` should be defined with the component
+- **ALWAYS** use `@/lib/types` for type definition housing
 
 ## Authentication Patterns
 
