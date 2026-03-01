@@ -91,6 +91,7 @@ export function TrainerCard({
               src={TRAINER_CARD_IMAGE_PATH}
               alt="Trainer"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-contain"
               unoptimized
             />
