@@ -14,6 +14,9 @@ export const env = createEnv({
     SPOTIFY_ACCESS_CODE: z.string().min(1),
     SPOTIFY_ACCESS_TOKEN: z.string().min(1),
     SPOTIFY_REFRESH_TOKEN: z.string().min(1),
+    GOOGLE_SERVICE_ACCOUNT_EMAIL: z.string().min(1),
+    GOOGLE_PRIVATE_KEY: z.string().min(1),
+    GOOGLE_SHEET_ID: z.string().min(1),
   },
   client: {},
   experimental__runtimeEnv: {

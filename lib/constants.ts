@@ -19,8 +19,13 @@ export const SPOTIFY_CURRENTLY_PLAYING_URL =
 export const SPOTIFY_LAST_PLAYED_URL =
   "https://api.spotify.com/v1/me/player/recently-played?limit=1";
 
-export const GOOGLE_STALE_TIME = 60 * 60 * 24 * 1000;
-export const GOOGLE_SHEET_NAME = "_Master File Learning";
+export const GOOGLE_STALE_TIME = 60 * 60 * 1000;
+export const GOOGLE_SHEETS_BASE_URL =
+  "https://sheets.googleapis.com/v4/spreadsheets";
+export const GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
+export const GOOGLE_SHEET_RANGE = "Sheet1!A:I";
+export const GOOGLE_SHEET_SCOPE =
+  "https://www.googleapis.com/auth/spreadsheets.readonly";
 
 export const DS_TO_WEB_SCALE = 6;
 export const DS_PIXEL_WIDTH = 192;
