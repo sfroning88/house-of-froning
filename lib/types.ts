@@ -152,4 +152,5 @@ export type GoogleSheetBookData = {
   daysToRead: number;
   topics: string;
   thoughts: string;
+  coverImageUrl: string | null;
 };

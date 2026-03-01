@@ -27,6 +27,7 @@ export function SheetToBooksData(values: string[][]): GoogleSheetBookData[] {
         daysToRead,
         topics: row[7] || "",
         thoughts: row[8] || "",
+        coverImageUrl: null,
       };
     });
 }

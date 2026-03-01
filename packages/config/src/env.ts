@@ -17,6 +17,7 @@ export const env = createEnv({
     GOOGLE_SERVICE_ACCOUNT_EMAIL: z.string().min(1),
     GOOGLE_PRIVATE_KEY: z.string().min(1),
     GOOGLE_SHEET_ID: z.string().min(1),
+    GOOGLE_BOOKS_API_KEY: z.string().min(1),
   },
   client: {},
   experimental__runtimeEnv: {

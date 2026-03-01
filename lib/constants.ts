@@ -23,9 +23,13 @@ export const GOOGLE_STALE_TIME = 60 * 60 * 1000;
 export const GOOGLE_SHEETS_BASE_URL =
   "https://sheets.googleapis.com/v4/spreadsheets";
 export const GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
-export const GOOGLE_SHEET_RANGE = "Sheet1!A:I";
+export const GOOGLE_SHEET_RANGE = "BOOKS!A:I";
 export const GOOGLE_SHEET_SCOPE =
   "https://www.googleapis.com/auth/spreadsheets.readonly";
+export const GOOGLE_BOOKS_API_BASE_URL =
+  "https://www.googleapis.com/books/v1/volumes";
+export const OPEN_LIBRARY_COVERS_BASE_URL =
+  "https://covers.openlibrary.org/b/isbn";
 
 export const DS_TO_WEB_SCALE = 6;
 export const DS_PIXEL_WIDTH = 192;
