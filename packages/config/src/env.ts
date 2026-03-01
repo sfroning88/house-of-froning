@@ -9,7 +9,11 @@ export const env = createEnv({
     VERCEL: z.string().optional(),
   },
   server: {
-    SPOTIFY_API_KEY: z.string().min(1),
+    SPOTIFY_CLIENT_ID: z.string().min(1),
+    SPOTIFY_CLIENT_SECRET: z.string().min(1),
+    SPOTIFY_ACCESS_CODE: z.string().min(1),
+    SPOTIFY_ACCESS_TOKEN: z.string().min(1),
+    SPOTIFY_REFRESH_TOKEN: z.string().min(1),
   },
   client: {},
   experimental__runtimeEnv: {

@@ -9,6 +9,14 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.scdn.co",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

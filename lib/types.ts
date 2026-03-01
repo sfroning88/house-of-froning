@@ -92,3 +92,26 @@ export enum CORNER {
   BOTTOM_LEFT = "BOTTOM_LEFT",
   BOTTOM_RIGHT = "BOTTOM_RIGHT",
 }
+
+export type SpotifySongData = {
+  name: string;
+  artists: [
+    {
+      name: string;
+    },
+  ];
+  album: {
+    name: string;
+    images: [
+      {
+        url: string;
+        width: string;
+        height: string;
+      },
+    ];
+  };
+  externalUrls: {
+    spotify: string;
+  };
+  previewUrl: string | null;
+};
