@@ -16,7 +16,9 @@
     "plugins": [{ "name": "next" }],
     "paths": {
       "@/*": ["./*"],
-      "@lib/*": ["./lib/*"]
+      "@app/*": ["./app/*"],
+      "@lib/*": ["./lib/*"],
+      "@packages/config": ["./packages/config/src"]
     }
   },
   "include": [

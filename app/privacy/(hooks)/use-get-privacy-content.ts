@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { getPrivacyContent } from "@/app/privacy/(actions)/privacy-action";
+import { getPrivacyContentAction } from "@/app/privacy/(actions)/privacy-action";
 
 export function useGetPrivacyContent(isOpen: boolean) {
   const [content, setContent] = useState<string>("");
@@ -12,7 +12,7 @@ export function useGetPrivacyContent(isOpen: boolean) {
       isFetchingRef.current = true;
       queueMicrotask(() => {
         setIsLoading(true);
-        getPrivacyContent({})
+        getPrivacyContentAction({})
           .then((data) => setContent(data))
           .finally(() => {
             setIsLoading(false);

@@ -7,7 +7,7 @@ import { join } from "path";
 
 const getPrivacyContentSchema = z.object({});
 
-export const getPrivacyContent = createPublicAction(
+export const getPrivacyContentAction = createPublicAction(
   getPrivacyContentSchema,
   async () => {
     const filePath = join(process.cwd(), "app/privacy/PRIVACY.md");

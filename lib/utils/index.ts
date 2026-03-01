@@ -1,2 +1,2 @@
-export * from "./animation-utils";
-export * from "./ui-utils";
+export * from "./src/animation-utils";
+export * from "./src/ui-utils";
