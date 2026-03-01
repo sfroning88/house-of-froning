@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cinzel, Geist, Geist_Mono } from "next/font/google";
 import { MAP_AVATAR_BLINK_TIME } from "@/lib/constants";
 import { PrivacyNotice } from "@/app/privacy/(components)/privacyNotice";
+import { QueryProvider } from "@/app/providers";
 import "./globals.css";
 
 const cinzel = Cinzel({
@@ -46,8 +47,10 @@ export default function RootLayout({
           } as React.CSSProperties
         }
       >
-        {children}
-        <PrivacyNotice />
+        <QueryProvider>
+          {children}
+          <PrivacyNotice />
+        </QueryProvider>
       </body>
     </html>
   );

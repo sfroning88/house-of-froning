@@ -1,3 +1,15 @@
+export const PROVIDER_STALE_TIME = 60 * 1000;
+
+export const COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
+
+export const USER_ID_COOKIE_NAME = "house-of-froning-id";
+
+export const QUERY_STALE_TIME = 60 * 5 * 1000;
+
+export const QUERY_KEYS = {
+  user: (userId: string) => ["user", userId] as const,
+};
+
 export const DS_TO_WEB_SCALE = 6;
 export const DS_PIXEL_WIDTH = 192;
 export const DS_PIXEL_HEIGHT = 128;
