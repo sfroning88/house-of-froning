@@ -106,10 +106,10 @@ export type SpotifyTrackItem = {
       height: number;
     }>;
   };
-  externalUrls: {
+  external_urls: {
     spotify: string;
   };
-  previewUrl: string | null;
+  preview_url: string | null;
 };
 
 export type SpotifySongData = {
