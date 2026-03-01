@@ -66,9 +66,20 @@ export enum HOVER_LOCATION {
   ND_CAREERS_COURSE = "nd careers course",
 }
 
-export type HoverLocation = {
-  location: HOVER_LOCATION;
-  hover: boolean;
+export type TownLocationConfig = {
+  id: HOVER_LOCATION;
+  x: number;
+  y: number;
+  imagePath: string;
+  alt: string;
+};
+
+export type TownContentConfig = {
+  title: string;
+  imagePath: string;
+  description: string;
+  bullets: string;
+  locations: TownLocationConfig[];
 };
 
 export const HoverConfig: Record<HOVER_LOCATION, string> = {
@@ -85,13 +96,6 @@ export const HoverConfig: Record<HOVER_LOCATION, string> = {
   [HOVER_LOCATION.GROTTO]: grottoDescription,
   [HOVER_LOCATION.ND_CAREERS_COURSE]: ndCareersCourseDescription,
 };
-
-export enum CORNER {
-  TOP_LEFT = "TOP_LEFT",
-  TOP_RIGHT = "TOP_RIGHT",
-  BOTTOM_LEFT = "BOTTOM_LEFT",
-  BOTTOM_RIGHT = "BOTTOM_RIGHT",
-}
 
 export type SpotifyTrackItem = {
   name: string;

@@ -3,7 +3,8 @@
 import { useEffect, useMemo, useRef } from "react";
 import Image from "next/image";
 import { createPortal } from "react-dom";
-import { DS_MODAL_ZOOM_RATIO } from "@/lib/constants";
+import { useMediaQuery } from "@/app/(hooks)/use-media-query";
+import { DS_MODAL_ZOOM_RATIO, MOBILE_BREAKPOINT } from "@/lib/constants";
 import { useGetBookToShow } from "@/app/(hooks)/use-get-book-to-show";
 
 type GoogleBooksProps = {
@@ -19,6 +20,7 @@ export function GoogleBooks({
   dsInnerScreenCenter,
   onClose,
 }: GoogleBooksProps) {
+  const isMobile = !useMediaQuery(`(min-width: ${MOBILE_BREAKPOINT}px)`, true);
   const modalRef = useRef<HTMLDivElement>(null);
   const { data: bookToShow, isLoading } = useGetBookToShow();
   useEffect(() => {
@@ -39,75 +41,112 @@ export function GoogleBooks({
   if (modalWidth === 0 || modalHeight === 0) {
     return null;
   }
+  const coverWidth = isMobile ? 96 : 192;
+  const coverHeight = isMobile ? 144 : 288;
   const modalContent = (
     <div
-      ref={modalRef}
-      className="fixed bg-white border-4 border-slate-400 p-6 shadow-lg z-50 flex flex-col gap-4 overflow-auto transition-all duration-300"
-      style={{
-        left: `${dsInnerScreenCenter.x}px`,
-        top: `${dsInnerScreenCenter.y}px`,
-        transform: `translate(-50%, -50%)`,
-        width: `${modalWidth}px`,
-        height: `${modalHeight}px`,
-        maxWidth: `${modalWidth}px`,
-        maxHeight: `${modalHeight}px`,
-        minWidth: `${modalWidth}px`,
-        minHeight: `${modalHeight}px`,
-      }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-2"
+      aria-modal
     >
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold">Google Books</h2>
-        <button
-          onClick={onClose}
-          className="text-slate-600 hover:text-slate-800 text-2xl leading-none"
-        >
-          ×
-        </button>
-      </div>
-      <div className="flex-1 flex flex-col items-center justify-center gap-4">
-        {isLoading ? (
-          <div className="text-slate-500">Loading...</div>
-        ) : bookToShow ? (
-          <>
-            {bookToShow.coverImageUrl && (
-              <Image
-                src={bookToShow.coverImageUrl}
-                alt={bookToShow.title}
-                width={192}
-                height={288}
-                className="w-48 h-72 object-cover rounded-lg shadow-md"
-              />
-            )}
-            <div className="text-center">
-              <h3 className="text-lg font-semibold">{bookToShow.title}</h3>
-              <p className="text-slate-600">{bookToShow.author}</p>
-              <p className="text-sm text-slate-500 mt-1 capitalize">
-                {bookToShow.status}
-              </p>
+      <div
+        ref={modalRef}
+        className="absolute bg-white border-4 border-slate-400 shadow-lg flex flex-col gap-4 overflow-hidden transition-all duration-300"
+        style={{
+          left: `${dsInnerScreenCenter.x}px`,
+          top: `${dsInnerScreenCenter.y}px`,
+          transform: "translate(-50%, -50%)",
+          width: `${modalWidth}px`,
+          height: `${modalHeight}px`,
+          maxWidth: `min(${modalWidth}px, 90vw)`,
+          maxHeight: `min(${modalHeight}px, 90dvh)`,
+          padding: isMobile ? "0.75rem" : "1.5rem",
+        }}
+      >
+        <div className="flex items-center justify-between flex-shrink-0">
+          <h2
+            className={`font-semibold truncate ${isMobile ? "text-base" : "text-xl"}`}
+          >
+            Google Books
+          </h2>
+          <button
+            onClick={onClose}
+            className={`text-slate-600 hover:text-slate-800 leading-none ${isMobile ? "text-xl" : "text-2xl"}`}
+          >
+            ×
+          </button>
+        </div>
+        <div className="flex-1 flex flex-col items-center justify-center gap-4 overflow-y-auto min-h-0">
+          {isLoading ? (
+            <div
+              className={`text-slate-500 ${isMobile ? "text-sm" : "text-base"}`}
+            >
+              Loading...
             </div>
-            {bookToShow.topics && (
-              <div className="text-center">
-                <p className="text-sm text-slate-600">
-                  Topics: {bookToShow.topics}
+          ) : bookToShow ? (
+            <>
+              {bookToShow.coverImageUrl && (
+                <Image
+                  src={bookToShow.coverImageUrl}
+                  alt={bookToShow.title}
+                  width={coverWidth}
+                  height={coverHeight}
+                  className="object-cover rounded-lg shadow-md"
+                  style={{ width: coverWidth, height: coverHeight }}
+                />
+              )}
+              <div className="text-center min-w-0">
+                <h3
+                  className={`font-semibold ${isMobile ? "text-base" : "text-lg"}`}
+                >
+                  {bookToShow.title}
+                </h3>
+                <p
+                  className={`text-slate-600 ${isMobile ? "text-xs" : "text-sm"}`}
+                >
+                  {bookToShow.author}
+                </p>
+                <p
+                  className={`text-slate-500 mt-1 capitalize ${isMobile ? "text-xs" : "text-sm"}`}
+                >
+                  {bookToShow.status}
                 </p>
               </div>
-            )}
-            {bookToShow.thoughts && (
-              <div className="text-center max-w-md">
-                <p className="text-sm text-slate-700">{bookToShow.thoughts}</p>
-              </div>
-            )}
-            {bookToShow.daysToRead > 0 && (
-              <div className="text-center">
-                <p className="text-sm text-slate-500">
-                  {bookToShow.daysToRead} days to read
-                </p>
-              </div>
-            )}
-          </>
-        ) : (
-          <div className="text-slate-500">No book data available</div>
-        )}
+              {bookToShow.topics && (
+                <div className="text-center min-w-0">
+                  <p
+                    className={`text-slate-600 ${isMobile ? "text-xs" : "text-sm"}`}
+                  >
+                    Topics: {bookToShow.topics}
+                  </p>
+                </div>
+              )}
+              {bookToShow.thoughts && (
+                <div className="text-center max-w-md min-w-0">
+                  <p
+                    className={`text-slate-700 ${isMobile ? "text-xs" : "text-sm"}`}
+                  >
+                    {bookToShow.thoughts}
+                  </p>
+                </div>
+              )}
+              {bookToShow.daysToRead > 0 && (
+                <div className="text-center">
+                  <p
+                    className={`text-slate-500 ${isMobile ? "text-xs" : "text-sm"}`}
+                  >
+                    {bookToShow.daysToRead} days to read
+                  </p>
+                </div>
+              )}
+            </>
+          ) : (
+            <div
+              className={`text-slate-500 ${isMobile ? "text-sm" : "text-base"}`}
+            >
+              No book data available
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { IdCard, RadioTower, BookOpenText, Newspaper } from "lucide-react";
+import { BOTTOM_BAR_BUTTON_SIZE } from "@/lib/constants";
 import { TrainerCard } from "./(bottom)/TrainerCard";
 import { SpotifySong } from "./(bottom)/SpotifySong";
 import { GoogleBooks } from "./(bottom)/GoogleBooks";
@@ -11,7 +12,7 @@ type BottomBarProps = {
   onModalStateChange?: (isOpen: boolean) => void;
   dsInnerScreenSize: { width: number; height: number };
   dsInnerScreenCenter: { x: number; y: number };
-  bottomBarLayout: { x: number; y: number; width: number };
+  bottomBarLayout: { left: number; top: number; width: number };
 };
 
 export function BottomBar({
@@ -58,40 +59,82 @@ export function BottomBar({
   return (
     <>
       <div
-        className="absolute bg-slate-700 border-t-2 border-slate-500 flex items-center justify-around py-3 z-30"
+        className="absolute bg-slate-700 border-t-2 border-slate-500 flex items-center justify-around z-30"
         style={{
-          left: `${bottomBarLayout.x}px`,
-          top: `${bottomBarLayout.y}px`,
+          left: `${bottomBarLayout.left}px`,
+          top: `${bottomBarLayout.top}px`,
           width: `${bottomBarLayout.width}px`,
+          paddingTop: BOTTOM_BAR_BUTTON_SIZE / 4,
+          paddingBottom: BOTTOM_BAR_BUTTON_SIZE / 4,
         }}
       >
         <button
           onClick={handleTrainerCardToggle}
-          className="flex items-center justify-center w-12 h-12 bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
+          className="flex items-center justify-center bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
+          style={{
+            width: BOTTOM_BAR_BUTTON_SIZE,
+            height: BOTTOM_BAR_BUTTON_SIZE,
+          }}
           aria-label="Trainer Card"
         >
-          <IdCard className="w-6 h-6 text-white" />
+          <IdCard
+            className="text-white"
+            style={{
+              width: BOTTOM_BAR_BUTTON_SIZE / 2,
+              height: BOTTOM_BAR_BUTTON_SIZE / 2,
+            }}
+          />
         </button>
         <button
           onClick={handleSpotifySongToggle}
-          className="flex items-center justify-center w-12 h-12 bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
+          className="flex items-center justify-center bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
+          style={{
+            width: BOTTOM_BAR_BUTTON_SIZE,
+            height: BOTTOM_BAR_BUTTON_SIZE,
+          }}
           aria-label="Spotify Song"
         >
-          <RadioTower className="w-6 h-6 text-white" />
+          <RadioTower
+            className="text-white"
+            style={{
+              width: BOTTOM_BAR_BUTTON_SIZE / 2,
+              height: BOTTOM_BAR_BUTTON_SIZE / 2,
+            }}
+          />
         </button>
         <button
           onClick={handleGoogleBooksToggle}
-          className="flex items-center justify-center w-12 h-12 bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
+          className="flex items-center justify-center bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
+          style={{
+            width: BOTTOM_BAR_BUTTON_SIZE,
+            height: BOTTOM_BAR_BUTTON_SIZE,
+          }}
           aria-label="Google Books"
         >
-          <BookOpenText className="w-6 h-6 text-white" />
+          <BookOpenText
+            className="text-white"
+            style={{
+              width: BOTTOM_BAR_BUTTON_SIZE / 2,
+              height: BOTTOM_BAR_BUTTON_SIZE / 2,
+            }}
+          />
         </button>
         <button
           onClick={handleResumeToggle}
-          className="flex items-center justify-center w-12 h-12 bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
+          className="flex items-center justify-center bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
+          style={{
+            width: BOTTOM_BAR_BUTTON_SIZE,
+            height: BOTTOM_BAR_BUTTON_SIZE,
+          }}
           aria-label="Placeholder"
         >
-          <Newspaper className="w-6 h-6 text-white" />
+          <Newspaper
+            className="text-white"
+            style={{
+              width: BOTTOM_BAR_BUTTON_SIZE / 2,
+              height: BOTTOM_BAR_BUTTON_SIZE / 2,
+            }}
+          />
         </button>
       </div>
       {isTrainerCardOpen && (

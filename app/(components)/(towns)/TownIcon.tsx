@@ -1,11 +1,11 @@
 "use client";
 
-type IconProps = {
+type TownIconProps = {
   width?: number;
   height?: number;
 };
 
-export function Icon({ width, height }: IconProps) {
+export function TownIcon({ width, height }: TownIconProps) {
   const style = width != null && height != null ? { width, height } : undefined;
   return (
     <div

@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { Chicago, NotreDame } from "./(towns)";
+import { Chicago } from "./(towns)/Chicago";
+import { NotreDame } from "./(towns)/NotreDame";
 import { getTownCenter } from "@lib/utils";
 import { TOWN_ID, TownConfig } from "@lib/types";
 import { Avatar } from "./Avatar";
@@ -19,6 +20,7 @@ type MapProps = {
   screenSize: { width: number; height: number };
   dsInnerScreenSize: { width: number; height: number };
   dsInnerScreenCenter: { x: number; y: number };
+  mapCenter: { x: number; y: number };
 };
 
 export function Map({
@@ -27,6 +29,7 @@ export function Map({
   screenSize,
   dsInnerScreenSize,
   dsInnerScreenCenter,
+  mapCenter,
 }: MapProps) {
   const mapWidth = DS_PIXEL_WIDTH * DS_TO_WEB_SCALE;
   const mapHeight = DS_PIXEL_HEIGHT * DS_TO_WEB_SCALE;
@@ -59,10 +62,9 @@ export function Map({
         <Chicago
           onVisitTown={() => onVisitTown(TOWN_ID.CHICAGO)}
           onModalStateChange={onModalStateChange}
-          isModalOpen={isModalOpen}
-          screenSize={screenSize}
           dsInnerScreenSize={dsInnerScreenSize}
           dsInnerScreenCenter={dsInnerScreenCenter}
+          mapCenter={mapCenter}
         />
       </div>
       <div
@@ -75,10 +77,9 @@ export function Map({
         <NotreDame
           onVisitTown={() => onVisitTown(TOWN_ID.NOTRE_DAME)}
           onModalStateChange={onModalStateChange}
-          isModalOpen={isModalOpen}
-          screenSize={screenSize}
           dsInnerScreenSize={dsInnerScreenSize}
           dsInnerScreenCenter={dsInnerScreenCenter}
+          mapCenter={mapCenter}
         />
       </div>
       <Avatar position={avatarPosition} isBlinking={true} />
