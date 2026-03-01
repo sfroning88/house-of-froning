@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { DollarSign, IdCard } from "lucide-react";
+import { DollarSign, IdCard, RadioTower } from "lucide-react";
 import { TrainerCard } from "./(bottom)/TrainerCard";
+import { SpotifySong } from "./(bottom)/SpotifySong";
 
 type BottomBarProps = {
   onModalStateChange?: (isOpen: boolean) => void;
@@ -23,6 +24,14 @@ export function BottomBar({
   };
   const handleTrainerCardStateChange = (isOpen: boolean) => {
     setIsTrainerCardOpen(isOpen);
+    onModalStateChange?.(isOpen);
+  };
+  const [isSpotifySongOpen, setIsSpotifySongOpen] = useState(false);
+  const handleSpotifySongToggle = () => {
+    setIsSpotifySongOpen((prev) => !prev);
+  };
+  const handleSpotifySongStateChange = (isOpen: boolean) => {
+    setIsSpotifySongOpen(isOpen);
     onModalStateChange?.(isOpen);
   };
   if (bottomBarLayout.width === 0) {
@@ -46,11 +55,11 @@ export function BottomBar({
           <IdCard className="w-6 h-6 text-white" />
         </button>
         <button
+          onClick={handleSpotifySongToggle}
           className="flex items-center justify-center w-12 h-12 bg-slate-600 rounded border border-slate-400"
-          aria-label="Placeholder"
-          disabled
+          aria-label="Spotify Song"
         >
-          <DollarSign className="w-6 h-6 text-white" />
+          <RadioTower className="w-6 h-6 text-white" />
         </button>
         <button
           className="flex items-center justify-center w-12 h-12 bg-slate-600 rounded border border-slate-400"
@@ -73,6 +82,14 @@ export function BottomBar({
           dsInnerScreenSize={dsInnerScreenSize}
           dsInnerScreenCenter={dsInnerScreenCenter}
           onClose={() => handleTrainerCardStateChange(false)}
+        />
+      )}
+      {isSpotifySongOpen && (
+        <SpotifySong
+          onModalStateChange={handleSpotifySongStateChange}
+          dsInnerScreenSize={dsInnerScreenSize}
+          dsInnerScreenCenter={dsInnerScreenCenter}
+          onClose={() => handleSpotifySongStateChange(false)}
         />
       )}
     </>

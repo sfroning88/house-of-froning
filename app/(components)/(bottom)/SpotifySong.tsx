@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useRef } from "react";
+import Image from "next/image";
 import { createPortal } from "react-dom";
 import { DS_MODAL_ZOOM_RATIO } from "@/lib/constants";
+import { useFetchLastSong } from "@/app/(hooks)/use-fetch-last-song";
 
 type SpotifySongProps = {
   onModalStateChange?: (isOpen: boolean) => void;
@@ -18,6 +20,7 @@ export function SpotifySong({
   onClose,
 }: SpotifySongProps) {
   const modalRef = useRef<HTMLDivElement>(null);
+  const { data: song, isLoading } = useFetchLastSong();
   useEffect(() => {
     onModalStateChange?.(true);
     return () => {
@@ -61,8 +64,39 @@ export function SpotifySong({
           ×
         </button>
       </div>
-      <div className="flex-1 flex items-center justify-center text-slate-500">
-        Spotify Song content goes here
+      <div className="flex-1 flex flex-col items-center justify-center gap-4">
+        {isLoading ? (
+          <div className="text-slate-500">Loading...</div>
+        ) : song ? (
+          <>
+            {song.album.images[0] && (
+              <Image
+                src={song.album.images[0].url}
+                alt={song.album.name}
+                width={192}
+                height={192}
+                className="w-48 h-48 object-cover rounded-lg shadow-md"
+              />
+            )}
+            <div className="text-center">
+              <h3 className="text-lg font-semibold">{song.name}</h3>
+              <p className="text-slate-600">
+                {song.artists.map((artist) => artist.name).join(", ")}
+              </p>
+              <p className="text-sm text-slate-500 mt-1">{song.album.name}</p>
+            </div>
+            <a
+              href={song.externalUrls.spotify}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+            >
+              Open in Spotify
+            </a>
+          </>
+        ) : (
+          <div className="text-slate-500">No song data available</div>
+        )}
       </div>
     </div>
   );
