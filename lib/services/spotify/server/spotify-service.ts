@@ -115,9 +115,9 @@ export const SpotifyService = {
           })) as [{ url: string; width: string; height: string }],
         },
         externalUrls: {
-          spotify: SpotifyTrackItem.externalUrls.spotify,
+          spotify: SpotifyTrackItem.external_urls.spotify,
         },
-        previewUrl: SpotifyTrackItem.previewUrl,
+        previewUrl: SpotifyTrackItem.preview_url,
       };
       cachedSong = song;
       songCacheExpiresAt = Date.now() + SPOTIFY_STALE_TIME;
