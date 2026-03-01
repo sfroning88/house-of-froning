@@ -93,6 +93,25 @@ export enum CORNER {
   BOTTOM_RIGHT = "BOTTOM_RIGHT",
 }
 
+export type SpotifyTrackItem = {
+  name: string;
+  artists: Array<{
+    name: string;
+  }>;
+  album: {
+    name: string;
+    images: Array<{
+      url: string;
+      width: number;
+      height: number;
+    }>;
+  };
+  externalUrls: {
+    spotify: string;
+  };
+  previewUrl: string | null;
+};
+
 export type SpotifySongData = {
   name: string;
   artists: [
@@ -114,4 +133,15 @@ export type SpotifySongData = {
     spotify: string;
   };
   previewUrl: string | null;
+};
+
+export type GoogleSheetBookData = {
+  title: string;
+  author: string;
+  status: string;
+  dateBegan: string;
+  dateFinished: string;
+  daysToRead: number;
+  topics: string;
+  thoughts: string;
 };
