@@ -195,12 +195,15 @@ export const GoogleService = {
       };
       if (data.items?.[0]?.volumeInfo?.imageLinks) {
         const imageLinks = data.items[0].volumeInfo.imageLinks;
-        return (
+        const imageUrl =
           imageLinks.extraLarge ||
           imageLinks.large ||
           imageLinks.thumbnail ||
-          null
-        );
+          null;
+        if (imageUrl) {
+          return imageUrl.replace(/^http:/, "https:");
+        }
+        return null;
       }
       const isbn = data.items?.[0]?.volumeInfo?.industryIdentifiers?.find(
         (id) => id.type === "ISBN_13" || id.type === "ISBN_10",
