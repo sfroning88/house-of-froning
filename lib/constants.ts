@@ -12,6 +12,9 @@ export const QUERY_KEYS = {
   googleBooks: () => ["google", "books"] as const,
 };
 
+export const PRIVACY_DOC_PATH = "lib/docs/PRIVACY.md";
+export const RESUME_DOC_PATH = "lib/docs/RESUME.md";
+
 export const SPOTIFY_STALE_TIME = 60 * 30 * 1000;
 export const SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token";
 export const SPOTIFY_CURRENTLY_PLAYING_URL =

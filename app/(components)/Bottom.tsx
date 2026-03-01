@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { DollarSign, IdCard, RadioTower, BookOpenText } from "lucide-react";
+import { IdCard, RadioTower, BookOpenText, Newspaper } from "lucide-react";
 import { TrainerCard } from "./(bottom)/TrainerCard";
 import { SpotifySong } from "./(bottom)/SpotifySong";
 import { GoogleBooks } from "./(bottom)/GoogleBooks";
+import { ResumeContent } from "./(bottom)/ResumeContent";
 
 type BottomBarProps = {
   onModalStateChange?: (isOpen: boolean) => void;
@@ -43,6 +44,14 @@ export function BottomBar({
     setIsGoogleBooksOpen(isOpen);
     onModalStateChange?.(isOpen);
   };
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const handleResumeToggle = () => {
+    setIsResumeOpen((prev) => !prev);
+  };
+  const handleResumeStateChange = (isOpen: boolean) => {
+    setIsResumeOpen(isOpen);
+    onModalStateChange?.(isOpen);
+  };
   if (bottomBarLayout.width === 0) {
     return null;
   }
@@ -78,11 +87,11 @@ export function BottomBar({
           <BookOpenText className="w-6 h-6 text-white" />
         </button>
         <button
-          className="flex items-center justify-center w-12 h-12 bg-slate-600 rounded border border-slate-400"
+          onClick={handleResumeToggle}
+          className="flex items-center justify-center w-12 h-12 bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
           aria-label="Placeholder"
-          disabled
         >
-          <DollarSign className="w-6 h-6 text-white" />
+          <Newspaper className="w-6 h-6 text-white" />
         </button>
       </div>
       {isTrainerCardOpen && (
@@ -107,6 +116,14 @@ export function BottomBar({
           dsInnerScreenSize={dsInnerScreenSize}
           dsInnerScreenCenter={dsInnerScreenCenter}
           onClose={() => handleGoogleBooksStateChange(false)}
+        />
+      )}
+      {isResumeOpen && (
+        <ResumeContent
+          onModalStateChange={handleResumeStateChange}
+          dsInnerScreenSize={dsInnerScreenSize}
+          dsInnerScreenCenter={dsInnerScreenCenter}
+          onClose={() => handleResumeStateChange(false)}
         />
       )}
     </>
