@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { DollarSign, IdCard, RadioTower } from "lucide-react";
+import { DollarSign, IdCard, RadioTower, BookOpenText } from "lucide-react";
 import { TrainerCard } from "./(bottom)/TrainerCard";
 import { SpotifySong } from "./(bottom)/SpotifySong";
+import { GoogleBooks } from "./(bottom)/GoogleBooks";
 
 type BottomBarProps = {
   onModalStateChange?: (isOpen: boolean) => void;
@@ -34,6 +35,14 @@ export function BottomBar({
     setIsSpotifySongOpen(isOpen);
     onModalStateChange?.(isOpen);
   };
+  const [isGoogleBooksOpen, setIsGoogleBooksOpen] = useState(false);
+  const handleGoogleBooksToggle = () => {
+    setIsGoogleBooksOpen((prev) => !prev);
+  };
+  const handleGoogleBooksStateChange = (isOpen: boolean) => {
+    setIsGoogleBooksOpen(isOpen);
+    onModalStateChange?.(isOpen);
+  };
   if (bottomBarLayout.width === 0) {
     return null;
   }
@@ -56,17 +65,17 @@ export function BottomBar({
         </button>
         <button
           onClick={handleSpotifySongToggle}
-          className="flex items-center justify-center w-12 h-12 bg-slate-600 rounded border border-slate-400"
+          className="flex items-center justify-center w-12 h-12 bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
           aria-label="Spotify Song"
         >
           <RadioTower className="w-6 h-6 text-white" />
         </button>
         <button
-          className="flex items-center justify-center w-12 h-12 bg-slate-600 rounded border border-slate-400"
-          aria-label="Placeholder"
-          disabled
+          onClick={handleGoogleBooksToggle}
+          className="flex items-center justify-center w-12 h-12 bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
+          aria-label="Google Books"
         >
-          <DollarSign className="w-6 h-6 text-white" />
+          <BookOpenText className="w-6 h-6 text-white" />
         </button>
         <button
           className="flex items-center justify-center w-12 h-12 bg-slate-600 rounded border border-slate-400"
@@ -90,6 +99,14 @@ export function BottomBar({
           dsInnerScreenSize={dsInnerScreenSize}
           dsInnerScreenCenter={dsInnerScreenCenter}
           onClose={() => handleSpotifySongStateChange(false)}
+        />
+      )}
+      {isGoogleBooksOpen && (
+        <GoogleBooks
+          onModalStateChange={handleGoogleBooksStateChange}
+          dsInnerScreenSize={dsInnerScreenSize}
+          dsInnerScreenCenter={dsInnerScreenCenter}
+          onClose={() => handleGoogleBooksStateChange(false)}
         />
       )}
     </>

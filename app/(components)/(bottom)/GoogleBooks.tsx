@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useRef } from "react";
-import Image from "next/image";
 import { createPortal } from "react-dom";
 import { DS_MODAL_ZOOM_RATIO } from "@/lib/constants";
-import { useFetchLastSong } from "@/app/(hooks)/use-fetch-last-song";
+import { useFetchBooksList } from "@/app/(hooks)/use-get-books-list";
+import { DetermineBookToShow } from "@/lib/utils";
 
 type GoogleBooksProps = {
   onModalStateChange?: (isOpen: boolean) => void;
@@ -20,7 +20,7 @@ export function GoogleBooks({
   onClose,
 }: GoogleBooksProps) {
   const modalRef = useRef<HTMLDivElement>(null);
-  const { data: song, isLoading } = useFetchLastSong();
+  const { data: books, isLoading } = useFetchBooksList();
   useEffect(() => {
     onModalStateChange?.(true);
     return () => {
@@ -36,6 +36,10 @@ export function GoogleBooks({
       modalHeight: dsInnerScreenSize.height * DS_MODAL_ZOOM_RATIO,
     };
   }, [dsInnerScreenSize]);
+  const bookToShow = useMemo(() => {
+    if (!books) return null;
+    return DetermineBookToShow(books);
+  }, [books]);
   if (modalWidth === 0 || modalHeight === 0) {
     return null;
   }
@@ -67,35 +71,37 @@ export function GoogleBooks({
       <div className="flex-1 flex flex-col items-center justify-center gap-4">
         {isLoading ? (
           <div className="text-slate-500">Loading...</div>
-        ) : song ? (
+        ) : bookToShow ? (
           <>
-            {song.album.images[0] && (
-              <Image
-                src={song.album.images[0].url}
-                alt={song.album.name}
-                width={192}
-                height={192}
-                className="w-48 h-48 object-cover rounded-lg shadow-md"
-              />
-            )}
             <div className="text-center">
-              <h3 className="text-lg font-semibold">{song.name}</h3>
-              <p className="text-slate-600">
-                {song.artists.map((artist) => artist.name).join(", ")}
+              <h3 className="text-lg font-semibold">{bookToShow.title}</h3>
+              <p className="text-slate-600">{bookToShow.author}</p>
+              <p className="text-sm text-slate-500 mt-1 capitalize">
+                {bookToShow.status}
               </p>
-              <p className="text-sm text-slate-500 mt-1">{song.album.name}</p>
             </div>
-            <a
-              href={song.externalUrls.spotify}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
-            >
-              Open in Spotify
-            </a>
+            {bookToShow.topics && (
+              <div className="text-center">
+                <p className="text-sm text-slate-600">
+                  Topics: {bookToShow.topics}
+                </p>
+              </div>
+            )}
+            {bookToShow.thoughts && (
+              <div className="text-center max-w-md">
+                <p className="text-sm text-slate-700">{bookToShow.thoughts}</p>
+              </div>
+            )}
+            {bookToShow.daysToRead > 0 && (
+              <div className="text-center">
+                <p className="text-sm text-slate-500">
+                  {bookToShow.daysToRead} days to read
+                </p>
+              </div>
+            )}
           </>
         ) : (
-          <div className="text-slate-500">No song data available</div>
+          <div className="text-slate-500">No book data available</div>
         )}
       </div>
     </div>

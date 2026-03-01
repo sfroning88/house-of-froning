@@ -135,10 +135,18 @@ export type SpotifySongData = {
   previewUrl: string | null;
 };
 
+export enum GoogleSheetBookStatus {
+  NEED_TO_BUY = "need to buy",
+  ORDERED = "ordered",
+  INACTIVE = "inactive",
+  READING = "reading",
+  FINISHED = "finished",
+}
+
 export type GoogleSheetBookData = {
   title: string;
   author: string;
-  status: string;
+  status: GoogleSheetBookStatus;
   dateBegan: string;
   dateFinished: string;
   daysToRead: number;
