@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { useGetPrivacyContent } from "@/app/privacy/(hooks)/use-get-privacy-content";
+import ReactMarkdown from "react-markdown";
+import { useGetPrivacyContent } from "@/app/(hooks)/use-get-privacy-content";
 
 export function PrivacyNotice() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,8 +24,8 @@ export function PrivacyNotice() {
             ×
           </button>
         </div>
-        <div className="text-sm whitespace-pre-wrap overflow-auto flex-1">
-          {isLoading ? "Loading..." : content}
+        <div className="text-sm overflow-auto flex-1 prose prose-sm max-w-none">
+          {isLoading ? "Loading..." : <ReactMarkdown>{content}</ReactMarkdown>}
         </div>
       </div>
     </>

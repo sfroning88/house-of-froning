@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { getPrivacyContentAction } from "@/app/privacy/(actions)/privacy-action";
+import { getPrivacyContentAction } from "@/app/(actions)/privacy-action";
 
 export function useGetPrivacyContent(isOpen: boolean) {
   const [content, setContent] = useState<string>("");
