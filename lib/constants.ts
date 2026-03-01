@@ -12,6 +12,8 @@ export const QUERY_KEYS = {
   googleBooks: () => ["google", "books"] as const,
 };
 
+export const TRAINER_CARD_IMAGE_PATH = "/images/avatars/trainer.jpg";
+
 export const PRIVACY_DOC_PATH = "lib/docs/PRIVACY.md";
 export const RESUME_DOC_PATH = "lib/docs/RESUME.md";
 
@@ -54,7 +56,7 @@ export const LOCATION_HOVER_POPUP_MARGIN = 8;
 export const MODAL_CONTAINER_PADDING = 24;
 
 export const MAP_AVATAR_BLINK_TIME = 3 * 1000;
-export const MAP_AVATAR_IMAGE_PATH = "/images/avatars/baby.jpg";
+export const MAP_AVATAR_IMAGE_PATH = "/images/avatars/headshot.jpg";
 export const MAP_AVATAR_SIZE = 12;
 
 export const TOWN_MODAL_WIDTH = 96;
