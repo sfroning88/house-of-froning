@@ -2,19 +2,27 @@ import "server-only";
 
 import { env } from "@packages/config";
 import { GoogleSheetBookData } from "@/lib/types";
-import { SheetToBooksData, CleanGooglePrivateKey } from "@/lib/utils";
+import {
+  SheetToBooksData,
+  CleanGooglePrivateKey,
+  DetermineBookToShow,
+} from "@/lib/utils";
 import {
   GOOGLE_STALE_TIME,
   GOOGLE_SHEETS_BASE_URL,
   GOOGLE_TOKEN_URL,
   GOOGLE_SHEET_RANGE,
   GOOGLE_SHEET_SCOPE,
+  GOOGLE_BOOKS_API_BASE_URL,
+  OPEN_LIBRARY_COVERS_BASE_URL,
 } from "@/lib/constants";
 
 let cachedBooks: GoogleSheetBookData[] = [];
 let bookCacheExpiresAt = 0;
 let cachedAccessToken: string | null = null;
 let tokenExpiresAt = 0;
+let cachedBookToShow: GoogleSheetBookData | null = null;
+let bookToShowCacheExpiresAt = 0;
 
 export const GoogleService = {
   async signJWT(
@@ -128,14 +136,20 @@ export const GoogleService = {
       return [];
     }
     try {
-      const url = `${GOOGLE_SHEETS_BASE_URL}/${sheetId}/values/${GOOGLE_SHEET_RANGE}`;
+      const encodedRange = encodeURIComponent(GOOGLE_SHEET_RANGE);
+      const url = `${GOOGLE_SHEETS_BASE_URL}/${sheetId}/values/${encodedRange}`;
       const response = await fetch(url, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       });
       if (!response.ok) {
-        console.error("[Google Sheets] Fetch failed:", response.statusText);
+        const errorText = await response.text();
+        console.error(
+          "[Google Sheets] Fetch failed:",
+          response.statusText,
+          errorText,
+        );
         return [];
       }
       const data = (await response.json()) as {
@@ -149,5 +163,80 @@ export const GoogleService = {
       console.error("[Google Sheets] Unexpected error:", error);
       return [];
     }
+  },
+
+  async fetchBookImage(title: string, author: string): Promise<string | null> {
+    const apiKey = env.GOOGLE_BOOKS_API_KEY;
+    if (!apiKey) {
+      return null;
+    }
+    try {
+      const query = `intitle:${encodeURIComponent(title)}+inauthor:${encodeURIComponent(author)}`;
+      const url = `${GOOGLE_BOOKS_API_BASE_URL}?q=${query}&key=${apiKey}&maxResults=1`;
+      const response = await fetch(url);
+      if (!response.ok) {
+        console.error("[Google Books] Fetch failed:", response.statusText);
+        return null;
+      }
+      const data = (await response.json()) as {
+        items?: Array<{
+          volumeInfo?: {
+            imageLinks?: {
+              thumbnail?: string;
+              large?: string;
+              extraLarge?: string;
+            };
+            industryIdentifiers?: Array<{
+              type: string;
+              identifier: string;
+            }>;
+          };
+        }>;
+      };
+      if (data.items?.[0]?.volumeInfo?.imageLinks) {
+        const imageLinks = data.items[0].volumeInfo.imageLinks;
+        return (
+          imageLinks.extraLarge ||
+          imageLinks.large ||
+          imageLinks.thumbnail ||
+          null
+        );
+      }
+      const isbn = data.items?.[0]?.volumeInfo?.industryIdentifiers?.find(
+        (id) => id.type === "ISBN_13" || id.type === "ISBN_10",
+      )?.identifier;
+      if (isbn) {
+        return `${OPEN_LIBRARY_COVERS_BASE_URL}/${isbn}-L.jpg`;
+      }
+      return null;
+    } catch (error) {
+      console.error("[Google Books] Unexpected error:", error);
+      return null;
+    }
+  },
+
+  async fetchBookToShow(): Promise<GoogleSheetBookData | null> {
+    if (cachedBookToShow && Date.now() < bookToShowCacheExpiresAt) {
+      return cachedBookToShow;
+    }
+    const books = await this.fetchBooksList();
+    if (books.length === 0) {
+      return null;
+    }
+    const bookToShow = DetermineBookToShow(books);
+    if (!bookToShow) {
+      return null;
+    }
+    const coverImageUrl = await this.fetchBookImage(
+      bookToShow.title,
+      bookToShow.author,
+    );
+    const bookWithCover: GoogleSheetBookData = {
+      ...bookToShow,
+      coverImageUrl,
+    };
+    cachedBookToShow = bookWithCover;
+    bookToShowCacheExpiresAt = Date.now() + GOOGLE_STALE_TIME;
+    return bookWithCover;
   },
 };

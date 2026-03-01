@@ -13,3 +13,24 @@ export const fetchBooksListAction = createPublicAction(
     return await GoogleService.fetchBooksList();
   },
 );
+
+const fetchBookImageSchema = z.object({
+  title: z.string(),
+  author: z.string(),
+});
+
+export const fetchBookImageAction = createPublicAction(
+  fetchBookImageSchema,
+  async ({ input }): Promise<string | null> => {
+    return await GoogleService.fetchBookImage(input.title, input.author);
+  },
+);
+
+const fetchBookToShowSchema = z.object({});
+
+export const fetchBookToShowAction = createPublicAction(
+  fetchBookToShowSchema,
+  async (): Promise<GoogleSheetBookData | null> => {
+    return await GoogleService.fetchBookToShow();
+  },
+);

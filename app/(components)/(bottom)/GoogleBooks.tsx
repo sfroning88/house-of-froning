@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useRef } from "react";
+import Image from "next/image";
 import { createPortal } from "react-dom";
 import { DS_MODAL_ZOOM_RATIO } from "@/lib/constants";
-import { useFetchBooksList } from "@/app/(hooks)/use-get-books-list";
-import { DetermineBookToShow } from "@/lib/utils";
+import { useGetBookToShow } from "@/app/(hooks)/use-get-book-to-show";
 
 type GoogleBooksProps = {
   onModalStateChange?: (isOpen: boolean) => void;
@@ -20,7 +20,7 @@ export function GoogleBooks({
   onClose,
 }: GoogleBooksProps) {
   const modalRef = useRef<HTMLDivElement>(null);
-  const { data: books, isLoading } = useFetchBooksList();
+  const { data: bookToShow, isLoading } = useGetBookToShow();
   useEffect(() => {
     onModalStateChange?.(true);
     return () => {
@@ -36,10 +36,6 @@ export function GoogleBooks({
       modalHeight: dsInnerScreenSize.height * DS_MODAL_ZOOM_RATIO,
     };
   }, [dsInnerScreenSize]);
-  const bookToShow = useMemo(() => {
-    if (!books) return null;
-    return DetermineBookToShow(books);
-  }, [books]);
   if (modalWidth === 0 || modalHeight === 0) {
     return null;
   }
@@ -73,6 +69,15 @@ export function GoogleBooks({
           <div className="text-slate-500">Loading...</div>
         ) : bookToShow ? (
           <>
+            {bookToShow.coverImageUrl && (
+              <Image
+                src={bookToShow.coverImageUrl}
+                alt={bookToShow.title}
+                width={192}
+                height={288}
+                className="w-48 h-72 object-cover rounded-lg shadow-md"
+              />
+            )}
             <div className="text-center">
               <h3 className="text-lg font-semibold">{bookToShow.title}</h3>
               <p className="text-slate-600">{bookToShow.author}</p>
