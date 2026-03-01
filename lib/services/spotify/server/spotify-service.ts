@@ -1,7 +1,7 @@
 import "server-only";
 
 import { env } from "@packages/config";
-import { SpotifySongData } from "@/lib/types";
+import { SpotifyTrackItem, SpotifySongData } from "@/lib/types";
 import {
   SPOTIFY_CURRENTLY_PLAYING_URL,
   SPOTIFY_LAST_PLAYED_URL,
@@ -66,17 +66,7 @@ export const SpotifyService = {
       return null;
     }
     try {
-      type TrackItem = {
-        name: string;
-        artists: Array<{ name: string }>;
-        album: {
-          name: string;
-          images: Array<{ url: string; width: number; height: number }>;
-        };
-        external_urls: { spotify: string };
-        preview_url: string | null;
-      };
-      let trackItem: TrackItem | null = null;
+      let SpotifyTrackItem: SpotifyTrackItem | null = null;
       const currentlyPlayingResponse = await fetch(
         SPOTIFY_CURRENTLY_PLAYING_URL,
         {
@@ -87,13 +77,13 @@ export const SpotifyService = {
       );
       if (currentlyPlayingResponse.status === 200) {
         const data = (await currentlyPlayingResponse.json()) as {
-          item?: TrackItem;
+          item?: SpotifyTrackItem;
         };
         if (data.item) {
-          trackItem = data.item;
+          SpotifyTrackItem = data.item;
         }
       }
-      if (!trackItem) {
+      if (!SpotifyTrackItem) {
         const recentlyPlayedResponse = await fetch(SPOTIFY_LAST_PLAYED_URL, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -102,32 +92,32 @@ export const SpotifyService = {
         if (recentlyPlayedResponse.status === 200) {
           const recentlyPlayedData = (await recentlyPlayedResponse.json()) as {
             items: Array<{
-              track: TrackItem;
+              track: SpotifyTrackItem;
             }>;
           };
           if (recentlyPlayedData.items?.[0]?.track) {
-            trackItem = recentlyPlayedData.items[0].track;
+            SpotifyTrackItem = recentlyPlayedData.items[0].track;
           }
         }
       }
-      if (!trackItem) {
+      if (!SpotifyTrackItem) {
         return null;
       }
       const song: SpotifySongData = {
-        name: trackItem.name,
-        artists: trackItem.artists as [{ name: string }],
+        name: SpotifyTrackItem.name,
+        artists: SpotifyTrackItem.artists as [{ name: string }],
         album: {
-          name: trackItem.album.name,
-          images: trackItem.album.images.map((img) => ({
+          name: SpotifyTrackItem.album.name,
+          images: SpotifyTrackItem.album.images.map((img) => ({
             url: img.url,
             width: String(img.width),
             height: String(img.height),
           })) as [{ url: string; width: string; height: string }],
         },
         externalUrls: {
-          spotify: trackItem.external_urls.spotify,
+          spotify: SpotifyTrackItem.externalUrls.spotify,
         },
-        previewUrl: trackItem.preview_url,
+        previewUrl: SpotifyTrackItem.previewUrl,
       };
       cachedSong = song;
       songCacheExpiresAt = Date.now() + SPOTIFY_STALE_TIME;

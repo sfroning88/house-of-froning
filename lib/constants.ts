@@ -9,6 +9,7 @@ export const QUERY_STALE_TIME = 60 * 5 * 1000;
 export const QUERY_KEYS = {
   user: (userId: string) => ["user", userId] as const,
   spotifySong: () => ["spotify", "song"] as const,
+  googleBooks: () => ["google", "books"] as const,
 };
 
 export const SPOTIFY_STALE_TIME = 60 * 30 * 1000;
@@ -17,6 +18,9 @@ export const SPOTIFY_CURRENTLY_PLAYING_URL =
   "https://api.spotify.com/v1/me/player/currently-playing";
 export const SPOTIFY_LAST_PLAYED_URL =
   "https://api.spotify.com/v1/me/player/recently-played?limit=1";
+
+export const GOOGLE_STALE_TIME = 60 * 60 * 24 * 1000;
+export const GOOGLE_SHEET_NAME = "_Master File Learning";
 
 export const DS_TO_WEB_SCALE = 6;
 export const DS_PIXEL_WIDTH = 192;
