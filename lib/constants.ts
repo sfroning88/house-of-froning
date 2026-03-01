@@ -4,8 +4,6 @@ export const COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
 
 export const USER_ID_COOKIE_NAME = "house-of-froning-id";
 
-export const QUERY_STALE_TIME = 60 * 5 * 1000;
-
 export const QUERY_KEYS = {
   user: (userId: string) => ["user", userId] as const,
   spotifySong: () => ["spotify", "song"] as const,
@@ -41,33 +39,29 @@ export const DS_PIXEL_WIDTH = 192;
 export const DS_PIXEL_HEIGHT = 128;
 export const DS_IMAGE_FILE_WIDTH = 1200;
 export const DS_IMAGE_FILE_HEIGHT = 800;
+export const DS_ASPECT_RATIO = 1.5;
 export const DS_VIEWPORT_HEIGHT_RATIO = 0.9;
 export const DS_IMAGE_PATH = "/images/ds/bottomscreen.jpg";
+export const MOBILE_BREAKPOINT = 768;
+export const DS_FRAME_MIN_WIDTH = 280;
 export const DS_SCREEN_CENTER_X_RATIO = 0.5;
-export const DS_SCREEN_CENTER_Y_RATIO = 0.2825;
-export const DS_SCREEN_INNER_WIDTH_RATIO = 0.875;
-export const DS_SCREEN_INNER_HEIGHT_RATIO = 0.57925;
-export const DS_BOTTOM_BAR_HEIGHT_RATIO = 0.12;
+export const DS_SCREEN_CENTER_Y_RATIO = 0.3125;
+export const DS_SCREEN_INNER_WIDTH_RATIO = 0.49;
+export const DS_SCREEN_INNER_HEIGHT_RATIO = 0.76;
+export const DS_BOTTOM_BAR_HEIGHT_RATIO = 0.24;
+export const BOTTOM_BAR_BUTTON_SIZE = 48;
 export const DS_MODAL_ZOOM_RATIO = 0.9;
-
-export const LOCATION_HOVER_POPUP_MIN_WIDTH = 200;
-export const LOCATION_HOVER_POPUP_MAX_WIDTH = 300;
-export const LOCATION_HOVER_POPUP_MARGIN = 8;
-export const MODAL_CONTAINER_PADDING = 24;
 
 export const MAP_AVATAR_BLINK_TIME = 3 * 1000;
 export const MAP_AVATAR_IMAGE_PATH = "/images/avatars/headshot.jpg";
 export const MAP_AVATAR_SIZE = 12;
 
-export const TOWN_MODAL_WIDTH = 96;
-export const TOWN_MODAL_HEIGHT = 64;
-export const TOWN_MODAL_X = 96;
-export const TOWN_MODAL_Y = 64;
-
 export const LOCAL_MAP_PIXEL_WIDTH = 192;
 export const LOCAL_MAP_PIXEL_HEIGHT = 128;
 export const LOCAL_MAP_SCALE = 2;
 export const LOCAL_ICON_SIZE = 24;
+export const LOCAL_MAP_WIDTH = 384;
+export const LOCAL_MAP_HEIGHT = 256;
 
 export const CHICAGO_WIDTH = 24;
 export const CHICAGO_HEIGHT = 48;

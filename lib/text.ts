@@ -7,6 +7,7 @@ export const chicagoBullets = FormatBulletPoints([
   "Saint Alphonsus Academy",
   "Chicago Warriors Baseball Club",
   "Rowan Labs",
+  "Focus Healthcare Partners",
 ]);
 
 export const seansHouseDescription =
@@ -27,6 +28,7 @@ export const notreDameBullets = FormatBulletPoints([
   "ND Listens",
   "Golden Dome",
   "The Grotto",
+  "ND Careers Course",
 ]);
 
 export const duncanHallDescription =

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useRef, useEffect, useMemo } from "react";
 import { Map } from "./Map";
 import { BottomBar } from "./Bottom";
+import { useMediaQuery } from "@/app/(hooks)/use-media-query";
 import {
   DS_IMAGE_PATH,
   DS_PIXEL_WIDTH,
@@ -11,79 +12,58 @@ import {
   DS_TO_WEB_SCALE,
   DS_IMAGE_FILE_WIDTH,
   DS_IMAGE_FILE_HEIGHT,
+  DS_ASPECT_RATIO,
   DS_SCREEN_CENTER_X_RATIO,
   DS_SCREEN_CENTER_Y_RATIO,
   DS_SCREEN_INNER_WIDTH_RATIO,
   DS_SCREEN_INNER_HEIGHT_RATIO,
   DS_BOTTOM_BAR_HEIGHT_RATIO,
+  MOBILE_BREAKPOINT,
+  DS_FRAME_MIN_WIDTH,
 } from "@/lib/constants";
-import {
-  getMapScaleAndPosition,
-  getDsInnerScreenCenter,
-  getViewportScale,
-} from "@lib/utils";
+import { getMapScaleAndPosition, getDsInnerScreenCenter } from "@lib/utils";
 
 export function Screen() {
-  const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
-  const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
-  const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
+  const isDesktop = useMediaQuery(`(min-width: ${MOBILE_BREAKPOINT}px)`, true);
+  const [frameRect, setFrameRect] = useState<DOMRect | null>(null);
   const [modalCount, setModalCount] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
   const isModalOpen = modalCount > 0;
   const handleModalStateChange = (isOpen: boolean) => {
     setModalCount((prev) => (isOpen ? prev + 1 : Math.max(0, prev - 1)));
   };
-  const mapWidth = DS_PIXEL_WIDTH * DS_TO_WEB_SCALE;
-  const mapHeight = DS_PIXEL_HEIGHT * DS_TO_WEB_SCALE;
   useEffect(() => {
-    const updateViewportSize = () => {
-      setViewportSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
-    updateViewportSize();
-    window.addEventListener("resize", updateViewportSize);
-    return () => {
-      window.removeEventListener("resize", updateViewportSize);
-    };
-  }, []);
+    const el = frameRef.current;
+    if (!el) return;
+    const observer = new ResizeObserver((entries) => {
+      const rect = entries[0]?.target.getBoundingClientRect();
+      if (rect) setFrameRect(rect);
+    });
+    observer.observe(el);
+    setFrameRect(el.getBoundingClientRect());
+    return () => observer.disconnect();
+  }, [isDesktop]);
   useEffect(() => {
-    const updateSize = () => {
-      if (containerRef.current) {
-        const img = containerRef.current.querySelector("img");
-        if (img) {
-          const rect = img.getBoundingClientRect();
-          setImageSize({ width: img.offsetWidth, height: img.offsetHeight });
-          setImagePosition({ x: rect.left, y: rect.top });
-        }
+    if (!frameRef.current) return;
+    const scrollHandler = () => {
+      if (frameRef.current) {
+        setFrameRect(frameRef.current.getBoundingClientRect());
       }
     };
-    updateSize();
-    window.addEventListener("resize", updateSize);
-    window.addEventListener("scroll", updateSize);
-    return () => {
-      window.removeEventListener("resize", updateSize);
-      window.removeEventListener("scroll", updateSize);
-    };
-  }, [viewportSize]);
-  const viewportScale = useMemo(() => {
-    if (viewportSize.width === 0 || viewportSize.height === 0) {
-      return 1;
-    }
-    return getViewportScale(viewportSize.width, viewportSize.height);
-  }, [viewportSize.width, viewportSize.height]);
-  const scaledImageWidth = DS_IMAGE_FILE_WIDTH * viewportScale;
-  const scaledImageHeight = DS_IMAGE_FILE_HEIGHT * viewportScale;
+    window.addEventListener("scroll", scrollHandler);
+    return () => window.removeEventListener("scroll", scrollHandler);
+  }, []);
+  const mapWidth = DS_PIXEL_WIDTH * DS_TO_WEB_SCALE;
+  const mapHeight = DS_PIXEL_HEIGHT * DS_TO_WEB_SCALE;
   const mapLayout = useMemo(() => {
-    if (imageSize.width === 0 || imageSize.height === 0) {
+    if (!frameRect || frameRect.width === 0 || frameRect.height === 0) {
       return { scaleX: 1, scaleY: 1, x: 0, y: 0 };
     }
     const adjustedInnerHeightRatio =
       DS_SCREEN_INNER_HEIGHT_RATIO - DS_BOTTOM_BAR_HEIGHT_RATIO;
     return getMapScaleAndPosition(
-      imageSize.width,
-      imageSize.height,
+      frameRect.width,
+      frameRect.height,
       mapWidth,
       mapHeight,
       DS_SCREEN_CENTER_X_RATIO,
@@ -91,75 +71,71 @@ export function Screen() {
       DS_SCREEN_INNER_WIDTH_RATIO,
       adjustedInnerHeightRatio,
     );
-  }, [imageSize.width, imageSize.height, mapWidth, mapHeight]);
-  const dsInnerScreenSize = useMemo(
-    () => ({
-      width: imageSize.width * DS_SCREEN_INNER_WIDTH_RATIO,
-      height: imageSize.height * DS_SCREEN_INNER_HEIGHT_RATIO,
-    }),
-    [imageSize.width, imageSize.height],
-  );
+  }, [frameRect, mapWidth, mapHeight]);
+  const dsInnerScreenSize = useMemo(() => {
+    if (!frameRect) return { width: 0, height: 0 };
+    return {
+      width: frameRect.width * DS_SCREEN_INNER_WIDTH_RATIO,
+      height: frameRect.height * DS_SCREEN_INNER_HEIGHT_RATIO,
+    };
+  }, [frameRect]);
   const dsInnerScreenCenter = useMemo(() => {
-    if (imageSize.width === 0 || imageSize.height === 0) {
-      return { x: 0, y: 0 };
-    }
+    if (!frameRect) return { x: 0, y: 0 };
     const relativeCenter = getDsInnerScreenCenter(
-      imageSize.width,
-      imageSize.height,
+      frameRect.width,
+      frameRect.height,
       DS_SCREEN_CENTER_X_RATIO,
       DS_SCREEN_CENTER_Y_RATIO,
     );
     return {
-      x: imagePosition.x + relativeCenter.x,
-      y: imagePosition.y + relativeCenter.y,
+      x: frameRect.left + relativeCenter.x,
+      y: frameRect.top + relativeCenter.y,
     };
-  }, [imageSize.width, imageSize.height, imagePosition.x, imagePosition.y]);
-  const bottomBarLayout = useMemo(() => {
-    if (
-      imageSize.width === 0 ||
-      imageSize.height === 0 ||
-      mapLayout.scaleX === 0
-    ) {
-      return { x: 0, y: 0, width: 0 };
-    }
+  }, [frameRect]);
+  const mapCenter = useMemo(() => {
+    if (!frameRect || frameRect.width === 0 || frameRect.height === 0)
+      return { x: 0, y: 0 };
+    if (mapLayout.scaleX === 0) return { x: 0, y: 0 };
     const scaledMapWidth = mapWidth * mapLayout.scaleX;
     const scaledMapHeight = mapHeight * mapLayout.scaleY;
-    const bottomBarY = mapLayout.y + scaledMapHeight;
     return {
-      x: mapLayout.x,
-      y: bottomBarY,
-      width: scaledMapWidth,
+      x: frameRect.left + mapLayout.x + scaledMapWidth / 2,
+      y: frameRect.top + mapLayout.y + scaledMapHeight / 2,
     };
-  }, [mapLayout, mapWidth, mapHeight, imageSize.width, imageSize.height]);
+  }, [frameRect, mapLayout, mapWidth, mapHeight]);
+  const hasLayout = frameRect && frameRect.width > 0 && frameRect.height > 0;
   return (
-    <div ref={containerRef} className="relative">
-      <Image
-        src={DS_IMAGE_PATH}
-        alt="DS Screen"
-        width={DS_IMAGE_FILE_WIDTH}
-        height={DS_IMAGE_FILE_HEIGHT}
+    <div
+      className={
+        isDesktop
+          ? "relative flex min-h-screen w-full items-center justify-center"
+          : "flex min-h-screen w-full flex-col overflow-y-auto"
+      }
+    >
+      <div
+        ref={frameRef}
+        className="relative w-full max-w-full shrink-0"
         style={{
-          width: `${scaledImageWidth}px`,
-          height: `${scaledImageHeight}px`,
+          aspectRatio: `${DS_IMAGE_FILE_WIDTH} / ${DS_IMAGE_FILE_HEIGHT}`,
+          minWidth: DS_FRAME_MIN_WIDTH,
+          maxWidth: isDesktop
+            ? "min(95vw, 135svh)"
+            : `min(100vw, ${DS_ASPECT_RATIO * 100}vh)`,
+          maxHeight: isDesktop ? "min(90svh, 63.34vw)" : undefined,
         }}
-        className="w-auto h-auto"
-        priority
-        onLoad={() => {
-          if (containerRef.current) {
-            const img = containerRef.current.querySelector("img");
-            if (img) {
-              const rect = img.getBoundingClientRect();
-              setImageSize({
-                width: img.offsetWidth,
-                height: img.offsetHeight,
-              });
-              setImagePosition({ x: rect.left, y: rect.top });
-            }
-          }
-        }}
-      />
-      {imageSize.width > 0 && (
-        <>
+      >
+        <Image
+          src={DS_IMAGE_PATH}
+          alt="DS Screen"
+          width={DS_IMAGE_FILE_WIDTH}
+          height={DS_IMAGE_FILE_HEIGHT}
+          className="h-full w-full object-contain"
+          style={{
+            aspectRatio: `${DS_IMAGE_FILE_WIDTH} / ${DS_IMAGE_FILE_HEIGHT}`,
+          }}
+          priority
+        />
+        {hasLayout && (
           <div
             className="absolute"
             style={{
@@ -172,19 +148,24 @@ export function Screen() {
             <Map
               onModalStateChange={handleModalStateChange}
               isModalOpen={isModalOpen}
-              screenSize={imageSize}
+              screenSize={{ width: frameRect.width, height: frameRect.height }}
               dsInnerScreenSize={dsInnerScreenSize}
               dsInnerScreenCenter={dsInnerScreenCenter}
+              mapCenter={mapCenter}
+            />
+            <BottomBar
+              onModalStateChange={handleModalStateChange}
+              dsInnerScreenSize={dsInnerScreenSize}
+              dsInnerScreenCenter={dsInnerScreenCenter}
+              bottomBarLayout={{
+                left: 0,
+                top: mapHeight,
+                width: mapWidth,
+              }}
             />
           </div>
-          <BottomBar
-            onModalStateChange={handleModalStateChange}
-            dsInnerScreenSize={dsInnerScreenSize}
-            dsInnerScreenCenter={dsInnerScreenCenter}
-            bottomBarLayout={bottomBarLayout}
-          />
-        </>
-      )}
+        )}
+      </div>
     </div>
   );
 }

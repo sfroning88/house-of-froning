@@ -1,0 +1,134 @@
+import { TOWN_ID, HOVER_LOCATION, TownContentConfig } from "@/lib/types";
+import {
+  CHICAGO_IMAGE_PATH,
+  SEANS_HOUSE_X,
+  SEANS_HOUSE_Y,
+  SEANS_HOUSE_IMAGE_PATH,
+  SAINT_ALPHONSUS_ACADEMY_X,
+  SAINT_ALPHONSUS_ACADEMY_Y,
+  SAINT_ALPHONSUS_ACADEMY_IMAGE_PATH,
+  CHICAGO_WARRIORS_BASEBALL_CLUB_X,
+  CHICAGO_WARRIORS_BASEBALL_CLUB_Y,
+  CHICAGO_WARRIORS_BASEBALL_CLUB_IMAGE_PATH,
+  ROWAN_LABS_X,
+  ROWAN_LABS_Y,
+  ROWAN_LABS_IMAGE_PATH,
+  FOCUS_HEALTHCARE_PARTNERS_X,
+  FOCUS_HEALTHCARE_PARTNERS_Y,
+  FOCUS_HEALTHCARE_PARTNERS_IMAGE_PATH,
+  NOTRE_DAME_IMAGE_PATH,
+  DUNCAN_HALL_X,
+  DUNCAN_HALL_Y,
+  DUNCAN_HALL_IMAGE_PATH,
+  ND_LISTENS_X,
+  ND_LISTENS_Y,
+  ND_LISTENS_IMAGE_PATH,
+  GOLDEN_DOME_X,
+  GOLDEN_DOME_Y,
+  GOLDEN_DOME_IMAGE_PATH,
+  GROTTO_X,
+  GROTTO_Y,
+  GROTTO_IMAGE_PATH,
+  ND_CAREERS_COURSE_X,
+  ND_CAREERS_COURSE_Y,
+  ND_CAREERS_COURSE_IMAGE_PATH,
+} from "@/lib/constants";
+import {
+  chicagoDescription,
+  chicagoBullets,
+  notreDameDescription,
+  notreDameBullets,
+} from "@/lib/text";
+
+const chicagoLocations: TownContentConfig["locations"] = [
+  {
+    id: HOVER_LOCATION.SEANS_HOUSE,
+    x: SEANS_HOUSE_X,
+    y: SEANS_HOUSE_Y,
+    imagePath: SEANS_HOUSE_IMAGE_PATH,
+    alt: "Sean's House",
+  },
+  {
+    id: HOVER_LOCATION.SAINT_ALPHONSUS_ACADEMY,
+    x: SAINT_ALPHONSUS_ACADEMY_X,
+    y: SAINT_ALPHONSUS_ACADEMY_Y,
+    imagePath: SAINT_ALPHONSUS_ACADEMY_IMAGE_PATH,
+    alt: "Saint Alphonsus Academy",
+  },
+  {
+    id: HOVER_LOCATION.CHICAGO_WARRIORS_BASEBALL_CLUB,
+    x: CHICAGO_WARRIORS_BASEBALL_CLUB_X,
+    y: CHICAGO_WARRIORS_BASEBALL_CLUB_Y,
+    imagePath: CHICAGO_WARRIORS_BASEBALL_CLUB_IMAGE_PATH,
+    alt: "Chicago Warriors Baseball Club",
+  },
+  {
+    id: HOVER_LOCATION.ROWAN_LABS,
+    x: ROWAN_LABS_X,
+    y: ROWAN_LABS_Y,
+    imagePath: ROWAN_LABS_IMAGE_PATH,
+    alt: "Rowan Labs",
+  },
+  {
+    id: HOVER_LOCATION.FOCUS_HEALTHCARE_PARTNERS,
+    x: FOCUS_HEALTHCARE_PARTNERS_X,
+    y: FOCUS_HEALTHCARE_PARTNERS_Y,
+    imagePath: FOCUS_HEALTHCARE_PARTNERS_IMAGE_PATH,
+    alt: "Focus Healthcare Partners",
+  },
+];
+
+const notreDameLocations: TownContentConfig["locations"] = [
+  {
+    id: HOVER_LOCATION.DUNCAN_HALL,
+    x: DUNCAN_HALL_X,
+    y: DUNCAN_HALL_Y,
+    imagePath: DUNCAN_HALL_IMAGE_PATH,
+    alt: "Duncan Hall",
+  },
+  {
+    id: HOVER_LOCATION.ND_LISTENS,
+    x: ND_LISTENS_X,
+    y: ND_LISTENS_Y,
+    imagePath: ND_LISTENS_IMAGE_PATH,
+    alt: "ND Listens",
+  },
+  {
+    id: HOVER_LOCATION.GOLDEN_DOME,
+    x: GOLDEN_DOME_X,
+    y: GOLDEN_DOME_Y,
+    imagePath: GOLDEN_DOME_IMAGE_PATH,
+    alt: "Golden Dome",
+  },
+  {
+    id: HOVER_LOCATION.GROTTO,
+    x: GROTTO_X,
+    y: GROTTO_Y,
+    imagePath: GROTTO_IMAGE_PATH,
+    alt: "The Grotto",
+  },
+  {
+    id: HOVER_LOCATION.ND_CAREERS_COURSE,
+    x: ND_CAREERS_COURSE_X,
+    y: ND_CAREERS_COURSE_Y,
+    imagePath: ND_CAREERS_COURSE_IMAGE_PATH,
+    alt: "ND Careers Course",
+  },
+];
+
+export const townContentConfigs: Record<TOWN_ID, TownContentConfig> = {
+  [TOWN_ID.CHICAGO]: {
+    title: "Chicago",
+    imagePath: CHICAGO_IMAGE_PATH,
+    description: chicagoDescription,
+    bullets: chicagoBullets,
+    locations: chicagoLocations,
+  },
+  [TOWN_ID.NOTRE_DAME]: {
+    title: "NotreDame",
+    imagePath: NOTRE_DAME_IMAGE_PATH,
+    description: notreDameDescription,
+    bullets: notreDameBullets,
+    locations: notreDameLocations,
+  },
+};
