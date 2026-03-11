@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import posthog from "posthog-js";
 import { TownIcon } from "./TownIcon";
 import { TownDescription } from "./TownDescription";
 import { TownContentConfig, TownConfigEntry } from "@/lib/types";
@@ -31,12 +32,21 @@ export function Town({
     onModalStateChange?.(isOpen);
   }, [isOpen, onModalStateChange]);
   const closeModal = () => {
+    posthog.capture("town_closed", { town_title: contentConfig.title });
     setIsOpen(false);
     onVisitTown?.();
   };
   return (
     <div className="relative">
-      <button onClick={() => setIsOpen(!isOpen)}>
+      <button
+        onClick={() => {
+          const next = !isOpen;
+          setIsOpen(next);
+          if (next) {
+            posthog.capture("town_opened", { town_title: contentConfig.title });
+          }
+        }}
+      >
         <TownIcon width={iconWidth} height={iconHeight} />
       </button>
       {isOpen && (

@@ -4,6 +4,12 @@ export const COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
 
 export const USER_ID_COOKIE_NAME = "house-of-froning-id";
 
+export const COOKIE_BANNER_DISMISSED_KEY =
+  "house-of-froning-cookie-banner-dismissed";
+
+export const COOKIE_BANNER_MESSAGE =
+  "This site uses one first-party cookie for anonymous analytics. No third-party tracking.";
+
 export const QUERY_KEYS = {
   user: (userId: string) => ["user", userId] as const,
   spotifySong: () => ["spotify", "song"] as const,
@@ -33,6 +39,11 @@ export const GOOGLE_BOOKS_API_BASE_URL =
   "https://www.googleapis.com/books/v1/volumes";
 export const OPEN_LIBRARY_COVERS_BASE_URL =
   "https://covers.openlibrary.org/b/isbn";
+
+export const GITHUB_REDIRECT_LINK = "https://github.com/sfroning88";
+
+export const LINKEDIN_REDIRECT_LINK =
+  "https://www.linkedin.com/in/sean-froning";
 
 export const DS_TO_WEB_SCALE = 6;
 export const DS_PIXEL_WIDTH = 192;
