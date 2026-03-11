@@ -40,6 +40,13 @@ export const GOOGLE_BOOKS_API_BASE_URL =
 export const OPEN_LIBRARY_COVERS_BASE_URL =
   "https://covers.openlibrary.org/b/isbn";
 
+export const POKEMON_ONE_IMAGE_PATH = "/images/pokemon/hippowdon.jpg";
+export const POKEMON_TWO_IMAGE_PATH = "/images/pokemon/jolteon.jpg";
+export const POKEMON_THREE_IMAGE_PATH = "/images/pokemon/aggron.jpeg";
+export const POKEMON_FOUR_IMAGE_PATH = "/images/pokemon/arcanine.jpg";
+export const POKEMON_FIVE_IMAGE_PATH = "/images/pokemon/garchomp.jpg";
+export const POKEMON_SIX_IMAGE_PATH = "/images/pokemon/mega-gallade.jpg";
+
 export const GITHUB_REDIRECT_LINK = "https://github.com/sfroning88";
 
 export const LINKEDIN_REDIRECT_LINK =

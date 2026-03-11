@@ -4,6 +4,7 @@ import { useState } from "react";
 import { IdCard, RadioTower, BookOpenText, Newspaper } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa6";
+import { MdCatchingPokemon } from "react-icons/md";
 import posthog from "posthog-js";
 import {
   BOTTOM_BAR_BUTTON_SIZE,
@@ -13,6 +14,7 @@ import {
 import { TrainerCard } from "./(bottom)/TrainerCard";
 import { SpotifySong } from "./(bottom)/SpotifySong";
 import { GoogleBooks } from "./(bottom)/GoogleBooks";
+import { PokemonBall } from "./(bottom)/PokemonBall";
 import { ResumeContent } from "./(bottom)/ResumeContent";
 
 type BottomBarProps = {
@@ -56,6 +58,16 @@ export function BottomBar({
   };
   const handleGoogleBooksStateChange = (isOpen: boolean) => {
     setIsGoogleBooksOpen(isOpen);
+    onModalStateChange?.(isOpen);
+  };
+  const [isPokemonBallOpen, setIsPokemonBallOpen] = useState(false);
+  const handlePokemonBallToggle = () => {
+    const next = !isPokemonBallOpen;
+    setIsPokemonBallOpen(next);
+    posthog.capture(next ? "pokemon_ball_opened" : "pokemon_ball_closed");
+  };
+  const handlePokemonBallStateChange = (isOpen: boolean) => {
+    setIsPokemonBallOpen(isOpen);
     onModalStateChange?.(isOpen);
   };
   const [isResumeOpen, setIsResumeOpen] = useState(false);
@@ -127,6 +139,23 @@ export function BottomBar({
           aria-label="Google Books"
         >
           <BookOpenText
+            className="text-white"
+            style={{
+              width: BOTTOM_BAR_BUTTON_SIZE / 2,
+              height: BOTTOM_BAR_BUTTON_SIZE / 2,
+            }}
+          />
+        </button>
+        <button
+          onClick={handlePokemonBallToggle}
+          className="flex items-center justify-center bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
+          style={{
+            width: BOTTOM_BAR_BUTTON_SIZE,
+            height: BOTTOM_BAR_BUTTON_SIZE,
+          }}
+          aria-label="Placeholder"
+        >
+          <MdCatchingPokemon
             className="text-white"
             style={{
               width: BOTTOM_BAR_BUTTON_SIZE / 2,
@@ -214,6 +243,14 @@ export function BottomBar({
           dsInnerScreenSize={dsInnerScreenSize}
           dsInnerScreenCenter={dsInnerScreenCenter}
           onClose={() => handleGoogleBooksStateChange(false)}
+        />
+      )}
+      {isPokemonBallOpen && (
+        <PokemonBall
+          onModalStateChange={handlePokemonBallStateChange}
+          dsInnerScreenSize={dsInnerScreenSize}
+          dsInnerScreenCenter={dsInnerScreenCenter}
+          onClose={() => handlePokemonBallStateChange(false)}
         />
       )}
       {isResumeOpen && (
