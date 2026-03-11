@@ -4,6 +4,12 @@ export const COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
 
 export const USER_ID_COOKIE_NAME = "house-of-froning-id";
 
+export const COOKIE_BANNER_DISMISSED_KEY =
+  "house-of-froning-cookie-banner-dismissed";
+
+export const COOKIE_BANNER_MESSAGE =
+  "This site uses one first-party cookie for anonymous analytics. No third-party tracking.";
+
 export const QUERY_KEYS = {
   user: (userId: string) => ["user", userId] as const,
   spotifySong: () => ["spotify", "song"] as const,

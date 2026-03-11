@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cinzel, Geist, Geist_Mono } from "next/font/google";
 import { MAP_AVATAR_BLINK_TIME } from "@/lib/constants";
+import { CookieBanner } from "@/app/(components)/(privacy)/CookieBanner";
 import { PrivacyNotice } from "@/app/(components)/(privacy)/PrivacyNotice";
 import { QueryProvider } from "@/app/providers";
 import "./globals.css";
@@ -49,6 +50,7 @@ export default function RootLayout({
       >
         <QueryProvider>
           {children}
+          <CookieBanner />
           <PrivacyNotice />
         </QueryProvider>
       </body>
