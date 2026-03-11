@@ -7,6 +7,7 @@ export const env = createEnv({
       .enum(["development", "production", "test"])
       .default("development"),
     VERCEL: z.string().optional(),
+    NEXT_PUBLIC_POSTHOG_KEY: z.string().min(1),
   },
   server: {
     SPOTIFY_CLIENT_ID: z.string().min(1),
@@ -23,6 +24,7 @@ export const env = createEnv({
   experimental__runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     VERCEL: process.env.VERCEL,
+    NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
 });
