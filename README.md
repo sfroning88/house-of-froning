@@ -12,7 +12,11 @@ Based on the `pokegear` from **Pokemon HeartGold and SoulSilver**, the layout is
 
 ## Libraries
 
-This application uses `Tailwind colors` and `Lucide React` icons. See official Tailwind documentation at [tailwindcss.com/docs/colors](https://tailwindcss.com/docs/colors).See the available icons at [lucide.dev/icons/](https://lucide.dev/icons/).
+This application uses `Tailwind colors`, `Lucide React`, and `React Icon` icons. See official Tailwind documentation at [tailwindcss.com/docs/colors](https://tailwindcss.com/docs/colors).See the available icons at [lucide.dev/icons/](https://lucide.dev/icons/).
+
+## Analytics
+
+This application uses a single **anonymous** cookie to track general web analytics using [**PostHog**](https://posthog.com/). Tracking is only used for page visits and basic events.
 
 ## License
 
