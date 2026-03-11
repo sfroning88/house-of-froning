@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 import { IdCard, RadioTower, BookOpenText, Newspaper } from "lucide-react";
-import { BOTTOM_BAR_BUTTON_SIZE } from "@/lib/constants";
+import { SiGithub } from "react-icons/si";
+import { FaLinkedin } from "react-icons/fa6";
+import {
+  BOTTOM_BAR_BUTTON_SIZE,
+  GITHUB_REDIRECT_LINK,
+  LINKEDIN_REDIRECT_LINK,
+} from "@/lib/constants";
 import { TrainerCard } from "./(bottom)/TrainerCard";
 import { SpotifySong } from "./(bottom)/SpotifySong";
 import { GoogleBooks } from "./(bottom)/GoogleBooks";
@@ -136,6 +142,44 @@ export function BottomBar({
             }}
           />
         </button>
+        <a
+          href={GITHUB_REDIRECT_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
+          style={{
+            width: BOTTOM_BAR_BUTTON_SIZE,
+            height: BOTTOM_BAR_BUTTON_SIZE,
+          }}
+          aria-label="GitHub"
+        >
+          <SiGithub
+            className="text-white"
+            style={{
+              width: BOTTOM_BAR_BUTTON_SIZE / 2,
+              height: BOTTOM_BAR_BUTTON_SIZE / 2,
+            }}
+          />
+        </a>
+        <a
+          href={LINKEDIN_REDIRECT_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
+          style={{
+            width: BOTTOM_BAR_BUTTON_SIZE,
+            height: BOTTOM_BAR_BUTTON_SIZE,
+          }}
+          aria-label="LinkedIn"
+        >
+          <FaLinkedin
+            className="text-white"
+            style={{
+              width: BOTTOM_BAR_BUTTON_SIZE / 2,
+              height: BOTTOM_BAR_BUTTON_SIZE / 2,
+            }}
+          />
+        </a>
       </div>
       {isTrainerCardOpen && (
         <TrainerCard

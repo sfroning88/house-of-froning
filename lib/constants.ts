@@ -34,6 +34,11 @@ export const GOOGLE_BOOKS_API_BASE_URL =
 export const OPEN_LIBRARY_COVERS_BASE_URL =
   "https://covers.openlibrary.org/b/isbn";
 
+export const GITHUB_REDIRECT_LINK = "https://github.com/sfroning88";
+
+export const LINKEDIN_REDIRECT_LINK =
+  "https://www.linkedin.com/in/sean-froning";
+
 export const DS_TO_WEB_SCALE = 6;
 export const DS_PIXEL_WIDTH = 192;
 export const DS_PIXEL_HEIGHT = 128;
