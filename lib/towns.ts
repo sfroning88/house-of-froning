@@ -1,6 +1,7 @@
 import { TOWN_ID, HOVER_LOCATION, TownContentConfig } from "@/lib/types";
 import {
   CHICAGO_IMAGE_PATH,
+  CHICAGO_MAP_IMAGE_PATH,
   SEANS_HOUSE_X,
   SEANS_HOUSE_Y,
   SEANS_HOUSE_IMAGE_PATH,
@@ -17,6 +18,7 @@ import {
   FOCUS_HEALTHCARE_PARTNERS_Y,
   FOCUS_HEALTHCARE_PARTNERS_IMAGE_PATH,
   NOTRE_DAME_IMAGE_PATH,
+  NOTRE_DAME_MAP_IMAGE_PATH,
   DUNCAN_HALL_X,
   DUNCAN_HALL_Y,
   DUNCAN_HALL_IMAGE_PATH,
@@ -120,6 +122,7 @@ export const townContentConfigs: Record<TOWN_ID, TownContentConfig> = {
   [TOWN_ID.CHICAGO]: {
     title: "Chicago",
     imagePath: CHICAGO_IMAGE_PATH,
+    mapImagePath: CHICAGO_MAP_IMAGE_PATH,
     description: chicagoDescription,
     bullets: chicagoBullets,
     locations: chicagoLocations,
@@ -127,6 +130,7 @@ export const townContentConfigs: Record<TOWN_ID, TownContentConfig> = {
   [TOWN_ID.NOTRE_DAME]: {
     title: "NotreDame",
     imagePath: NOTRE_DAME_IMAGE_PATH,
+    mapImagePath: NOTRE_DAME_MAP_IMAGE_PATH,
     description: notreDameDescription,
     bullets: notreDameBullets,
     locations: notreDameLocations,

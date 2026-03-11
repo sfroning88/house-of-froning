@@ -13,10 +13,15 @@ import {
 
 type LocalMapProps = {
   locations: TownLocationConfig[];
+  mapImagePath: string;
   onModalStateChange?: (isOpen: boolean) => void;
 };
 
-export function LocalMap({ locations, onModalStateChange }: LocalMapProps) {
+export function LocalMap({
+  locations,
+  mapImagePath,
+  onModalStateChange,
+}: LocalMapProps) {
   const localMapWidth = LOCAL_MAP_PIXEL_WIDTH * LOCAL_MAP_SCALE;
   const localMapHeight = LOCAL_MAP_PIXEL_HEIGHT * LOCAL_MAP_SCALE;
   const [selectedLocation, setSelectedLocation] =
@@ -33,11 +38,12 @@ export function LocalMap({ locations, onModalStateChange }: LocalMapProps) {
   }, [selectedLocation, onModalStateChange]);
   return (
     <div
-      className="relative bg-iceberg-deep/60 border-2 border-iceberg-medium"
+      className="relative border-2 border-iceberg-medium bg-cover bg-center bg-no-repeat"
       style={{
         width: localMapWidth,
         height: localMapHeight,
         aspectRatio: `${LOCAL_MAP_PIXEL_WIDTH} / ${LOCAL_MAP_PIXEL_HEIGHT}`,
+        backgroundImage: `url(${mapImagePath})`,
       }}
     >
       {locations.map((loc) => {
