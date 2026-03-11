@@ -12,6 +12,7 @@ import {
   DS_TO_WEB_SCALE,
   MAP_AVATAR_DEFAULT_X,
   MAP_AVATAR_DEFAULT_Y,
+  MAP_IMAGE_PATH,
 } from "@/lib/constants";
 
 type MapProps = {
@@ -25,8 +26,6 @@ type MapProps = {
 
 export function Map({
   onModalStateChange,
-  isModalOpen,
-  screenSize,
   dsInnerScreenSize,
   dsInnerScreenCenter,
   mapCenter,
@@ -45,11 +44,12 @@ export function Map({
     avatarTownId != null ? getTownCenter(avatarTownId) : defaultAvatarPosition;
   return (
     <div
-      className="relative bg-iceberg-deep/80 border-4 border-iceberg-medium"
+      className="relative border-4 border-iceberg-medium bg-cover bg-center bg-no-repeat"
       style={{
         width: mapWidth,
         height: mapHeight,
         aspectRatio: `${DS_PIXEL_WIDTH} / ${DS_PIXEL_HEIGHT}`,
+        backgroundImage: `url(${MAP_IMAGE_PATH})`,
       }}
     >
       <div

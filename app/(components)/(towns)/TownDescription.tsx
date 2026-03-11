@@ -135,6 +135,7 @@ export function TownDescription({
                 >
                   <LocalMap
                     locations={config.locations}
+                    mapImagePath={config.mapImagePath}
                     onModalStateChange={onModalStateChange}
                   />
                 </div>

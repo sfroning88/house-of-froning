@@ -77,6 +77,7 @@ export type TownLocationConfig = {
 export type TownContentConfig = {
   title: string;
   imagePath: string;
+  mapImagePath: string;
   description: string;
   bullets: string;
   locations: TownLocationConfig[];
