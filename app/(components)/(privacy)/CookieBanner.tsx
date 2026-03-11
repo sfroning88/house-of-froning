@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore, useState } from "react";
 import { createPortal } from "react-dom";
+import posthog from "posthog-js";
 import { useMediaQuery } from "@/app/(hooks)/use-media-query";
 import {
   COOKIE_BANNER_DISMISSED_KEY,
@@ -28,6 +29,7 @@ export function CookieBanner() {
     if (typeof localStorage !== "undefined") {
       localStorage.setItem(COOKIE_BANNER_DISMISSED_KEY, "true");
     }
+    posthog.capture("cookie_banner_dismissed");
     setLocalDismissed(true);
   };
   const effectiveDismissed = localDismissed || isDismissed;

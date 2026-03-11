@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef } from "react";
 import Image from "next/image";
 import { createPortal } from "react-dom";
+import posthog from "posthog-js";
 import { useMediaQuery } from "@/app/(hooks)/use-media-query";
 import { DS_MODAL_ZOOM_RATIO, MOBILE_BREAKPOINT } from "@/lib/constants";
 import { useFetchLastSong } from "@/app/(hooks)/use-fetch-last-song";
@@ -114,6 +115,13 @@ export function SpotifySong({
                 href={song.externalUrls.spotify}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  posthog.capture("spotify_open_in_spotify_clicked", {
+                    song_name: song.name,
+                    artist: song.artists.map((a) => a.name).join(", "),
+                    album: song.album.name,
+                  })
+                }
                 className={`bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors ${isMobile ? "px-3 py-1.5 text-xs" : "px-4 py-2"}`}
               >
                 Open in Spotify

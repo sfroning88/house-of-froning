@@ -4,6 +4,7 @@ import { useState } from "react";
 import { IdCard, RadioTower, BookOpenText, Newspaper } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa6";
+import posthog from "posthog-js";
 import {
   BOTTOM_BAR_BUTTON_SIZE,
   GITHUB_REDIRECT_LINK,
@@ -29,7 +30,9 @@ export function BottomBar({
 }: BottomBarProps) {
   const [isTrainerCardOpen, setIsTrainerCardOpen] = useState(false);
   const handleTrainerCardToggle = () => {
-    setIsTrainerCardOpen((prev) => !prev);
+    const next = !isTrainerCardOpen;
+    setIsTrainerCardOpen(next);
+    posthog.capture(next ? "trainer_card_opened" : "trainer_card_closed");
   };
   const handleTrainerCardStateChange = (isOpen: boolean) => {
     setIsTrainerCardOpen(isOpen);
@@ -37,7 +40,9 @@ export function BottomBar({
   };
   const [isSpotifySongOpen, setIsSpotifySongOpen] = useState(false);
   const handleSpotifySongToggle = () => {
-    setIsSpotifySongOpen((prev) => !prev);
+    const next = !isSpotifySongOpen;
+    setIsSpotifySongOpen(next);
+    posthog.capture(next ? "spotify_song_opened" : "spotify_song_closed");
   };
   const handleSpotifySongStateChange = (isOpen: boolean) => {
     setIsSpotifySongOpen(isOpen);
@@ -45,7 +50,9 @@ export function BottomBar({
   };
   const [isGoogleBooksOpen, setIsGoogleBooksOpen] = useState(false);
   const handleGoogleBooksToggle = () => {
-    setIsGoogleBooksOpen((prev) => !prev);
+    const next = !isGoogleBooksOpen;
+    setIsGoogleBooksOpen(next);
+    posthog.capture(next ? "google_books_opened" : "google_books_closed");
   };
   const handleGoogleBooksStateChange = (isOpen: boolean) => {
     setIsGoogleBooksOpen(isOpen);
@@ -53,7 +60,9 @@ export function BottomBar({
   };
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const handleResumeToggle = () => {
-    setIsResumeOpen((prev) => !prev);
+    const next = !isResumeOpen;
+    setIsResumeOpen(next);
+    posthog.capture(next ? "resume_opened" : "resume_closed");
   };
   const handleResumeStateChange = (isOpen: boolean) => {
     setIsResumeOpen(isOpen);
@@ -146,6 +155,7 @@ export function BottomBar({
           href={GITHUB_REDIRECT_LINK}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => posthog.capture("github_link_clicked")}
           className="flex items-center justify-center bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
           style={{
             width: BOTTOM_BAR_BUTTON_SIZE,
@@ -165,6 +175,7 @@ export function BottomBar({
           href={LINKEDIN_REDIRECT_LINK}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => posthog.capture("linkedin_link_clicked")}
           className="flex items-center justify-center bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
           style={{
             width: BOTTOM_BAR_BUTTON_SIZE,
