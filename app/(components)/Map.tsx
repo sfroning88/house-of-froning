@@ -1,6 +1,8 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { toast } from "sonner";
+import { useOnboardingContext } from "@/app/providers";
 import { Chicago } from "./(towns)/Chicago";
 import { NotreDame } from "./(towns)/NotreDame";
 import { getTownCenter } from "@lib/utils";
@@ -13,6 +15,8 @@ import {
   MAP_AVATAR_DEFAULT_X,
   MAP_AVATAR_DEFAULT_Y,
   MAP_IMAGE_PATH,
+  CLICK_TOWN_MESSAGE,
+  ONBOARDING_STEP_DURATION,
 } from "@/lib/constants";
 
 type MapProps = {
@@ -30,6 +34,7 @@ export function Map({
   dsInnerScreenCenter,
   mapCenter,
 }: MapProps) {
+  const onboarding = useOnboardingContext();
   const mapWidth = DS_PIXEL_WIDTH * DS_TO_WEB_SCALE;
   const mapHeight = DS_PIXEL_HEIGHT * DS_TO_WEB_SCALE;
   const defaultAvatarPosition = {
@@ -40,6 +45,14 @@ export function Map({
   const onVisitTown = useCallback((townId: TOWN_ID) => {
     setAvatarTownId(townId);
   }, []);
+  useEffect(() => {
+    if (onboarding?.step === 0) {
+      toast(CLICK_TOWN_MESSAGE, {
+        duration: ONBOARDING_STEP_DURATION,
+        id: "onboarding-0",
+      });
+    }
+  }, [onboarding?.step]);
   const avatarPosition =
     avatarTownId != null ? getTownCenter(avatarTownId) : defaultAvatarPosition;
   return (

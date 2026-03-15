@@ -1,18 +1,25 @@
 # House of Froning
 
-Personal website for **Sean Froning** deployed to `house-of-froning.vercel.app` with [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Personal website for **Sean Froning** deployed to [seanfroning.com](https://seanfroning.com) and [house-of-froning.vercel.app](https://house-of-froning.vercel.app) with [Next.js](https://nextjs.org) project bootstrapped with [create-next-app](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Cursor
-
-This is a `pnpm workspace` with `Next.js` configuration. Follow the `apps-rules.mdc` religiously. I am building a personal website to show off some pictures, my achievements, and attract like-minded folk who want to build cool shit with me.
+**Like what you see? Reach out!** I'll spare you from the [**LinkedIn**](https://www.linkedin.com/in/sean-froning/) bio, but I'm always looking to apply full stack AI to problems that actually matter for people.
 
 ## Concept
 
-Based on the `pokegear` from **Pokemon HeartGold and SoulSilver**, the layout is a town map with interactive locations based on my life. There is a trainer card modal, which, when clicked, brings up my personal trainer card with complete 2D sprite.
+Based on the `pokegear` from [**Pokemon HeartGold and SoulSilver**](https://en.wikipedia.org/wiki/Pok%C3%A9mon_HeartGold_and_SoulSilver), the layout is a town map with interactive locations based on my life. There is a trainer card modal, which, when clicked, brings up my personal trainer card with complete 2D sprite.
+
+| Pokegear Layout                                    | Trainer Card                                       |
+| -------------------------------------------------- | -------------------------------------------------- |
+| ![Pokegear Layout](public/references/pokegear.jpg) | ![Trainer Card](public/references/trainercard.jpg) |
 
 ## Libraries
 
-This application uses `Tailwind colors`, `Lucide React`, and `React Icon` icons. See official Tailwind documentation at [tailwindcss.com/docs/colors](https://tailwindcss.com/docs/colors).See the available icons at [lucide.dev/icons/](https://lucide.dev/icons/).
+This application uses a couple free and lightweight icons:
+
+- `Tailwind colors` -- see official documentation at [tailwindcss.com/docs/colors](https://tailwindcss.com/docs/colors)
+- `Lucide React` -- see the official documentation at [lucide.dev/icons/](https://lucide.dev/icons/)
+- `React Icons` -- see the official documentation at [react-icons.github.io/react-icons/](https://react-icons.github.io/react-icons/)
+- `Sonner Toast` -- see the official documentation at [ui.shadcn.com/docs/components/radix/sonner](https://ui.shadcn.com/docs/components/radix/sonner)
 
 ## Analytics
 

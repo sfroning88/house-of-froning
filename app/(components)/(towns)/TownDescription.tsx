@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
+import { toast } from "sonner";
+import { useOnboardingContext } from "@/app/providers";
 import { LocalMap } from "./LocalMap";
 import { useMediaQuery } from "@/app/(hooks)/use-media-query";
 import {
@@ -10,6 +12,7 @@ import {
   LOCAL_MAP_WIDTH,
   LOCAL_MAP_HEIGHT,
   MOBILE_BREAKPOINT,
+  CLICK_LOCATION_MESSAGE,
 } from "@/lib/constants";
 import type { TownContentConfig } from "@/lib/types";
 
@@ -28,6 +31,7 @@ export function TownDescription({
   dsInnerScreenSize,
   mapCenter,
 }: TownDescriptionProps) {
+  const onboarding = useOnboardingContext();
   const isMobile = !useMediaQuery(`(min-width: ${MOBILE_BREAKPOINT}px)`, true);
   const modalRef = useRef<HTMLDivElement>(null);
   const popularAreaRef = useRef<HTMLDivElement>(null);
@@ -59,6 +63,11 @@ export function TownDescription({
       onModalStateChange?.(false);
     };
   }, [onModalStateChange]);
+  useEffect(() => {
+    if (onboarding && onboarding.step === 1) {
+      toast(CLICK_LOCATION_MESSAGE, { id: "onboarding-2" });
+    }
+  }, [onboarding, onboarding?.step]);
   if (modalWidth === 0 || modalHeight === 0) {
     return null;
   }

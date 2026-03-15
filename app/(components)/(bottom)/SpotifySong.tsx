@@ -6,6 +6,7 @@ import { createPortal } from "react-dom";
 import posthog from "posthog-js";
 import { useMediaQuery } from "@/app/(hooks)/use-media-query";
 import { DS_MODAL_ZOOM_RATIO, MOBILE_BREAKPOINT } from "@/lib/constants";
+import { POSTHOG_EVENTS } from "@/lib/events";
 import { useFetchLastSong } from "@/app/(hooks)/use-fetch-last-song";
 
 type SpotifySongProps = {
@@ -116,11 +117,14 @@ export function SpotifySong({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() =>
-                  posthog.capture("spotify_open_in_spotify_clicked", {
-                    song_name: song.name,
-                    artist: song.artists.map((a) => a.name).join(", "),
-                    album: song.album.name,
-                  })
+                  posthog.capture(
+                    POSTHOG_EVENTS.spotify_open_in_spotify_clicked,
+                    {
+                      song_name: song.name,
+                      artist: song.artists.map((a) => a.name).join(", "),
+                      album: song.album.name,
+                    },
+                  )
                 }
                 className={`bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors ${isMobile ? "px-3 py-1.5 text-xs" : "px-4 py-2"}`}
               >

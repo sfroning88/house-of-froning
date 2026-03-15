@@ -11,6 +11,7 @@ import {
   GITHUB_REDIRECT_LINK,
   LINKEDIN_REDIRECT_LINK,
 } from "@/lib/constants";
+import { POSTHOG_EVENTS } from "@/lib/events";
 import { TrainerCard } from "./(bottom)/TrainerCard";
 import { SpotifySong } from "./(bottom)/SpotifySong";
 import { GoogleBooks } from "./(bottom)/GoogleBooks";
@@ -34,7 +35,11 @@ export function BottomBar({
   const handleTrainerCardToggle = () => {
     const next = !isTrainerCardOpen;
     setIsTrainerCardOpen(next);
-    posthog.capture(next ? "trainer_card_opened" : "trainer_card_closed");
+    posthog.capture(
+      next
+        ? POSTHOG_EVENTS.trainer_card_opened
+        : POSTHOG_EVENTS.trainer_card_closed,
+    );
   };
   const handleTrainerCardStateChange = (isOpen: boolean) => {
     setIsTrainerCardOpen(isOpen);
@@ -44,7 +49,11 @@ export function BottomBar({
   const handleSpotifySongToggle = () => {
     const next = !isSpotifySongOpen;
     setIsSpotifySongOpen(next);
-    posthog.capture(next ? "spotify_song_opened" : "spotify_song_closed");
+    posthog.capture(
+      next
+        ? POSTHOG_EVENTS.spotify_song_opened
+        : POSTHOG_EVENTS.spotify_song_closed,
+    );
   };
   const handleSpotifySongStateChange = (isOpen: boolean) => {
     setIsSpotifySongOpen(isOpen);
@@ -54,7 +63,11 @@ export function BottomBar({
   const handleGoogleBooksToggle = () => {
     const next = !isGoogleBooksOpen;
     setIsGoogleBooksOpen(next);
-    posthog.capture(next ? "google_books_opened" : "google_books_closed");
+    posthog.capture(
+      next
+        ? POSTHOG_EVENTS.google_books_opened
+        : POSTHOG_EVENTS.google_books_closed,
+    );
   };
   const handleGoogleBooksStateChange = (isOpen: boolean) => {
     setIsGoogleBooksOpen(isOpen);
@@ -64,7 +77,11 @@ export function BottomBar({
   const handlePokemonBallToggle = () => {
     const next = !isPokemonBallOpen;
     setIsPokemonBallOpen(next);
-    posthog.capture(next ? "pokemon_ball_opened" : "pokemon_ball_closed");
+    posthog.capture(
+      next
+        ? POSTHOG_EVENTS.pokemon_ball_opened
+        : POSTHOG_EVENTS.pokemon_ball_closed,
+    );
   };
   const handlePokemonBallStateChange = (isOpen: boolean) => {
     setIsPokemonBallOpen(isOpen);
@@ -74,7 +91,9 @@ export function BottomBar({
   const handleResumeToggle = () => {
     const next = !isResumeOpen;
     setIsResumeOpen(next);
-    posthog.capture(next ? "resume_opened" : "resume_closed");
+    posthog.capture(
+      next ? POSTHOG_EVENTS.resume_opened : POSTHOG_EVENTS.resume_closed,
+    );
   };
   const handleResumeStateChange = (isOpen: boolean) => {
     setIsResumeOpen(isOpen);
@@ -184,7 +203,7 @@ export function BottomBar({
           href={GITHUB_REDIRECT_LINK}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => posthog.capture("github_link_clicked")}
+          onClick={() => posthog.capture(POSTHOG_EVENTS.github_link_clicked)}
           className="flex items-center justify-center bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
           style={{
             width: BOTTOM_BAR_BUTTON_SIZE,
@@ -204,7 +223,7 @@ export function BottomBar({
           href={LINKEDIN_REDIRECT_LINK}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => posthog.capture("linkedin_link_clicked")}
+          onClick={() => posthog.capture(POSTHOG_EVENTS.linkedin_link_clicked)}
           className="flex items-center justify-center bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
           style={{
             width: BOTTOM_BAR_BUTTON_SIZE,

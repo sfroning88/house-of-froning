@@ -7,8 +7,28 @@ export const USER_ID_COOKIE_NAME = "house-of-froning-id";
 export const COOKIE_BANNER_DISMISSED_KEY =
   "house-of-froning-cookie-banner-dismissed";
 
+export const ONBOARDING_STEP_KEY = "house-of-froning-onboarding-step";
+
+export const ONBOARDING_STEP_DURATION = 6000;
+
+export const SOURCE_TOAST_SHOWN_KEY = "house-of-froning-source-toast-shown";
+
 export const COOKIE_BANNER_MESSAGE =
   "This site uses one first-party cookie for anonymous analytics. No third-party tracking.";
+
+export const CLICK_TOWN_MESSAGE = "Try clicking a town square on the map!";
+
+export const CLICK_LOCATION_MESSAGE = "Try clicking any of the logos!";
+
+export const CLICK_ICONS_MESSAGE =
+  "Try clicking any of the icons in the bottom row!";
+
+export const SEE_SOURCE_CODE_WAIT = 30_000;
+
+export const SEE_SOURCE_CODE_MESSAGE = "Want to see how this was built?";
+
+export const SEE_SOURCE_CODE_LINK =
+  "https://github.com/sfroning88/house-of-froning";
 
 export const QUERY_KEYS = {
   user: (userId: string) => ["user", userId] as const,
