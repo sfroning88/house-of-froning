@@ -16,6 +16,7 @@ import {
   MAP_AVATAR_DEFAULT_Y,
   MAP_IMAGE_PATH,
   CLICK_TOWN_MESSAGE,
+  ONBOARDING_SEQUENCE_DELAY,
   ONBOARDING_STEP_DURATION,
 } from "@/lib/constants";
 
@@ -46,12 +47,14 @@ export function Map({
     setAvatarTownId(townId);
   }, []);
   useEffect(() => {
-    if (onboarding?.step === 0) {
+    if (onboarding?.step !== 0) return;
+    const id = setTimeout(() => {
       toast(CLICK_TOWN_MESSAGE, {
         duration: ONBOARDING_STEP_DURATION,
         id: "onboarding-0",
       });
-    }
+    }, ONBOARDING_SEQUENCE_DELAY);
+    return () => clearTimeout(id);
   }, [onboarding?.step]);
   const avatarPosition =
     avatarTownId != null ? getTownCenter(avatarTownId) : defaultAvatarPosition;
