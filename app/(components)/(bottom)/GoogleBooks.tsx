@@ -66,7 +66,7 @@ export function GoogleBooks({
           <h2
             className={`font-semibold truncate ${isMobile ? "text-base" : "text-xl"}`}
           >
-            Google Books
+            Get Yo Knowledge Up
           </h2>
           <button
             onClick={onClose}
@@ -103,12 +103,12 @@ export function GoogleBooks({
                 <p
                   className={`text-slate-600 ${isMobile ? "text-xs" : "text-sm"}`}
                 >
-                  {bookToShow.author}
+                  Author: {bookToShow.author}
                 </p>
                 <p
                   className={`text-slate-500 mt-1 capitalize ${isMobile ? "text-xs" : "text-sm"}`}
                 >
-                  {bookToShow.status}
+                  Status: {bookToShow.status}
                 </p>
               </div>
               {bookToShow.topics && (
@@ -125,7 +125,7 @@ export function GoogleBooks({
                   <p
                     className={`text-slate-700 ${isMobile ? "text-xs" : "text-sm"}`}
                   >
-                    {bookToShow.thoughts}
+                    Thoughts: {bookToShow.thoughts}
                   </p>
                 </div>
               )}
@@ -134,7 +134,7 @@ export function GoogleBooks({
                   <p
                     className={`text-slate-500 ${isMobile ? "text-xs" : "text-sm"}`}
                   >
-                    {bookToShow.daysToRead} days to read
+                    I&apos;ve been reading this for {bookToShow.daysToRead} now!
                   </p>
                 </div>
               )}

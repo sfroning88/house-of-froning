@@ -80,7 +80,7 @@ export function PokemonBall({
           <h2
             className={`font-sans font-bold text-black tracking-wider uppercase ${isMobile ? "text-sm" : "text-base"}`}
           >
-            POKéMON TEAM
+            See You In Pokémon Champions
           </h2>
           <button
             onClick={onClose}

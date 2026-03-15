@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 import ReactMarkdown from "react-markdown";
+import remarkBreaks from "remark-breaks";
 import { useMediaQuery } from "@/app/(hooks)/use-media-query";
 import { DS_MODAL_ZOOM_RATIO, MOBILE_BREAKPOINT } from "@/lib/constants";
 import { useGetResumeContent } from "@/app/(hooks)/use-get-resume-content";
@@ -64,7 +65,7 @@ export function ResumeContent({
           <h2
             className={`font-semibold truncate ${isMobile ? "text-base" : "text-xl"}`}
           >
-            Resume
+            The Boring Bits
           </h2>
           <button
             onClick={onClose}
@@ -83,7 +84,9 @@ export function ResumeContent({
           {isLoading ? (
             <span className={isMobile ? "text-xs" : "text-sm"}>Loading...</span>
           ) : (
-            <ReactMarkdown>{content}</ReactMarkdown>
+            <ReactMarkdown remarkPlugins={[remarkBreaks]}>
+              {content}
+            </ReactMarkdown>
           )}
         </div>
       </div>
