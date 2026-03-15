@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Cinzel, Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "sonner";
 import { MAP_AVATAR_BLINK_TIME } from "@/lib/constants";
 import { CookieBanner } from "@/app/(components)/(privacy)/CookieBanner";
 import { PrivacyNotice } from "@/app/(components)/(privacy)/PrivacyNotice";
-import { QueryProvider } from "@/app/providers";
+import { OnboardingProvider, QueryProvider } from "@/app/providers";
 import "./globals.css";
 
 const cinzel = Cinzel({
@@ -49,9 +50,12 @@ export default function RootLayout({
         }
       >
         <QueryProvider>
-          {children}
-          <CookieBanner />
-          <PrivacyNotice />
+          <OnboardingProvider>
+            {children}
+            <Toaster position="top-center" />
+            <CookieBanner />
+            <PrivacyNotice />
+          </OnboardingProvider>
         </QueryProvider>
       </body>
     </html>

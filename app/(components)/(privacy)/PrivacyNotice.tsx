@@ -6,6 +6,7 @@ import posthog from "posthog-js";
 import ReactMarkdown from "react-markdown";
 import { useMediaQuery } from "@/app/(hooks)/use-media-query";
 import { MOBILE_BREAKPOINT } from "@/lib/constants";
+import { POSTHOG_EVENTS } from "@/lib/events";
 import { useGetPrivacyContent } from "@/app/(hooks)/use-get-privacy-content";
 
 export function PrivacyNotice() {
@@ -14,11 +15,11 @@ export function PrivacyNotice() {
   const { content, isLoading } = useGetPrivacyContent(isOpen);
   const handleOpen = () => {
     setIsOpen(true);
-    posthog.capture("privacy_policy_opened");
+    posthog.capture(POSTHOG_EVENTS.privacy_policy_opened);
   };
   const handleClose = () => {
     setIsOpen(false);
-    posthog.capture("privacy_policy_closed");
+    posthog.capture(POSTHOG_EVENTS.privacy_policy_closed);
   };
   const modalContent = isOpen ? (
     <>

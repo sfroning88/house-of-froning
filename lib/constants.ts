@@ -10,6 +10,34 @@ export const COOKIE_BANNER_DISMISSED_KEY =
 export const COOKIE_BANNER_MESSAGE =
   "This site uses one first-party cookie for anonymous analytics. No third-party tracking.";
 
+export const ONBOARDING_STEP_KEY = "house-of-froning-onboarding-step";
+
+export const ONBOARDING_STEP_DURATION = 6000;
+
+export const ONBOARDING_SEQUENCE_DELAY = 10_000;
+
+export const SOURCE_TOAST_SHOWN_KEY = "house-of-froning-source-toast-shown";
+
+export const LANDSCAPE_MODE_MESSAGE =
+  "On a mobile device? This page is best viewed in landscape mode <-";
+
+export const LANDSCAPE_TOAST_SHOWN_KEY =
+  "house-of-froning-landscape-toast-shown";
+
+export const CLICK_TOWN_MESSAGE = "Try clicking a town square on the map!";
+
+export const CLICK_LOCATION_MESSAGE = "Try clicking any of the logos!";
+
+export const CLICK_ICONS_MESSAGE =
+  "Try clicking any of the icons in the bottom row!";
+
+export const SEE_SOURCE_CODE_WAIT = 60_000;
+
+export const SEE_SOURCE_CODE_MESSAGE = "Want to see how this was built?";
+
+export const SEE_SOURCE_CODE_LINK =
+  "https://github.com/sfroning88/house-of-froning";
+
 export const QUERY_KEYS = {
   user: (userId: string) => ["user", userId] as const,
   spotifySong: () => ["spotify", "song"] as const,

@@ -9,6 +9,7 @@ import {
   COOKIE_BANNER_MESSAGE,
   MOBILE_BREAKPOINT,
 } from "@/lib/constants";
+import { POSTHOG_EVENTS } from "@/lib/events";
 
 function getDismissedSnapshot(): boolean {
   if (typeof localStorage === "undefined") return true;
@@ -29,7 +30,7 @@ export function CookieBanner() {
     if (typeof localStorage !== "undefined") {
       localStorage.setItem(COOKIE_BANNER_DISMISSED_KEY, "true");
     }
-    posthog.capture("cookie_banner_dismissed");
+    posthog.capture(POSTHOG_EVENTS.cookie_banner_dismissed);
     setLocalDismissed(true);
   };
   const effectiveDismissed = localDismissed || isDismissed;
