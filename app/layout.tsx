@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cinzel, Geist, Geist_Mono } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
 import { MAP_AVATAR_BLINK_TIME } from "@/lib/constants";
 import { CookieBanner } from "@/app/(components)/(privacy)/CookieBanner";
@@ -58,6 +59,7 @@ export default function RootLayout({
             <OnboardingProvider>
               {children}
               <Toaster position="top-center" />
+              <SpeedInsights />
               <CookieBanner />
               <PrivacyNotice />
             </OnboardingProvider>
