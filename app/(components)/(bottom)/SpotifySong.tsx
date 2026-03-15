@@ -67,7 +67,7 @@ export function SpotifySong({
           <h2
             className={`font-semibold truncate ${isMobile ? "text-base" : "text-xl"}`}
           >
-            Spotify Song
+            Music To My Ears
           </h2>
           <button
             onClick={onClose}
