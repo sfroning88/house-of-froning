@@ -4,7 +4,11 @@ import { Toaster } from "sonner";
 import { MAP_AVATAR_BLINK_TIME } from "@/lib/constants";
 import { CookieBanner } from "@/app/(components)/(privacy)/CookieBanner";
 import { PrivacyNotice } from "@/app/(components)/(privacy)/PrivacyNotice";
-import { OnboardingProvider, QueryProvider } from "@/app/providers";
+import {
+  MusicProvider,
+  OnboardingProvider,
+  QueryProvider,
+} from "@/app/providers";
 import "./globals.css";
 
 const cinzel = Cinzel({
@@ -50,12 +54,14 @@ export default function RootLayout({
         }
       >
         <QueryProvider>
-          <OnboardingProvider>
-            {children}
-            <Toaster position="top-center" />
-            <CookieBanner />
-            <PrivacyNotice />
-          </OnboardingProvider>
+          <MusicProvider>
+            <OnboardingProvider>
+              {children}
+              <Toaster position="top-center" />
+              <CookieBanner />
+              <PrivacyNotice />
+            </OnboardingProvider>
+          </MusicProvider>
         </QueryProvider>
       </body>
     </html>

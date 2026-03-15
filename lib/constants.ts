@@ -80,6 +80,30 @@ export const GITHUB_REDIRECT_LINK = "https://github.com/sfroning88";
 export const LINKEDIN_REDIRECT_LINK =
   "https://www.linkedin.com/in/sean-froning";
 
+export const YOUTUBE_BASE_URL = "https://www.youtube.com";
+
+export const YOUTUBE_VIDEO_IDS = {
+  NATIONAL_PARK: "MySc69KzuXQ",
+  SECUNDA: "1r0A_ULX6P0",
+};
+
+export const YOUTUBE_ERROR_CODES = [2, 5, 100, 101, 150];
+
+export const MUSIC_TRACKS = [
+  YOUTUBE_VIDEO_IDS.NATIONAL_PARK,
+  YOUTUBE_VIDEO_IDS.SECUNDA,
+];
+
+export const MUSIC_UNMUTED_KEY = "house-of-froning-music-unmuted";
+
+export const MUSIC_TRACK_INDEX_KEY = "house-of-froning-music-track";
+
+export const MUSIC_UNMUTE_TOAST_SHOWN_KEY =
+  "house-of-froning-music-unmute-toast-shown";
+
+export const MUSIC_UNMUTE_MESSAGE =
+  "🎵 Background music is playing — click to unmute";
+
 export const DS_TO_WEB_SCALE = 6;
 export const DS_PIXEL_WIDTH = 192;
 export const DS_PIXEL_HEIGHT = 128;

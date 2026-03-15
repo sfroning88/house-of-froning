@@ -1,7 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { IdCard, RadioTower, BookOpenText, Newspaper } from "lucide-react";
+import {
+  IdCard,
+  RadioTower,
+  BookOpenText,
+  Newspaper,
+  Volume2,
+  VolumeX,
+} from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa6";
 import { MdCatchingPokemon } from "react-icons/md";
@@ -12,6 +19,7 @@ import {
   LINKEDIN_REDIRECT_LINK,
 } from "@/lib/constants";
 import { POSTHOG_EVENTS } from "@/lib/events";
+import { useMusicContext } from "@/app/providers";
 import { TrainerCard } from "./(bottom)/TrainerCard";
 import { SpotifySong } from "./(bottom)/SpotifySong";
 import { GoogleBooks } from "./(bottom)/GoogleBooks";
@@ -87,6 +95,7 @@ export function BottomBar({
     setIsPokemonBallOpen(isOpen);
     onModalStateChange?.(isOpen);
   };
+  const musicContext = useMusicContext();
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const handleResumeToggle = () => {
     const next = !isResumeOpen;
@@ -239,6 +248,42 @@ export function BottomBar({
             }}
           />
         </a>
+        {musicContext && (
+          <button
+            onClick={() => {
+              if (musicContext.isMuted) {
+                musicContext.unmute();
+                posthog.capture(POSTHOG_EVENTS.music_unmuted);
+              } else {
+                musicContext.mute();
+              }
+            }}
+            className="flex items-center justify-center bg-slate-600 hover:bg-slate-500 rounded border border-slate-400 transition-colors"
+            style={{
+              width: BOTTOM_BAR_BUTTON_SIZE,
+              height: BOTTOM_BAR_BUTTON_SIZE,
+            }}
+            aria-label={musicContext.isMuted ? "Unmute music" : "Mute music"}
+          >
+            {musicContext.isMuted ? (
+              <Volume2
+                className="text-white"
+                style={{
+                  width: BOTTOM_BAR_BUTTON_SIZE / 2,
+                  height: BOTTOM_BAR_BUTTON_SIZE / 2,
+                }}
+              />
+            ) : (
+              <VolumeX
+                className="text-white"
+                style={{
+                  width: BOTTOM_BAR_BUTTON_SIZE / 2,
+                  height: BOTTOM_BAR_BUTTON_SIZE / 2,
+                }}
+              />
+            )}
+          </button>
+        )}
       </div>
       {isTrainerCardOpen && (
         <TrainerCard

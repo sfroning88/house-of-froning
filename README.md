@@ -14,7 +14,7 @@ Based on the `pokegear` from [**Pokemon HeartGold and SoulSilver**](https://en.w
 
 ## Libraries
 
-This application uses a couple free and lightweight icons:
+This application uses lightweight and free `libraries`:
 
 - `Tailwind colors` -- see official documentation at [tailwindcss.com/docs/colors](https://tailwindcss.com/docs/colors)
 - `Lucide React` -- see the official documentation at [lucide.dev/icons/](https://lucide.dev/icons/)
@@ -24,6 +24,10 @@ This application uses a couple free and lightweight icons:
 ## Analytics
 
 This application uses a single **anonymous** cookie to track general web analytics using [**PostHog**](https://posthog.com/). Tracking is only used for page visits and basic events.
+
+## Disclaimer
+
+Background music uses the [YouTube IFrame API](https://developers.google.com/youtube/iframe_api_reference); video credits belong to their respective rights holders.
 
 ## License
 

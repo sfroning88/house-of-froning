@@ -18,4 +18,6 @@ export const POSTHOG_EVENTS = {
   privacy_policy_closed: "privacy_policy_closed",
   spotify_open_in_spotify_clicked: "spotify_open_in_spotify_clicked",
   view_source_code_clicked: "view_source_code_clicked",
+  music_unmuted: "music_unmuted",
+  music_muted: "music_muted",
 } as const;
