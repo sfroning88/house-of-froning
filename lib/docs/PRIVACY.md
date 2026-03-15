@@ -1,6 +1,6 @@
 # Privacy Policy
 
-Last updated: **February 2026**
+Last updated: **March 2026**
 
 This is a personal portfolio site with no user accounts, no forms, and minimal anonymous tracking for analytics purposes only.
 
@@ -29,7 +29,16 @@ No third-party cookies, tracking pixels, or advertising cookies are used.
 
 ## Third-Party Services
 
-The only third party involved in serving this site is Vercel (hosting). No data is shared with advertisers or other third parties by me.
+This site uses the following third-party services:
+
+- **Vercel** — Hosting and deployment
+- **PostHog** — Anonymous analytics (page visits, basic events). See [PostHog's Privacy Policy](https://posthog.com/privacy)
+- **YouTube** — Background music via the [YouTube IFrame API](https://developers.google.com/youtube/iframe_api_reference). Video content and any related data collection are governed by [YouTube's Privacy Policy](https://policies.google.com/privacy)
+- **Spotify** — Displays my currently playing or last-played song. Requests are made server-side; no Spotify data is stored by this site
+- **Google** — Books list from Google Sheets, book metadata and cover images from the Google Books API. See [Google's Privacy Policy](https://policies.google.com/privacy)
+- **Open Library** — Fallback source for book cover images when not available from Google Books. See [Open Library's Privacy Policy](https://openlibrary.org/privacypolicy)
+
+No data is shared with advertisers. I do not control how these services collect or use data when you interact with content they provide.
 
 ## Your Rights
 
