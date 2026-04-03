@@ -238,7 +238,18 @@ Use `reportlab` to produce a **black-and-white, printable PDF**. Follow the stru
 - **No Unicode subscripts/superscripts.** Use ReportLab `<sub>`/`<super>` tags only.
 - **Font stack:** Helvetica (headings/labels) + Times-Roman (body prose). Built-in only — no external fonts.
 - **Page size:** Letter (8.5" x 11"). Margins: 0.85" all sides.
-- **No tables.** Tables render inconsistently. Use indented bullet lists or bold-label lines instead (see section templates below).
+- **No tables — ever.** Tables render inconsistently and are banned from the final PDF. Always use indented bullet lists with the `•` character and `--` separators instead.
+
+Example format:
+
+```markdown
+Specific services to learn:
+• Service X -- which does thing Y
+• Service W -- which does thing Z
+```
+
+Apply this pattern to every list in the report: stack alignment, gap analysis, ATS keywords, priority rankings, and sources.
+
 - **Page numbers:** Bottom center, format `Page N`.
 - **Running header:** Firm name + "| Technical Fit Report" on all pages after page 1.
 
@@ -315,7 +326,15 @@ ITEM = ParagraphStyle("ITEM", fontName="Times-Roman", fontSize=9,
 - Inferred or confirmed stack: languages, frameworks, databases, cloud/infra, AI/ML tooling, data pipelines, third-party integrations.
 - Development culture signals: open source activity, engineering blog cadence, team size, PR velocity, documentation quality.
 - **Stack Overlap Analysis**: Explicitly compare their stack against Sean's Rowan platform stack. Call out each technology by name — do not summarize vaguely. For every major technology in their stack, state whether it is "Daily use @ Rowan", "Prior project/experience", "Adjacent (transferable concept)", or "Gap (not in current stack)".
-- **Stack Alignment List**: For each major technology in their stack, render a bold-label line followed by an indented detail line using the LABEL and ITEM styles. Format: **[Technology Name]** (Category) — Signal: "Daily use @ Rowan" | "Prior project" | "Adjacent" | "Gap". Include every major technology found — languages, frameworks, infra, AI/ML tools, data tools, cloud providers, and integrations. Aim for 8–12 entries minimum. Do NOT use a table.
+- **Stack Alignment List**: Render as a bullet list using the `•` character — never a table. Include every major technology found (languages, frameworks, infra, AI/ML tools, data tools, cloud providers, integrations). Aim for 8–12 entries minimum. Format each entry as:
+
+  ```markdown
+  • Next.js -- Daily use @ Rowan
+  • Kubernetes -- Gap (not in current stack)
+  • Flask -- Prior project (Financial Health Chatbot)
+  • LangChain -- Adjacent (transferable from LlamaIndex/CrewAI)
+  ```
+
 - Cite GitHub, job postings, blog posts, and docs inline as [N].
 
 **4. Gap Analysis & Learning Roadmap** (400–500 words)
@@ -335,7 +354,14 @@ This section exists to help Sean make an honest self-assessment and decide what 
 **5. ATS & Keyword Strategy** (150–200 words)
 
 - Extract high-signal keywords from the JD or inferred role context.
-- Render each keyword as a bold-label line with its status on the same line. Format: **[Keyword / Phrase]** — Status: "In resume" | "Add to resume" | "Add to cover letter / outreach". Do NOT use a table.
+- Render as a bullet list using the `•` character — never a table. Format each entry as:
+
+  ```markdown
+  • Kubernetes -- Add to resume (learnable via Rowan infra migration)
+  • RAG pipelines -- In resume (production use @ Rowan)
+  • dbt -- Add to cover letter / outreach
+  ```
+
 - Note certifications, tools, or credentials worth highlighting or acquiring.
 
 **6. Sources:**
@@ -381,6 +407,7 @@ This section exists to help Sean make an honest self-assessment and decide what 
 - [ ] ATS keyword list present in Section 5
 - [ ] Rowan platform stack explicitly referenced in stack comparison
 - [ ] "Daily use @ Rowan" vs "Gap" signals called out by name
+- [ ] Zero tables in the entire PDF — all lists use `•` bullet points with `--` separators
 - [ ] Body prose is approximately 2000 words
 
 ---
