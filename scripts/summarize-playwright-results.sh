@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPORT="${1:-playwright-report/results.json}"
+REPORT="${1:-playwright-results.json}"
 OUTPUT="${2:-/tmp/playwright-results.txt}"
 
 if [ ! -f "$REPORT" ]; then

@@ -7,6 +7,7 @@ import ReactMarkdown from "react-markdown";
 import { useMediaQuery } from "@/app/(hooks)/use-media-query";
 import { MOBILE_BREAKPOINT } from "@/lib/constants";
 import { POSTHOG_EVENTS } from "@/lib/events";
+import { ModalBackdrop } from "@/app/(components)/ModalBackdrop";
 import { useGetPrivacyContent } from "@/app/(hooks)/use-get-privacy-content";
 
 export function PrivacyNotice() {
@@ -23,12 +24,15 @@ export function PrivacyNotice() {
   };
   const modalContent = isOpen ? (
     <>
-      <div className="fixed inset-0 bg-black/50 z-40" onClick={handleClose} />
+      <ModalBackdrop
+        className="fixed inset-0 z-40 bg-black/50"
+        onClose={handleClose}
+      />
       <div
         className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white border-4 border-slate-400 shadow-lg z-50 flex flex-col gap-4 overflow-hidden transition-all duration-300 max-w-2xl max-h-[80vh] w-[90vw]"
         style={{ padding: isMobile ? "0.75rem" : "1.5rem" }}
       >
-        <div className="flex items-center justify-between flex-shrink-0">
+        <div className="flex items-center justify-between shrink-0">
           <h2
             className={`font-semibold truncate ${isMobile ? "text-base" : "text-xl"}`}
           >

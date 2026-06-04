@@ -91,7 +91,6 @@ export function TownDescription({
           maxWidth: `min(${modalWidth}px, 90vw)`,
           maxHeight: `min(${modalHeight}px, 90dvh)`,
         }}
-        onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between border-b border-slate-300 pb-2 gap-2 min-w-0 shrink-0">
           <h2

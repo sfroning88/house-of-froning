@@ -58,7 +58,7 @@ jobs:
 
         -   name: Summarize results
             if: always() && github.event_name == 'pull_request'
-            run: bash scripts/summarize-playwright-results.sh playwright-report/results.json /tmp/playwright-results.txt
+            run: bash scripts/summarize-playwright-results.sh playwright-results.json /tmp/playwright-results.txt
 
         -   name: Post PR comment
             if: always() && github.event_name == 'pull_request'

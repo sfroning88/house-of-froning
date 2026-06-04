@@ -51,7 +51,7 @@ export function Screen() {
         setFrameRect(frameRef.current.getBoundingClientRect());
       }
     };
-    window.addEventListener("scroll", scrollHandler);
+    window.addEventListener("scroll", scrollHandler, { passive: true });
     return () => window.removeEventListener("scroll", scrollHandler);
   }, []);
   const mapWidth = DS_PIXEL_WIDTH * DS_TO_WEB_SCALE;

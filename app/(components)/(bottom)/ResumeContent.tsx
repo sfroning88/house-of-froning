@@ -61,7 +61,7 @@ export function ResumeContent({
           padding: isMobile ? "0.75rem" : "1.5rem",
         }}
       >
-        <div className="flex items-center justify-between flex-shrink-0">
+        <div className="flex items-center justify-between shrink-0">
           <h2
             className={`font-semibold truncate ${isMobile ? "text-base" : "text-xl"}`}
           >

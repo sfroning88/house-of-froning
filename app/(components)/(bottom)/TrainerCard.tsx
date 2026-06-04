@@ -79,7 +79,7 @@ export function TrainerCard({
           padding: isMobile ? "0.75rem" : "1rem",
         }}
       >
-        <div className="flex items-center justify-between mb-2 pb-2 border-b border-slate-400 flex-shrink-0">
+        <div className="flex items-center justify-between mb-2 pb-2 border-b border-slate-400 shrink-0">
           <h2
             className={`font-sans font-bold text-black tracking-wider uppercase ${isMobile ? "text-sm" : "text-base"}`}
           >

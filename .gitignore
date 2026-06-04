@@ -20,6 +20,7 @@
 # testing
 /coverage
 /playwright-report/
+/playwright-results.json
 /test-results/
 
 # next.js

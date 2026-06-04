@@ -5,6 +5,7 @@ import posthog from "posthog-js";
 import { POSTHOG_EVENTS } from "@/lib/events";
 import { toast } from "sonner";
 import { useOnboardingContext } from "@/app/providers";
+import { ModalBackdrop } from "@/app/(components)/ModalBackdrop";
 import { TownIcon } from "./TownIcon";
 import { TownDescription } from "./TownDescription";
 import { TownContentConfig, TownConfigEntry } from "@/lib/types";
@@ -71,9 +72,9 @@ export function Town({
       </button>
       {isOpen && (
         <>
-          <div
-            className="fixed inset-0 bg-black/50 z-40"
-            onClick={closeModal}
+          <ModalBackdrop
+            className="fixed inset-0 z-40 bg-black/50"
+            onClose={closeModal}
           />
           <TownDescription
             config={contentConfig}
