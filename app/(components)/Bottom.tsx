@@ -25,6 +25,7 @@ import { SpotifySong } from "./(bottom)/SpotifySong";
 import { GoogleBooks } from "./(bottom)/GoogleBooks";
 import { PokemonBall } from "./(bottom)/PokemonBall";
 import { ResumeContent } from "./(bottom)/ResumeContent";
+import { TEST_IDS } from "@/lib/test-ids";
 
 type BottomBarProps = {
   onModalStateChange?: (isOpen: boolean) => void;
@@ -114,6 +115,7 @@ export function BottomBar({
   return (
     <>
       <div
+        data-testid={TEST_IDS.bottomBar}
         className="absolute bg-slate-700 border-t-2 border-slate-500 flex items-center justify-around z-30"
         style={{
           left: `${bottomBarLayout.left}px`,

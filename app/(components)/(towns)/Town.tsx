@@ -13,6 +13,8 @@ import { CLICK_ICONS_MESSAGE, DS_TO_WEB_SCALE } from "@/lib/constants";
 type TownProps = {
   contentConfig: TownContentConfig;
   mapConfig: TownConfigEntry;
+  townTestId: string;
+  townModalTestId: string;
   onVisitTown?: () => void;
   onModalStateChange?: (isOpen: boolean) => void;
   dsInnerScreenSize: { width: number; height: number };
@@ -23,6 +25,8 @@ type TownProps = {
 export function Town({
   contentConfig,
   mapConfig,
+  townTestId,
+  townModalTestId,
   onVisitTown,
   onModalStateChange,
   dsInnerScreenSize,
@@ -49,6 +53,7 @@ export function Town({
   return (
     <div className="relative">
       <button
+        data-testid={townTestId}
         onClick={() => {
           const next = !isOpen;
           setIsOpen(next);
@@ -72,6 +77,7 @@ export function Town({
           />
           <TownDescription
             config={contentConfig}
+            modalTestId={townModalTestId}
             onModalStateChange={onModalStateChange}
             onClose={closeModal}
             dsInnerScreenSize={dsInnerScreenSize}

@@ -18,6 +18,7 @@ import type { TownContentConfig } from "@/lib/types";
 
 type TownDescriptionProps = {
   config: TownContentConfig;
+  modalTestId: string;
   onModalStateChange?: (isOpen: boolean) => void;
   onClose: () => void;
   dsInnerScreenSize: { width: number; height: number };
@@ -26,6 +27,7 @@ type TownDescriptionProps = {
 
 export function TownDescription({
   config,
+  modalTestId,
   onModalStateChange,
   onClose,
   dsInnerScreenSize,
@@ -72,7 +74,12 @@ export function TownDescription({
     return null;
   }
   const modalContent = (
-    <div ref={modalRef} className="fixed inset-0 z-50" aria-modal>
+    <div
+      ref={modalRef}
+      data-testid={modalTestId}
+      className="fixed inset-0 z-50"
+      aria-modal
+    >
       <div
         className="absolute bg-white border-4 border-slate-400 p-4 shadow-lg flex flex-col gap-3 overflow-hidden transition-all duration-300"
         style={{

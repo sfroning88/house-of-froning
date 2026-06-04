@@ -6,6 +6,7 @@ import { createPortal } from "react-dom";
 import posthog from "posthog-js";
 import { useMediaQuery } from "@/app/(hooks)/use-media-query";
 import { DS_MODAL_ZOOM_RATIO, MOBILE_BREAKPOINT } from "@/lib/constants";
+import { TEST_IDS } from "@/lib/test-ids";
 import { POSTHOG_EVENTS } from "@/lib/events";
 import { useFetchLastSong } from "@/app/(hooks)/use-fetch-last-song";
 
@@ -46,6 +47,7 @@ export function SpotifySong({
   const imageSize = isMobile ? 128 : 192;
   const modalContent = (
     <div
+      data-testid={TEST_IDS.spotifyModal}
       className="fixed inset-0 z-50 flex items-center justify-center p-2"
       aria-modal
     >

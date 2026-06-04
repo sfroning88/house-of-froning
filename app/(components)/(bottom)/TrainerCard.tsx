@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import { useMediaQuery } from "@/app/(hooks)/use-media-query";
+import { TEST_IDS } from "@/lib/test-ids";
 import {
   DS_MODAL_ZOOM_RATIO,
   MOBILE_BREAKPOINT,
@@ -60,6 +61,7 @@ export function TrainerCard({
   }
   const modalContent = (
     <div
+      data-testid={TEST_IDS.trainerCardModal}
       className="fixed inset-0 z-50 flex items-center justify-center p-2"
       aria-modal
     >
@@ -90,6 +92,7 @@ export function TrainerCard({
               ★★★★★
             </span>
             <button
+              data-testid={TEST_IDS.trainerCardClose}
               onClick={onClose}
               className={`text-black hover:text-slate-600 font-bold leading-none ml-1 ${isMobile ? "text-lg" : "text-xl"}`}
             >

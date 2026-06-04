@@ -3,7 +3,7 @@
 Chicago IL
 [sfroning@alumni.nd.edu](mailto:sfroning@nd.edu)
 (773) 724-0301
-[linkedin.com/in/sean-froning](http://linkedin.com/in/sean-froning)
+[linkedin.com/in/sean-froning](https://linkedin.com/in/sean-froning)
 [https://github.com/sfroning88](https://github.com/sfroning88)
 
 Building full stack AI/ML products with a Seed startup accelerating sell-side due diligence and empowering attractive lower-middle market M&A targets. On the side, shipping end-to-end a private equity AI/ML platform for senior housing real estate investors to predict building performance from teaser data. When I’m not building, I’m coaching youth baseball and basketball around Chicago.
