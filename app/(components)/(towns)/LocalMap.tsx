@@ -50,14 +50,16 @@ export function LocalMap({
         const x = loc.x * LOCAL_MAP_SCALE;
         const y = loc.y * LOCAL_MAP_SCALE;
         return (
-          <div
+          <button
+            type="button"
             key={loc.id}
-            className="absolute cursor-pointer"
+            className="absolute cursor-pointer border-0 bg-transparent p-0"
             style={{ left: x, top: y }}
             onClick={() => setSelectedLocation(loc.id)}
+            aria-label={loc.alt}
           >
             <LocalLocationIcon src={loc.imagePath} alt={loc.alt} />
-          </div>
+          </button>
         );
       })}
       {selectedLocation && (

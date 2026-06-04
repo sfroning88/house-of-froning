@@ -10,18 +10,38 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      pull-requests: write
+      issues: write
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+
+      - name: Install React Doctor with pinned oxlint
+        run: |
+          mkdir -p /tmp/react-doctor-runner
+          cd /tmp/react-doctor-runner
+          npm init -y
+          npm pkg set overrides.oxlint=1.57.0
+          npm install react-doctor@0.0.29 oxlint@1.57.0
 
       - name: Run React Doctor
         id: doctor
-        uses: millionco/react-doctor@main
+        run: |
+          FLAGS="--fail-on error --verbose"
+          FLAGS="$FLAGS --diff ${{ github.base_ref }}"
+          RD="/tmp/react-doctor-runner/node_modules/.bin/react-doctor"
+          "$RD" . $FLAGS 2>&1 | tee /tmp/react-doctor-output.txt
+          SCORE=$("$RD" . --score 2>/dev/null | tail -1 | tr -d '[:space:]')
+          echo "score=${SCORE:-0}" >> "$GITHUB_OUTPUT"
+
+      - name: Post filtered comment
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        if: always() && github.event_name == 'pull_request'
         with:
-          directory: "."
-          verbose: "true"
-          node-version: "20"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await require('./scripts/post-react-doctor-comment.js')({ github, context });
 
       - name: Print score
         run: echo "Health score ${{ steps.doctor.outputs.score }}"

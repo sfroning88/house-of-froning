@@ -5,6 +5,7 @@ import Image from "next/image";
 import { createPortal } from "react-dom";
 import { useMediaQuery } from "@/app/(hooks)/use-media-query";
 import { DS_MODAL_ZOOM_RATIO, MOBILE_BREAKPOINT } from "@/lib/constants";
+import { TEST_IDS } from "@/lib/test-ids";
 import { useGetBookToShow } from "@/app/(hooks)/use-get-book-to-show";
 
 type GoogleBooksProps = {
@@ -45,6 +46,7 @@ export function GoogleBooks({
   const coverHeight = isMobile ? 144 : 288;
   const modalContent = (
     <div
+      data-testid={TEST_IDS.googleBooksModal}
       className="fixed inset-0 z-50 flex items-center justify-center p-2"
       aria-modal
     >
@@ -62,7 +64,7 @@ export function GoogleBooks({
           padding: isMobile ? "0.75rem" : "1.5rem",
         }}
       >
-        <div className="flex items-center justify-between flex-shrink-0">
+        <div className="flex items-center justify-between shrink-0">
           <h2
             className={`font-semibold truncate ${isMobile ? "text-base" : "text-xl"}`}
           >

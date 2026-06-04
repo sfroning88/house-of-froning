@@ -76,7 +76,7 @@ export function PokemonBall({
           padding: isMobile ? "0.75rem" : "1rem",
         }}
       >
-        <div className="flex items-center justify-between mb-2 pb-2 border-b border-slate-400 flex-shrink-0">
+        <div className="flex items-center justify-between mb-2 pb-2 border-b border-slate-400 shrink-0">
           <h2
             className={`font-sans font-bold text-black tracking-wider uppercase ${isMobile ? "text-sm" : "text-base"}`}
           >
@@ -97,9 +97,9 @@ export function PokemonBall({
                 : "grid grid-cols-3 grid-rows-2 gap-3 py-2"
             }
           >
-            {POKEMON_TEAM_IMAGE_PATHS.map((imagePath, index) => (
+            {POKEMON_TEAM_IMAGE_PATHS.map((imagePath) => (
               <div
-                key={`${imagePath}-${index}`}
+                key={imagePath}
                 className="flex items-center justify-center bg-white border-2 border-slate-400 rounded-lg p-2"
               >
                 <div

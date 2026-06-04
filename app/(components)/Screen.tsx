@@ -22,6 +22,7 @@ import {
   DS_FRAME_MIN_WIDTH,
 } from "@/lib/constants";
 import { getMapScaleAndPosition, getDsInnerScreenCenter } from "@lib/utils";
+import { TEST_IDS } from "@/lib/test-ids";
 
 export function Screen() {
   const isDesktop = useMediaQuery(`(min-width: ${MOBILE_BREAKPOINT}px)`, true);
@@ -50,7 +51,7 @@ export function Screen() {
         setFrameRect(frameRef.current.getBoundingClientRect());
       }
     };
-    window.addEventListener("scroll", scrollHandler);
+    window.addEventListener("scroll", scrollHandler, { passive: true });
     return () => window.removeEventListener("scroll", scrollHandler);
   }, []);
   const mapWidth = DS_PIXEL_WIDTH * DS_TO_WEB_SCALE;
@@ -106,6 +107,7 @@ export function Screen() {
   const hasLayout = frameRect && frameRect.width > 0 && frameRect.height > 0;
   return (
     <div
+      data-testid={TEST_IDS.homeScreen}
       className={
         isDesktop
           ? "relative flex min-h-screen w-full items-center justify-center"

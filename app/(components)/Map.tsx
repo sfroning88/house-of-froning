@@ -8,6 +8,7 @@ import { NotreDame } from "./(towns)/NotreDame";
 import { getTownCenter } from "@lib/utils";
 import { TOWN_ID, TownConfig } from "@lib/types";
 import { Avatar } from "./Avatar";
+import { TEST_IDS } from "@/lib/test-ids";
 import {
   DS_PIXEL_WIDTH,
   DS_PIXEL_HEIGHT,
@@ -60,6 +61,7 @@ export function Map({
     avatarTownId != null ? getTownCenter(avatarTownId) : defaultAvatarPosition;
   return (
     <div
+      data-testid={TEST_IDS.townMap}
       className="relative border-4 border-iceberg-medium bg-cover bg-center bg-no-repeat"
       style={{
         width: mapWidth,

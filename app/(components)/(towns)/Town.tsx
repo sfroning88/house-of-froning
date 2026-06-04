@@ -5,6 +5,7 @@ import posthog from "posthog-js";
 import { POSTHOG_EVENTS } from "@/lib/events";
 import { toast } from "sonner";
 import { useOnboardingContext } from "@/app/providers";
+import { ModalBackdrop } from "@/app/(components)/ModalBackdrop";
 import { TownIcon } from "./TownIcon";
 import { TownDescription } from "./TownDescription";
 import { TownContentConfig, TownConfigEntry } from "@/lib/types";
@@ -13,6 +14,8 @@ import { CLICK_ICONS_MESSAGE, DS_TO_WEB_SCALE } from "@/lib/constants";
 type TownProps = {
   contentConfig: TownContentConfig;
   mapConfig: TownConfigEntry;
+  townTestId: string;
+  townModalTestId: string;
   onVisitTown?: () => void;
   onModalStateChange?: (isOpen: boolean) => void;
   dsInnerScreenSize: { width: number; height: number };
@@ -23,6 +26,8 @@ type TownProps = {
 export function Town({
   contentConfig,
   mapConfig,
+  townTestId,
+  townModalTestId,
   onVisitTown,
   onModalStateChange,
   dsInnerScreenSize,
@@ -49,6 +54,7 @@ export function Town({
   return (
     <div className="relative">
       <button
+        data-testid={townTestId}
         onClick={() => {
           const next = !isOpen;
           setIsOpen(next);
@@ -66,12 +72,13 @@ export function Town({
       </button>
       {isOpen && (
         <>
-          <div
-            className="fixed inset-0 bg-black/50 z-40"
-            onClick={closeModal}
+          <ModalBackdrop
+            className="fixed inset-0 z-40 bg-black/50"
+            onClose={closeModal}
           />
           <TownDescription
             config={contentConfig}
+            modalTestId={townModalTestId}
             onModalStateChange={onModalStateChange}
             onClose={closeModal}
             dsInnerScreenSize={dsInnerScreenSize}
