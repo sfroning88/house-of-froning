@@ -40,7 +40,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build website
-        run: pnpm exec turbo run build
+        run: pnpm build
 
       - name: Notify Vercel
         uses: vercel/repository-dispatch/actions/status@30f760c6640485cd92f8c785ef361382555fb712
