@@ -3,21 +3,21 @@
 Chicago IL
 [sfroning@alumni.nd.edu](mailto:sfroning@nd.edu)
 (773) 724-0301
-[linkedin.com/in/sean-froning](https://linkedin.com/in/sean-froning)
+[linkedin.com/in/sean-froning](http://linkedin.com/in/sean-froning)
 [https://github.com/sfroning88](https://github.com/sfroning88)
 
 Building full stack AI/ML products with a Seed startup accelerating sell-side due diligence and empowering attractive lower-middle market M&A targets. On the side, shipping end-to-end a private equity AI/ML platform for senior housing real estate investors to predict building performance from teaser data. When I’m not building, I’m coaching youth baseball and basketball around Chicago.
 
-**Full Stack AI Engineer** _Rowan_
+**Full Stack AI/ML Engineer** _Rowan_
 Chicago IL _Jul 2025 to Present_
-• Own delivery of collections agent generating $1M / month in value and reducing labor 8 hours / week for 5+ industrial businesses
-• Engineer automations supporting lower middle market bankers across 4 small business transactions up to $70 M enterprise value
-• Build software apps using React (TypeScript) frontends, FastAPI (Python) backends with RQ Redis jobs for 25+ M\&A professionals
-• Integrate with 5+ accounting, payroll, and enterprise software providers to automate 10+ multi-tenant financial data sync
-• Develop succession portal with scoring across 16 due diligence scopes, RBAC workflows, and revenue concentration visualizations
+• Building sell-side diligence platform using React frontend, Fast API backends with RQ Redis jobs for 25+ M&A professionals
 • Architect document ingestion pipeline processing 100+ files of 1.5 GB+ per business into structured Postgres and pgvector stores
-• Deploy query-time RAG with SSE streaming, pgvector cosine search, cross-encoder rerank, and persisted citations
-• Design Agentic RAG evaluations using RAGAS, AspectCritic, and M&A compliance metrics on timed asynchronous jobs
+• Implement Adaptive RAG with SSE streaming, vector and FTS retrieval searches, reciprocal rank fusion, and cross-encoder rerank
+• Deploy web retrieval with keyword and intent searches, LLM-as-auditor gate, SSRF-safe concurrent scraping, and article caching
+• Design Agentic RAG evaluations using RAGAS, AspectCritic, and M&A compliance metrics with LLM-as-judge approach
+• Integrate with 5+ accounting, payroll, and enterprise software providers to automate 10+ multi-tenant financial data sync
+• Configure CI/CD with GitHub Actions, Playwright smoke tests against Vercel previews, Render deploy status gates, and code audits
+• Engineer automations supporting lower middle market bankers across 4 small business transactions up to $70 M enterprise value
 
 **Data Engineer** _University Relations_
 Notre Dame IN _Jan 2022 to May 2025_
@@ -37,13 +37,13 @@ Chicago IL _May 2024 to Aug 2024_
 
 **Project: AI/ML Platform for Senior Housing Investment** _Highlighted Skills: Feature Engineering, MLOps, Full Stack Development_
 Chicago IL _Apr 2026 to Present_
-• Develop investor platform for analyzing 450+ senior housing properties to predict controllable prd, occupancy, and operating margin
-• Building AI/ML full stack using React (TypeScript) dashboard, FastAPI (Python) backends with RQ Redis jobs for 10+ investors
+• Building AI/ML full stack platform using React dashboard, FastAPI backends with RQ Redis jobs for 10+ investment professionals
 • Design Postgres database with Prisma managing feature observations, user authentication, schema migrations, and model lineage
 • Engineer scale-invariant orthogonal feature contract with 5+ derived ratios, 2+ mean-target encodings, and temporal features
 • Architect MLOps across 950+ samples, HMAC-SHA256 signatures, 8+ trainings, hot-swap model registry, and challenger promotion
-• Configure CI/CD with GitHub Actions, Playwright smoke tests against Vercel previews, Render deploy status gates, and code audits
 • Deploy query-time model inference with training-serving skew prevention through symmetric imputation and self-contained artifacts
+• Configure CI/CD with GitHub Actions, Playwright smoke tests against Vercel previews, Render deploy status gates, and code audits
+• Develop investment models for analyzing 450+ senior housing properties to predict financial performance and occupancy targets
 
 **Project: Financial Health Chatbot** _Highlighted Skills: Flask App Design, AI Chatbot Modelling, Financial Analysis_
 Chicago IL _Jul 2025 to Jul 2025_
