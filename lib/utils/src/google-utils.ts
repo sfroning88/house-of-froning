@@ -8,25 +8,29 @@ export function SheetToBooksData(values: string[][]): GoogleSheetBookData[] {
   return rows
     .filter((row) => row.length > 0 && row[0])
     .map((row) => {
-      const firstName = row[1] || "";
-      const lastName = row[2] || "";
+      const orderStr = row[2] || "";
+      const order = parseInt(orderStr, 10) || 0;
+      const firstName = row[3] || "";
+      const lastName = row[4] || "";
       const author = `${firstName} ${lastName}`.trim();
-      const daysToReadStr = row[6] || "";
+      const daysToReadStr = row[8] || "";
       const daysToRead =
         parseInt(daysToReadStr.replace(" Days", "").trim(), 10) || 0;
-      const statusStr = (row[3] || "").toLowerCase().trim();
+      const statusStr = (row[5] || "").toLowerCase().trim();
       const status =
         Object.values(GoogleSheetBookStatus).find((s) => s === statusStr) ||
         GoogleSheetBookStatus.INACTIVE;
       return {
         title: row[0] || "",
+        series: row[1] || "",
+        order,
         author,
         status,
-        dateBegan: row[4] || "",
-        dateFinished: row[5] || "",
+        dateBegan: row[6] || "",
+        dateFinished: row[7] || "",
         daysToRead,
-        topics: row[7] || "",
-        thoughts: row[8] || "",
+        topics: row[9] || "",
+        thoughts: row[10] || "",
         coverImageUrl: null,
       };
     });

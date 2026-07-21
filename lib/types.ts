@@ -150,6 +150,8 @@ export enum GoogleSheetBookStatus {
 
 export type GoogleSheetBookData = {
   title: string;
+  series: string;
+  order: number;
   author: string;
   status: GoogleSheetBookStatus;
   dateBegan: string;
