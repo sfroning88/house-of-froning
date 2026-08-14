@@ -6,7 +6,7 @@ Chicago IL
 [linkedin.com/in/sean-froning](http://linkedin.com/in/sean-froning)
 [https://github.com/sfroning88](https://github.com/sfroning88)
 
-Building full stack AI/ML products with a Seed startup accelerating sell-side due diligence and empowering attractive lower-middle market M&A targets. On the side, shipping end-to-end a private equity AI/ML platform for senior housing real estate investors to predict building performance from teaser data. When I’m not building, I’m coaching youth baseball and basketball around Chicago.
+Building full stack AI/ML products with a Seed startup accelerating sell-side due diligence and empowering attractive lower-middle market M&A targets. On the side, shipped end-to-end a private equity AI/ML platform for senior housing real estate investors to predict building performance from teaser data. When I’m not building, I’m coaching youth baseball and basketball around Chicago.
 
 **Full Stack AI/ML Engineer** _Rowan_
 Chicago IL _Jul 2025 to Present_
@@ -14,8 +14,8 @@ Chicago IL _Jul 2025 to Present_
 • Architect document ingestion pipeline processing 100+ files of 1.5 GB+ per business into structured Postgres and pgvector stores
 • Implement Adaptive RAG with SSE streaming, vector and FTS retrieval searches, reciprocal rank fusion, and cross-encoder rerank
 • Deploy web retrieval with keyword and intent searches, LLM-as-auditor gate, SSRF-safe concurrent scraping, and article caching
+• Construct 10+ multi-tenant RLHF closed-loop system for M&A diligence fulfillment documents with self-improving efficacy
 • Design Agentic RAG evaluations using RAGAS, AspectCritic, and M&A compliance metrics with LLM-as-judge approach
-• Integrate with 5+ accounting, payroll, and enterprise software providers to automate 10+ multi-tenant financial data sync
 • Configure CI/CD with GitHub Actions, Playwright smoke tests against Vercel previews, Render deploy status gates, and code audits
 • Engineer automations supporting lower middle market bankers across 4 small business transactions up to $70 M enterprise value
 
@@ -36,14 +36,14 @@ Chicago IL _May 2024 to Aug 2024_
 • Participated in 10+ strategy meetings and client calls supporting $350M current fund with 75%+ Limited Partner retention rate
 
 **Project: AI/ML Platform for Senior Housing Investment** _Highlighted Skills: Feature Engineering, MLOps, Full Stack Development_
-Chicago IL _Apr 2026 to Present_
-• Building AI/ML full stack platform using React dashboard, FastAPI backends with RQ Redis jobs for 10+ investment professionals
-• Design Postgres database with Prisma managing feature observations, user authentication, schema migrations, and model lineage
-• Engineer scale-invariant orthogonal feature contract with 5+ derived ratios, 2+ mean-target encodings, and temporal features
-• Architect MLOps across 950+ samples, HMAC-SHA256 signatures, 8+ trainings, hot-swap model registry, and challenger promotion
-• Deploy query-time model inference with training-serving skew prevention through symmetric imputation and self-contained artifacts
-• Configure CI/CD with GitHub Actions, Playwright smoke tests against Vercel previews, Render deploy status gates, and code audits
-• Develop investment models for analyzing 450+ senior housing properties to predict financial performance and occupancy targets
+Chicago IL _Apr 2026 to Jul 2026_
+• Built AI/ML full stack platform using React dashboard, FastAPI backends with RQ Redis jobs for 10+ investment professionals
+• Designed Postgres database with Prisma managing 950+ observations, user authentication, schema migrations, and model lineage
+• Engineered scale-invariant orthogonal 15+ feature contract with derived ratios, mean-target encodings, and temporal features
+• Architected MLOps across 8+ concurrent trainings, HMAC-SHA256 signatures, hot-swap model registry, and challenger promotion
+• Deployed runtime model inference with training-serving skew prevention through symmetric imputation and self-contained artifacts
+• Configured CI/CD with GitHub Actions, Playwright smoke tests against Vercel previews, Render deploy gates, and code audits
+• Developed investment models for analyzing 450+ senior housing properties to predict financial performance and occupancy targets
 
 **Project: Financial Health Chatbot** _Highlighted Skills: Flask App Design, AI Chatbot Modelling, Financial Analysis_
 Chicago IL _Jul 2025 to Jul 2025_
