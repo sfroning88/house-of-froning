@@ -6,9 +6,9 @@ Chicago IL
 [linkedin.com/in/sean-froning](http://linkedin.com/in/sean-froning)
 [https://github.com/sfroning88](https://github.com/sfroning88)
 
-Building full stack AI/ML products with a Seed startup accelerating sell-side due diligence and empowering attractive lower-middle market M&A targets. On the side, shipped end-to-end a private equity AI/ML platform for senior housing real estate investors to predict building performance from teaser data. When I’m not building, I’m coaching youth baseball and basketball around Chicago.
+Building full stack AI/ML products with a Seed startup accelerating sell-side due diligence and empowering attractive lower-middle market M&A targets. On the side, shipping a two-tier volcanic unrest system that pairs satellite imagery with TinyML seismic models on the edge. Looking to build ClimateTech that mitigates climate-related outcomes while coaching youth baseball and basketball.
 
-**Full Stack AI/ML Engineer** _Rowan_
+**AI/ML Engineer** _Rowan_
 Chicago IL _Jul 2025 to Present_
 • Building sell-side diligence platform using React frontend, Fast API backends with RQ Redis jobs for 25+ M&A professionals
 • Architect document ingestion pipeline processing 100+ files of 1.5 GB+ per business into structured Postgres and pgvector stores
@@ -35,8 +35,19 @@ Chicago IL _May 2024 to Aug 2024_
 • Supported asset management and operations of 4 portfolio companies valued at $250M achieving 12% EBITDA improvement
 • Participated in 10+ strategy meetings and client calls supporting $350M current fund with 75%+ Limited Partner retention rate
 
+**Project: Tiny AI/ML for Two-Tiered Volcanic Eruption Monitoring** _Highlighted Skills: TinyML, PEFT/LoRA, Distillation, Geospatial ML_
+Chicago IL _Aug 2026 to Present_ _Codebase: [https://github.com/sfroning88/fiery-spirit](https://github.com/sfroning88/fiery-spirit)_
+• Detect Southern Volcanic Zone (SVZ) unrest by cross-correlating inferences from satellite imagery with on-ground sensor readings
+• Build and freeze training dataset by streaming 850+ GB of InSAR satellite imagery and 3.5+ K Llaima volcano spectrograms into R2
+• Balance satellite imagery dataset by augmenting real interferograms with Okada synthetic fringe fields to cover rare deformations
+• Fine-tune a "Screener" cloud-based ViT model with qkv-only LoRA and AdamW on interferograms for detecting ground-deformation
+• Pre-train a "Teacher" cloud-based CNN model with for 4-class labelling of seismic waveforms for detecting volcanic tremors
+• Distill the "Teacher" into a smaller "Student" edge device CNN model with KL plus cross-entropy for on-ground seismic sensors
+• Compress "Student" model with iterative prune-then-finetune and PTQ/QAT quantization under flash, peak RAM, and MAC budgets
+• Architect challenger promotion per model: "Screener" on recall/FPR, "Teacher" on macro-F1, "Student" on accuracy-budget tradeoff
+
 **Project: AI/ML Platform for Senior Housing Investment** _Highlighted Skills: Feature Engineering, MLOps, Full Stack Development_
-Chicago IL _Apr 2026 to Jul 2026_
+Chicago IL _Apr 2026 to Jul 2026_ _Codebase: [https://github.com/sfroning88/deep-focus](https://github.com/sfroning88/deep-focus)_
 • Built AI/ML full stack platform using React dashboard, FastAPI backends with RQ Redis jobs for 10+ investment professionals
 • Designed Postgres database with Prisma managing 950+ observations, user authentication, schema migrations, and model lineage
 • Engineered scale-invariant orthogonal 15+ feature contract with derived ratios, mean-target encodings, and temporal features
@@ -46,7 +57,7 @@ Chicago IL _Apr 2026 to Jul 2026_
 • Developed investment models for analyzing 450+ senior housing properties to predict financial performance and occupancy targets
 
 **Project: Financial Health Chatbot** _Highlighted Skills: Flask App Design, AI Chatbot Modelling, Financial Analysis_
-Chicago IL _Jul 2025 to Jul 2025_
+Chicago IL _Jul 2025 to Jul 2025_ _Codebase: [https://github.com/sfroning88/net-working-capital-chatbot](https://github.com/sfroning88/net-working-capital-chatbot)_
 • Built a net working capital chatbot using Flask API and HTML/CSS/JS frontend, tailored for industrial small business owners
 • Engineered dynamic data ingestion pipeline using pandas and regex, parsing csv and xlsx into structured time-series dataframes
 • Enabled accurate business health analysis for AP, AR, Rolling Inventory, and Net Working Capital with dual-model architecture
@@ -62,7 +73,8 @@ Notre Dame IN _Mar 2025 to Jun 2025_
 • Automated the delivery of comprehensive team sheets, featuring strategic rationale and imagery via Google Drive
 
 **Software Engineering:** Python, TypeScript, C/C++, Supabase, PostgreSQL, Prisma, Redis/RQ, FastAPI, React, Turborepo
-**Artificial Intelligence:** RAG query pipelines, text embeddings, LangChain, TensorFlow, CrewAI, LLamaIndex, PyTorch, Sklearn
+**Machine Learning:** MLOps, PyTorch, Sklearn, ViTs/CNNs, PEFT/LoRA, knowledge distillation, PTQ/QAT quantization, pruning
+**Generative AI:** Adaptive RAG, embeddings, hybrid FTS/vector/web retrieval, reranking, RAGAS, RLHF loops
 **Investing / M\&A:** Leveraged Buyouts, Discounted Cash Flows, Due Diligence, SaaS Valuation, Microsoft Office/Excel
 
 **BS Computer Engineering** _University of Notre Dame_
