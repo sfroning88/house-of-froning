@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { useOnboardingContext } from "@/app/providers";
 import { Chicago } from "./(towns)/Chicago";
 import { NotreDame } from "./(towns)/NotreDame";
+import { FierySpirit } from "./(towns)/FierySpirit";
 import { getTownCenter } from "@lib/utils";
 import { TOWN_ID, TownConfig } from "@lib/types";
 import { Avatar } from "./Avatar";
@@ -94,6 +95,21 @@ export function Map({
       >
         <NotreDame
           onVisitTown={() => onVisitTown(TOWN_ID.NOTRE_DAME)}
+          onModalStateChange={onModalStateChange}
+          dsInnerScreenSize={dsInnerScreenSize}
+          dsInnerScreenCenter={dsInnerScreenCenter}
+          mapCenter={mapCenter}
+        />
+      </div>
+      <div
+        className="absolute"
+        style={{
+          left: TownConfig[TOWN_ID.FIERY_SPIRIT].x * DS_TO_WEB_SCALE,
+          top: TownConfig[TOWN_ID.FIERY_SPIRIT].y * DS_TO_WEB_SCALE,
+        }}
+      >
+        <FierySpirit
+          onVisitTown={() => onVisitTown(TOWN_ID.FIERY_SPIRIT)}
           onModalStateChange={onModalStateChange}
           dsInnerScreenSize={dsInnerScreenSize}
           dsInnerScreenCenter={dsInnerScreenCenter}

@@ -17,24 +17,29 @@ test.beforeEach(async ({ page }) => {
 
 test("home page renders the town map", async ({ page }) => {
   const map = page.getByTestId(TEST_IDS.townMap);
-  await expect(map).toBeVisible();
-  await expect(page.getByTestId(TEST_IDS.townChicago)).toBeVisible();
-  await expect(page.getByTestId(TEST_IDS.townNotreDame)).toBeVisible();
+  await Promise.all([
+    expect(map).toBeVisible(),
+    expect(page.getByTestId(TEST_IDS.townChicago)).toBeVisible(),
+    expect(page.getByTestId(TEST_IDS.townNotreDame)).toBeVisible(),
+    expect(page.getByTestId(TEST_IDS.townFierySpirit)).toBeVisible(),
+  ]);
 });
 
 test("bottom bar shows main action buttons", async ({ page }) => {
   const bottomBar = page.getByTestId(TEST_IDS.bottomBar);
-  await expect(
-    bottomBar.getByRole("button", { name: "Trainer Card" }),
-  ).toBeVisible();
-  await expect(
-    bottomBar.getByRole("button", { name: "Spotify Song" }),
-  ).toBeVisible();
-  await expect(
-    bottomBar.getByRole("button", { name: "Google Books" }),
-  ).toBeVisible();
-  await expect(bottomBar.getByRole("link", { name: "GitHub" })).toBeVisible();
-  await expect(bottomBar.getByRole("link", { name: "LinkedIn" })).toBeVisible();
+  await Promise.all([
+    expect(
+      bottomBar.getByRole("button", { name: "Trainer Card" }),
+    ).toBeVisible(),
+    expect(
+      bottomBar.getByRole("button", { name: "Spotify Song" }),
+    ).toBeVisible(),
+    expect(
+      bottomBar.getByRole("button", { name: "Google Books" }),
+    ).toBeVisible(),
+    expect(bottomBar.getByRole("link", { name: "GitHub" })).toBeVisible(),
+    expect(bottomBar.getByRole("link", { name: "LinkedIn" })).toBeVisible(),
+  ]);
 });
 
 test("trainer card modal opens and closes", async ({ page }) => {
@@ -67,6 +72,14 @@ test("notre dame town modal opens", async ({ page }) => {
   await expect(modal.getByRole("heading", { name: "NotreDame" })).toBeVisible();
 });
 
+test("fiery spirit town modal opens", async ({ page }) => {
+  await page.getByTestId(TEST_IDS.townFierySpirit).click();
+  const modal = page.getByTestId(TEST_IDS.townModalFierySpirit);
+  await expect(
+    modal.getByRole("heading", { name: "FierySpirit" }),
+  ).toBeVisible();
+});
+
 test("spotify modal opens with title", async ({ page }) => {
   await page
     .getByTestId(TEST_IDS.bottomBar)
@@ -95,11 +108,14 @@ test("google books modal opens with title", async ({ page }) => {
 
 test("external links point to github and linkedin", async ({ page }) => {
   const bottomBar = page.getByTestId(TEST_IDS.bottomBar);
-  await expect(bottomBar.getByRole("link", { name: "GitHub" })).toHaveAttribute(
-    "href",
-    /github\.com/i,
-  );
-  await expect(
-    bottomBar.getByRole("link", { name: "LinkedIn" }),
-  ).toHaveAttribute("href", /linkedin\.com/i);
+  await Promise.all([
+    expect(bottomBar.getByRole("link", { name: "GitHub" })).toHaveAttribute(
+      "href",
+      /github\.com/i,
+    ),
+    expect(bottomBar.getByRole("link", { name: "LinkedIn" })).toHaveAttribute(
+      "href",
+      /linkedin\.com/i,
+    ),
+  ]);
 });

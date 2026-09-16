@@ -129,8 +129,8 @@ export const LOCAL_ICON_SIZE = 24;
 export const LOCAL_MAP_WIDTH = 384;
 export const LOCAL_MAP_HEIGHT = 256;
 
-export const CHICAGO_WIDTH = 24;
-export const CHICAGO_HEIGHT = 48;
+export const CHICAGO_WIDTH = 18;
+export const CHICAGO_HEIGHT = 36;
 export const CHICAGO_X = 64;
 export const CHICAGO_Y = 32;
 export const CHICAGO_IMAGE_PATH = "/images/towns/chicago.jpeg";
@@ -162,10 +162,10 @@ export const FOCUS_HEALTHCARE_PARTNERS_X = 136;
 export const FOCUS_HEALTHCARE_PARTNERS_Y = 112;
 export const FOCUS_HEALTHCARE_PARTNERS_IMAGE_PATH = "/images/towns/focus.jpg";
 
-export const NOTRE_DAME_WIDTH = 24;
-export const NOTRE_DAME_HEIGHT = 24;
-export const NOTRE_DAME_X = 144;
-export const NOTRE_DAME_Y = 64;
+export const NOTRE_DAME_WIDTH = 18;
+export const NOTRE_DAME_HEIGHT = 18;
+export const NOTRE_DAME_X = 26;
+export const NOTRE_DAME_Y = 6;
 export const NOTRE_DAME_IMAGE_PATH = "/images/towns/notredame.jpg";
 export const NOTRE_DAME_MAP_IMAGE_PATH = "/images/map/notredame.jpg";
 
@@ -188,3 +188,49 @@ export const GROTTO_IMAGE_PATH = "/images/towns/grotto.jpg";
 export const ND_CAREERS_COURSE_X = 112;
 export const ND_CAREERS_COURSE_Y = 48;
 export const ND_CAREERS_COURSE_IMAGE_PATH = "/images/towns/careers.jpg";
+
+export const FIERY_SPIRIT_WIDTH = 18;
+export const FIERY_SPIRIT_HEIGHT = 18;
+export const FIERY_SPIRIT_X = 136;
+export const FIERY_SPIRIT_Y = 92;
+export const FIERY_SPIRIT_IMAGE_PATH = "/images/towns/fieryspirit.jpeg";
+export const FIERY_SPIRIT_MAP_IMAGE_PATH = "/images/map/fieryspirit.jpg";
+
+export const FIERY_SPIRIT_MOTIVATIONS_X = 88;
+export const FIERY_SPIRIT_MOTIVATIONS_Y = 6;
+export const FIERY_SPIRIT_MOTIVATIONS_IMAGE_PATH =
+  "/images/towns/motivations.jpg";
+
+export const FIERY_SPIRIT_DEFORMATION_X = 124;
+export const FIERY_SPIRIT_DEFORMATION_Y = 30;
+export const FIERY_SPIRIT_DEFORMATION_IMAGE_PATH =
+  "/images/towns/deformation.jpg";
+
+export const FIERY_SPIRIT_SEISMIC_X = 160;
+export const FIERY_SPIRIT_SEISMIC_Y = 54;
+export const FIERY_SPIRIT_SEISMIC_IMAGE_PATH = "/images/towns/seismic.jpg";
+
+export const FIERY_SPIRIT_INTERFEROGRAMS_X = 124;
+export const FIERY_SPIRIT_INTERFEROGRAMS_Y = 78;
+export const FIERY_SPIRIT_INTERFEROGRAMS_IMAGE_PATH =
+  "/images/towns/interferograms.jpg";
+
+export const FIERY_SPIRIT_WAVEFORMS_X = 108;
+export const FIERY_SPIRIT_WAVEFORMS_Y = 106;
+export const FIERY_SPIRIT_WAVEFORMS_IMAGE_PATH = "/images/towns/waveforms.jpg";
+
+export const FIERY_SPIRIT_SCREENER_X = 68;
+export const FIERY_SPIRIT_SCREENER_Y = 106;
+export const FIERY_SPIRIT_SCREENER_IMAGE_PATH = "/images/towns/screener.jpg";
+
+export const FIERY_SPIRIT_TEACHER_X = 44;
+export const FIERY_SPIRIT_TEACHER_Y = 78;
+export const FIERY_SPIRIT_TEACHER_IMAGE_PATH = "/images/towns/teacher.jpeg";
+
+export const FIERY_SPIRIT_STUDENT_X = 8;
+export const FIERY_SPIRIT_STUDENT_Y = 54;
+export const FIERY_SPIRIT_STUDENT_IMAGE_PATH = "/images/towns/student.jpeg";
+
+export const FIERY_SPIRIT_DASHBOARD_X = 44;
+export const FIERY_SPIRIT_DASHBOARD_Y = 30;
+export const FIERY_SPIRIT_DASHBOARD_IMAGE_PATH = "/images/towns/dashboard.jpg";
