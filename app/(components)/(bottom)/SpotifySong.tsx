@@ -31,7 +31,8 @@ export function SpotifySong({
     return () => {
       onModalStateChange?.(false);
     };
-  }, [onModalStateChange]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const { modalWidth, modalHeight } = useMemo(() => {
     if (dsInnerScreenSize.width === 0 || dsInnerScreenSize.height === 0) {
       return { modalWidth: 0, modalHeight: 0 };

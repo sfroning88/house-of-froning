@@ -1,6 +1,6 @@
 "use client";
 
-import { ModalBackdrop } from "@/app/(components)/ModalBackdrop";
+import { Backdrop } from "@/app/(components)/Backdrop";
 import { HOVER_LOCATION, HoverConfig } from "@/lib/types";
 
 type LocationDescriptionModalProps = {
@@ -15,7 +15,7 @@ export function LocationDescriptionModal({
   const title = location.charAt(0).toUpperCase() + location.slice(1);
   return (
     <>
-      <ModalBackdrop
+      <Backdrop
         className="absolute inset-0 z-40 bg-black/50"
         onClose={onClose}
       />

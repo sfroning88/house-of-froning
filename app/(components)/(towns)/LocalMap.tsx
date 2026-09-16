@@ -35,7 +35,8 @@ export function LocalMap({
         onModalStateChange?.(false);
       }
     };
-  }, [selectedLocation, onModalStateChange]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedLocation]);
   return (
     <div
       className="relative border-2 border-iceberg-medium bg-cover bg-center bg-no-repeat"

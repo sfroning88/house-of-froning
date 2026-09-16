@@ -1,39 +1,4 @@
-export type BottomBarPanel =
-  | "trainerCard"
-  | "spotifySong"
-  | "googleBooks"
-  | "pokemonBall"
-  | "resume";
-
-export type BottomBarState = Record<BottomBarPanel, boolean>;
-
-export const initialBottomBarState: BottomBarState = {
-  trainerCard: false,
-  spotifySong: false,
-  googleBooks: false,
-  pokemonBall: false,
-  resume: false,
-};
-
-export type BottomBarAction =
-  | { type: "toggle"; panel: BottomBarPanel }
-  | { type: "set"; panel: BottomBarPanel; isOpen: boolean };
-
-export function bottomBarReducer(
-  state: BottomBarState,
-  action: BottomBarAction,
-): BottomBarState {
-  switch (action.type) {
-    case "toggle":
-      return { ...state, [action.panel]: !state[action.panel] };
-    case "set":
-      return { ...state, [action.panel]: action.isOpen };
-    default:
-      return state;
-  }
-}
-
-export type MusicState = {
+type MusicState = {
   mounted: boolean;
   trackIndex: number;
   effectiveTrackIndex: number;
@@ -47,7 +12,7 @@ export const initialMusicState: MusicState = {
   isMuted: true,
 };
 
-export type MusicAction =
+type MusicAction =
   | { type: "hydrate"; trackIndex: number }
   | { type: "advanceTrack"; trackCount: number }
   | { type: "mute" }

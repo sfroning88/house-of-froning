@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useRef, useEffect, useMemo } from "react";
+import { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import { Map } from "./Map";
 import { BottomBar } from "./Bottom";
 import { useMediaQuery } from "@/app/(hooks)/use-media-query";
@@ -30,9 +30,9 @@ export function Screen() {
   const [modalCount, setModalCount] = useState(0);
   const frameRef = useRef<HTMLDivElement>(null);
   const isModalOpen = modalCount > 0;
-  const handleModalStateChange = (isOpen: boolean) => {
+  const handleModalStateChange = useCallback((isOpen: boolean) => {
     setModalCount((prev) => (isOpen ? prev + 1 : Math.max(0, prev - 1)));
-  };
+  }, []);
   useEffect(() => {
     const el = frameRef.current;
     if (!el) return;

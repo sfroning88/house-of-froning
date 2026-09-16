@@ -44,7 +44,8 @@ export function PokemonBall({
     return () => {
       onModalStateChange?.(false);
     };
-  }, [onModalStateChange]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const { modalWidth, modalHeight } = useMemo(() => {
     if (dsInnerScreenSize.width === 0 || dsInnerScreenSize.height === 0) {
       return { modalWidth: 0, modalHeight: 0 };
@@ -103,7 +104,7 @@ export function PokemonBall({
                 className="flex items-center justify-center bg-white border-2 border-slate-400 rounded-lg p-2"
               >
                 <div
-                  className={`relative aspect-square w-full ${isMobile ? "max-w-[120px] mx-auto" : ""}`}
+                  className={`relative aspect-square w-full ${isMobile ? "max-w-30 mx-auto" : ""}`}
                 >
                   <Image
                     src={imagePath}

@@ -32,7 +32,8 @@ export function TrainerCard({
     return () => {
       onModalStateChange?.(false);
     };
-  }, [onModalStateChange]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -120,7 +121,7 @@ export function TrainerCard({
                 <span className="text-right">FALL 2002</span>
               </div>
               <div className="flex justify-center w-full pt-2">
-                <div className="relative w-full max-w-[192px] aspect-[4/5]">
+                <div className="relative w-full max-w-48 aspect-4/5">
                   <Image
                     src={TRAINER_CARD_IMAGE_PATH}
                     alt="Trainer"

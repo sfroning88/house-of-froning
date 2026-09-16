@@ -20,7 +20,7 @@ import {
   YOUTUBE_ERROR_CODES,
 } from "@/lib/constants";
 import { POSTHOG_EVENTS } from "@/lib/events";
-import { initialMusicState, musicReducer } from "@lib/utils";
+import { initialMusicState, musicReducer } from "@lib/reducer";
 
 type MusicContextValue = {
   isMuted: boolean;

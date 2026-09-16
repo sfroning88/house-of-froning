@@ -1,14 +1,14 @@
-type ModalBackdropProps = {
+type BackdropProps = {
   onClose: () => void;
   className?: string;
   "aria-label"?: string;
 };
 
-export function ModalBackdrop({
+export function Backdrop({
   onClose,
   className = "",
   "aria-label": ariaLabel = "Close dialog",
-}: ModalBackdropProps) {
+}: BackdropProps) {
   return (
     <button
       type="button"

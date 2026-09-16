@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Cinzel, Geist, Geist_Mono } from "next/font/google";
+import dynamic from "next/dynamic";
+import { Cinzel } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
-import { MAP_AVATAR_BLINK_TIME } from "@/lib/constants";
+import { SITE_DESCRIPTION, MAP_AVATAR_BLINK_TIME } from "@/lib/constants";
 import { CookieBanner } from "@/app/(components)/(privacy)/CookieBanner";
-import { PrivacyNotice } from "@/app/(components)/(privacy)/PrivacyNotice";
 import {
   MusicProvider,
   OnboardingProvider,
@@ -17,19 +17,23 @@ const cinzel = Cinzel({
   subsets: ["latin"],
 });
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "House of Froning",
-  description: "Who is Sean Froning?",
+  metadataBase: new URL("https://seanfroning.com"),
+  title: { default: "House of Froning", template: "%s | House of Froning" },
+  description: SITE_DESCRIPTION,
+  openGraph: {
+    title: "House of Froning",
+    description: SITE_DESCRIPTION,
+    url: "/",
+    siteName: "House of Froning",
+    images: [{ url: "/og.png" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "House of Froning",
+    description: SITE_DESCRIPTION,
+    images: ["/og.png"],
+  },
 };
 
 export const viewport = {
@@ -39,6 +43,10 @@ export const viewport = {
   userScalable: true,
 };
 
+const PrivacyNotice = dynamic(() =>
+  import("./(components)/(privacy)/PrivacyNotice").then((m) => m.PrivacyNotice),
+);
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -47,7 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${cinzel.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${cinzel.variable} antialiased`}
         style={
           {
             "--avatar-blink-time": `${MAP_AVATAR_BLINK_TIME}ms`,

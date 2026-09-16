@@ -2,7 +2,8 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { fetchLastSongAction } from "@app/(actions)/spotify-action";
-import { QUERY_KEYS, SPOTIFY_STALE_TIME } from "@/lib/constants";
+import { QUERY_KEYS } from "@lib/query-keys";
+import { SPOTIFY_STALE_TIME } from "@/lib/constants";
 
 export function useFetchLastSong() {
   return useQuery({

@@ -1,6 +1,6 @@
 # House of Froning
 
-Personal website for **Sean Froning** deployed to [seanfroning.com](https://seanfroning.com) and [house-of-froning.vercel.app](https://house-of-froning.vercel.app) with [Next.js](https://nextjs.org) project bootstrapped with [create-next-app](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Personal website for **Sean Froning** deployed to [seanfroning.com](https://seanfroning.com).
 
 **Like what you see? Reach out!** I'll spare you from the [**LinkedIn**](https://www.linkedin.com/in/sean-froning/) bio, but I'm always looking to apply full stack AI to problems that actually matter for people.
 

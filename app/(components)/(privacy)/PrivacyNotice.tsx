@@ -7,7 +7,7 @@ import ReactMarkdown from "react-markdown";
 import { useMediaQuery } from "@/app/(hooks)/use-media-query";
 import { MOBILE_BREAKPOINT } from "@/lib/constants";
 import { POSTHOG_EVENTS } from "@/lib/events";
-import { ModalBackdrop } from "@/app/(components)/ModalBackdrop";
+import { Backdrop } from "@/app/(components)/Backdrop";
 import { useGetPrivacyContent } from "@/app/(hooks)/use-get-privacy-content";
 
 export function PrivacyNotice() {
@@ -24,7 +24,7 @@ export function PrivacyNotice() {
   };
   const modalContent = isOpen ? (
     <>
-      <ModalBackdrop
+      <Backdrop
         className="fixed inset-0 z-40 bg-black/50"
         onClose={handleClose}
       />
@@ -56,7 +56,7 @@ export function PrivacyNotice() {
           {isLoading ? (
             <span className={isMobile ? "text-xs" : "text-sm"}>Loading...</span>
           ) : (
-            <ReactMarkdown>{content}</ReactMarkdown>
+            <ReactMarkdown components={{ h1: "h2" }}>{content}</ReactMarkdown>
           )}
         </div>
       </div>

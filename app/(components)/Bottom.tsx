@@ -1,6 +1,7 @@
 "use client";
 
-import { useReducer } from "react";
+import { useCallback, useReducer } from "react";
+import dynamic from "next/dynamic";
 import {
   IdCard,
   RadioTower,
@@ -19,17 +20,9 @@ import {
   LINKEDIN_REDIRECT_LINK,
 } from "@/lib/constants";
 import { POSTHOG_EVENTS } from "@/lib/events";
-import {
-  bottomBarReducer,
-  initialBottomBarState,
-  type BottomBarPanel,
-} from "@lib/utils";
+import { bottomBarReducer, initialBottomBarState } from "@lib/reducer";
+import type { BottomBarPanel } from "@lib/types";
 import { useMusicContext } from "@/app/providers";
-import { TrainerCard } from "./(bottom)/TrainerCard";
-import { SpotifySong } from "./(bottom)/SpotifySong";
-import { GoogleBooks } from "./(bottom)/GoogleBooks";
-import { PokemonBall } from "./(bottom)/PokemonBall";
-import { ResumeContent } from "./(bottom)/ResumeContent";
 import { TEST_IDS } from "@/lib/test-ids";
 
 const PANEL_POSTHOG_EVENTS: Record<
@@ -65,6 +58,22 @@ type BottomBarProps = {
   bottomBarLayout: { left: number; top: number; width: number };
 };
 
+const TrainerCard = dynamic(() =>
+  import("./(bottom)/TrainerCard").then((m) => m.TrainerCard),
+);
+const SpotifySong = dynamic(() =>
+  import("./(bottom)/SpotifySong").then((m) => m.SpotifySong),
+);
+const GoogleBooks = dynamic(() =>
+  import("./(bottom)/GoogleBooks").then((m) => m.GoogleBooks),
+);
+const PokemonBall = dynamic(() =>
+  import("./(bottom)/PokemonBall").then((m) => m.PokemonBall),
+);
+const ResumeContent = dynamic(() =>
+  import("./(bottom)/ResumeContent").then((m) => m.ResumeContent),
+);
+
 export function BottomBar({
   onModalStateChange,
   dsInnerScreenSize,
@@ -84,10 +93,13 @@ export function BottomBar({
         : PANEL_POSTHOG_EVENTS[panel].closed,
     );
   };
-  const handlePanelStateChange = (panel: BottomBarPanel, isOpen: boolean) => {
-    dispatch({ type: "set", panel, isOpen });
-    onModalStateChange?.(isOpen);
-  };
+  const handlePanelStateChange = useCallback(
+    (panel: BottomBarPanel, isOpen: boolean) => {
+      dispatch({ type: "set", panel, isOpen });
+      onModalStateChange?.(isOpen);
+    },
+    [onModalStateChange],
+  );
   const musicContext = useMusicContext();
   if (bottomBarLayout.width === 0) {
     return null;
