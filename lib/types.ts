@@ -7,6 +7,10 @@ import {
   NOTRE_DAME_Y,
   NOTRE_DAME_WIDTH,
   NOTRE_DAME_HEIGHT,
+  FIERY_SPIRIT_X,
+  FIERY_SPIRIT_Y,
+  FIERY_SPIRIT_WIDTH,
+  FIERY_SPIRIT_HEIGHT,
 } from "@lib/constants";
 import {
   seansHouseDescription,
@@ -19,6 +23,15 @@ import {
   goldenDomeDescription,
   grottoDescription,
   ndCareersCourseDescription,
+  fierySpiritMotivationsDescription,
+  fierySpiritDeformationDescription,
+  fierySpiritSeismicDescription,
+  fierySpiritInterferogramsDescription,
+  fierySpiritWaveformsDescription,
+  fierySpiritScreenerDescription,
+  fierySpiritTeacherDescription,
+  fierySpiritStudentDescription,
+  fierySpiritDashboardDescription,
 } from "@/lib/text";
 
 export type AvatarPosition = {
@@ -29,6 +42,7 @@ export type AvatarPosition = {
 export enum TOWN_ID {
   CHICAGO = "chicago",
   NOTRE_DAME = "notre dame",
+  FIERY_SPIRIT = "fiery spirit",
 }
 
 export type TownConfigEntry = {
@@ -51,6 +65,12 @@ export const TownConfig: Record<TOWN_ID, TownConfigEntry> = {
     width: NOTRE_DAME_WIDTH,
     height: NOTRE_DAME_HEIGHT,
   },
+  [TOWN_ID.FIERY_SPIRIT]: {
+    x: FIERY_SPIRIT_X,
+    y: FIERY_SPIRIT_Y,
+    width: FIERY_SPIRIT_WIDTH,
+    height: FIERY_SPIRIT_HEIGHT,
+  },
 };
 
 export enum HOVER_LOCATION {
@@ -64,6 +84,15 @@ export enum HOVER_LOCATION {
   GOLDEN_DOME = "golden dome",
   GROTTO = "grotto",
   ND_CAREERS_COURSE = "nd careers course",
+  FIERY_SPIRIT_MOTIVATIONS = "motivations",
+  FIERY_SPIRIT_DEFORMATION = "deformation",
+  FIERY_SPIRIT_SEISMIC = "seismic",
+  FIERY_SPIRIT_INTERFEROGRAMS = "interferograms",
+  FIERY_SPIRIT_WAVEFORMS = "waveforms",
+  FIERY_SPIRIT_SCREENER = "screener",
+  FIERY_SPIRIT_TEACHER = "teacher",
+  FIERY_SPIRIT_STUDENT = "student",
+  FIERY_SPIRIT_DASHBOARD = "dashboard",
 }
 
 export type TownLocationConfig = {
@@ -96,6 +125,16 @@ export const HoverConfig: Record<HOVER_LOCATION, string> = {
   [HOVER_LOCATION.GOLDEN_DOME]: goldenDomeDescription,
   [HOVER_LOCATION.GROTTO]: grottoDescription,
   [HOVER_LOCATION.ND_CAREERS_COURSE]: ndCareersCourseDescription,
+  [HOVER_LOCATION.FIERY_SPIRIT_MOTIVATIONS]: fierySpiritMotivationsDescription,
+  [HOVER_LOCATION.FIERY_SPIRIT_DEFORMATION]: fierySpiritDeformationDescription,
+  [HOVER_LOCATION.FIERY_SPIRIT_SEISMIC]: fierySpiritSeismicDescription,
+  [HOVER_LOCATION.FIERY_SPIRIT_INTERFEROGRAMS]:
+    fierySpiritInterferogramsDescription,
+  [HOVER_LOCATION.FIERY_SPIRIT_WAVEFORMS]: fierySpiritWaveformsDescription,
+  [HOVER_LOCATION.FIERY_SPIRIT_SCREENER]: fierySpiritScreenerDescription,
+  [HOVER_LOCATION.FIERY_SPIRIT_TEACHER]: fierySpiritTeacherDescription,
+  [HOVER_LOCATION.FIERY_SPIRIT_STUDENT]: fierySpiritStudentDescription,
+  [HOVER_LOCATION.FIERY_SPIRIT_DASHBOARD]: fierySpiritDashboardDescription,
 };
 
 export type BottomBarPanel =

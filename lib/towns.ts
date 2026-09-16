@@ -34,12 +34,43 @@ import {
   ND_CAREERS_COURSE_X,
   ND_CAREERS_COURSE_Y,
   ND_CAREERS_COURSE_IMAGE_PATH,
+  FIERY_SPIRIT_IMAGE_PATH,
+  FIERY_SPIRIT_MAP_IMAGE_PATH,
+  FIERY_SPIRIT_MOTIVATIONS_X,
+  FIERY_SPIRIT_MOTIVATIONS_Y,
+  FIERY_SPIRIT_MOTIVATIONS_IMAGE_PATH,
+  FIERY_SPIRIT_DEFORMATION_X,
+  FIERY_SPIRIT_DEFORMATION_Y,
+  FIERY_SPIRIT_DEFORMATION_IMAGE_PATH,
+  FIERY_SPIRIT_SEISMIC_X,
+  FIERY_SPIRIT_SEISMIC_Y,
+  FIERY_SPIRIT_SEISMIC_IMAGE_PATH,
+  FIERY_SPIRIT_INTERFEROGRAMS_X,
+  FIERY_SPIRIT_INTERFEROGRAMS_Y,
+  FIERY_SPIRIT_INTERFEROGRAMS_IMAGE_PATH,
+  FIERY_SPIRIT_WAVEFORMS_X,
+  FIERY_SPIRIT_WAVEFORMS_Y,
+  FIERY_SPIRIT_WAVEFORMS_IMAGE_PATH,
+  FIERY_SPIRIT_SCREENER_X,
+  FIERY_SPIRIT_SCREENER_Y,
+  FIERY_SPIRIT_SCREENER_IMAGE_PATH,
+  FIERY_SPIRIT_TEACHER_X,
+  FIERY_SPIRIT_TEACHER_Y,
+  FIERY_SPIRIT_TEACHER_IMAGE_PATH,
+  FIERY_SPIRIT_STUDENT_X,
+  FIERY_SPIRIT_STUDENT_Y,
+  FIERY_SPIRIT_STUDENT_IMAGE_PATH,
+  FIERY_SPIRIT_DASHBOARD_X,
+  FIERY_SPIRIT_DASHBOARD_Y,
+  FIERY_SPIRIT_DASHBOARD_IMAGE_PATH,
 } from "@/lib/constants";
 import {
   chicagoDescription,
   chicagoBullets,
   notreDameDescription,
   notreDameBullets,
+  fierySpiritDescription,
+  fierySpiritBullets,
 } from "@/lib/text";
 
 const chicagoLocations: TownContentConfig["locations"] = [
@@ -118,6 +149,72 @@ const notreDameLocations: TownContentConfig["locations"] = [
   },
 ];
 
+const fierySpiritLocations: TownContentConfig["locations"] = [
+  {
+    id: HOVER_LOCATION.FIERY_SPIRIT_MOTIVATIONS,
+    x: FIERY_SPIRIT_MOTIVATIONS_X,
+    y: FIERY_SPIRIT_MOTIVATIONS_Y,
+    imagePath: FIERY_SPIRIT_MOTIVATIONS_IMAGE_PATH,
+    alt: "Motivations",
+  },
+  {
+    id: HOVER_LOCATION.FIERY_SPIRIT_DEFORMATION,
+    x: FIERY_SPIRIT_DEFORMATION_X,
+    y: FIERY_SPIRIT_DEFORMATION_Y,
+    imagePath: FIERY_SPIRIT_DEFORMATION_IMAGE_PATH,
+    alt: "Deformation",
+  },
+  {
+    id: HOVER_LOCATION.FIERY_SPIRIT_SEISMIC,
+    x: FIERY_SPIRIT_SEISMIC_X,
+    y: FIERY_SPIRIT_SEISMIC_Y,
+    imagePath: FIERY_SPIRIT_SEISMIC_IMAGE_PATH,
+    alt: "Seismic",
+  },
+  {
+    id: HOVER_LOCATION.FIERY_SPIRIT_INTERFEROGRAMS,
+    x: FIERY_SPIRIT_INTERFEROGRAMS_X,
+    y: FIERY_SPIRIT_INTERFEROGRAMS_Y,
+    imagePath: FIERY_SPIRIT_INTERFEROGRAMS_IMAGE_PATH,
+    alt: "Interferograms",
+  },
+  {
+    id: HOVER_LOCATION.FIERY_SPIRIT_WAVEFORMS,
+    x: FIERY_SPIRIT_WAVEFORMS_X,
+    y: FIERY_SPIRIT_WAVEFORMS_Y,
+    imagePath: FIERY_SPIRIT_WAVEFORMS_IMAGE_PATH,
+    alt: "Waveforms",
+  },
+  {
+    id: HOVER_LOCATION.FIERY_SPIRIT_SCREENER,
+    x: FIERY_SPIRIT_SCREENER_X,
+    y: FIERY_SPIRIT_SCREENER_Y,
+    imagePath: FIERY_SPIRIT_SCREENER_IMAGE_PATH,
+    alt: "Screener",
+  },
+  {
+    id: HOVER_LOCATION.FIERY_SPIRIT_TEACHER,
+    x: FIERY_SPIRIT_TEACHER_X,
+    y: FIERY_SPIRIT_TEACHER_Y,
+    imagePath: FIERY_SPIRIT_TEACHER_IMAGE_PATH,
+    alt: "Teacher",
+  },
+  {
+    id: HOVER_LOCATION.FIERY_SPIRIT_STUDENT,
+    x: FIERY_SPIRIT_STUDENT_X,
+    y: FIERY_SPIRIT_STUDENT_Y,
+    imagePath: FIERY_SPIRIT_STUDENT_IMAGE_PATH,
+    alt: "Student",
+  },
+  {
+    id: HOVER_LOCATION.FIERY_SPIRIT_DASHBOARD,
+    x: FIERY_SPIRIT_DASHBOARD_X,
+    y: FIERY_SPIRIT_DASHBOARD_Y,
+    imagePath: FIERY_SPIRIT_DASHBOARD_IMAGE_PATH,
+    alt: "Dashboard",
+  },
+];
+
 export const townContentConfigs: Record<TOWN_ID, TownContentConfig> = {
   [TOWN_ID.CHICAGO]: {
     title: "Chicago",
@@ -134,5 +231,13 @@ export const townContentConfigs: Record<TOWN_ID, TownContentConfig> = {
     description: notreDameDescription,
     bullets: notreDameBullets,
     locations: notreDameLocations,
+  },
+  [TOWN_ID.FIERY_SPIRIT]: {
+    title: "FierySpirit",
+    imagePath: FIERY_SPIRIT_IMAGE_PATH,
+    mapImagePath: FIERY_SPIRIT_MAP_IMAGE_PATH,
+    description: fierySpiritDescription,
+    bullets: fierySpiritBullets,
+    locations: fierySpiritLocations,
   },
 };
