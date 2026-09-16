@@ -2,7 +2,8 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { fetchBooksListAction } from "@app/(actions)/google-action";
-import { QUERY_KEYS, GOOGLE_STALE_TIME } from "@/lib/constants";
+import { QUERY_KEYS } from "@lib/query-keys";
+import { GOOGLE_STALE_TIME } from "@/lib/constants";
 
 export function useFetchBooksList() {
   return useQuery({

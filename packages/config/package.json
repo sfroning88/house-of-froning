@@ -9,10 +9,10 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@t3-oss/env-nextjs": "^0.13.8",
-    "zod": "^3.24.3"
+    "@t3-oss/env-nextjs": "0.13.11",
+    "zod": "4.6.5"
   },
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "7.0.2"
   }
 }

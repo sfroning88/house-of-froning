@@ -1,7 +1,4 @@
-# robots.txt
-# house-of-froning.vercel.app
-
 User-agent: *
 Allow: /
 
-Sitemap: https://house-of-froning.vercel.app/sitemap.xml
+Sitemap: https://seanfroning.com/sitemap.xml

@@ -54,3 +54,7 @@ next-env.d.ts
 
 # macOs folder icons
 Icon?
+
+# python ops
+/__pycache__/
+*/__pycache__/

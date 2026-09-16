@@ -98,6 +98,9 @@ export const HoverConfig: Record<HOVER_LOCATION, string> = {
   [HOVER_LOCATION.ND_CAREERS_COURSE]: ndCareersCourseDescription,
 };
 
+export type BottomBarPanel =
+  "trainerCard" | "spotifySong" | "googleBooks" | "pokemonBall" | "resume";
+
 export type SpotifyTrackItem = {
   name: string;
   artists: Array<{

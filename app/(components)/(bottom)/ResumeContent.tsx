@@ -29,7 +29,8 @@ export function ResumeContent({
     return () => {
       onModalStateChange?.(false);
     };
-  }, [onModalStateChange]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const { modalWidth, modalHeight } = useMemo(() => {
     if (dsInnerScreenSize.width === 0 || dsInnerScreenSize.height === 0) {
       return { modalWidth: 0, modalHeight: 0 };
@@ -84,7 +85,10 @@ export function ResumeContent({
           {isLoading ? (
             <span className={isMobile ? "text-xs" : "text-sm"}>Loading...</span>
           ) : (
-            <ReactMarkdown remarkPlugins={[remarkBreaks]}>
+            <ReactMarkdown
+              remarkPlugins={[remarkBreaks]}
+              components={{ h1: "h2" }}
+            >
               {content}
             </ReactMarkdown>
           )}

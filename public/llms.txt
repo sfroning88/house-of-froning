@@ -1,0 +1,5 @@
+# House of Froning
+
+Personal website, portfolio, and trainer hub for Sean Froning.
+
+Repo: https://github.com/sfroning88/house-of-froning

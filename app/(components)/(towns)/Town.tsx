@@ -5,7 +5,7 @@ import posthog from "posthog-js";
 import { POSTHOG_EVENTS } from "@/lib/events";
 import { toast } from "sonner";
 import { useOnboardingContext } from "@/app/providers";
-import { ModalBackdrop } from "@/app/(components)/ModalBackdrop";
+import { Backdrop } from "@/app/(components)/Backdrop";
 import { TownIcon } from "./TownIcon";
 import { TownDescription } from "./TownDescription";
 import { TownContentConfig, TownConfigEntry } from "@/lib/types";
@@ -39,7 +39,8 @@ export function Town({
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     onModalStateChange?.(isOpen);
-  }, [isOpen, onModalStateChange]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
   const closeModal = () => {
     posthog.capture(POSTHOG_EVENTS.town_closed, {
       town_title: contentConfig.title,
@@ -72,7 +73,7 @@ export function Town({
       </button>
       {isOpen && (
         <>
-          <ModalBackdrop
+          <Backdrop
             className="fixed inset-0 z-40 bg-black/50"
             onClose={closeModal}
           />

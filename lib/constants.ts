@@ -1,3 +1,6 @@
+export const SITE_DESCRIPTION =
+  "Personal website, portfolio, and trainer hub for Sean Froning.";
+
 export const PROVIDER_STALE_TIME = 60 * 1000;
 
 export const COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
@@ -8,7 +11,8 @@ export const COOKIE_BANNER_DISMISSED_KEY =
   "house-of-froning-cookie-banner-dismissed";
 
 export const COOKIE_BANNER_MESSAGE =
-  "This site uses one first-party cookie for anonymous analytics. No third-party tracking.";
+  "This site uses one first-party cookie for anonymous analytics. " +
+  "No third-party tracking.";
 
 export const ONBOARDING_STEP_KEY = "house-of-froning-onboarding-step";
 
@@ -38,16 +42,7 @@ export const SEE_SOURCE_CODE_MESSAGE = "Want to see how this was built?";
 export const SEE_SOURCE_CODE_LINK =
   "https://github.com/sfroning88/house-of-froning";
 
-export const QUERY_KEYS = {
-  user: (userId: string) => ["user", userId] as const,
-  spotifySong: () => ["spotify", "song"] as const,
-  googleBooks: () => ["google", "books"] as const,
-};
-
 export const TRAINER_CARD_IMAGE_PATH = "/images/avatars/trainer.jpg";
-
-export const PRIVACY_DOC_PATH = "lib/docs/PRIVACY.md";
-export const RESUME_DOC_PATH = "lib/docs/RESUME.md";
 
 export const SPOTIFY_STALE_TIME = 60 * 30 * 1000;
 export const SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token";
@@ -68,10 +63,10 @@ export const GOOGLE_BOOKS_API_BASE_URL =
 export const OPEN_LIBRARY_COVERS_BASE_URL =
   "https://covers.openlibrary.org/b/isbn";
 
-export const POKEMON_ONE_IMAGE_PATH = "/images/pokemon/hippowdon.jpg";
+export const POKEMON_ONE_IMAGE_PATH = "/images/pokemon/milotic.jpeg";
 export const POKEMON_TWO_IMAGE_PATH = "/images/pokemon/jolteon.jpg";
 export const POKEMON_THREE_IMAGE_PATH = "/images/pokemon/aggron.jpeg";
-export const POKEMON_FOUR_IMAGE_PATH = "/images/pokemon/arcanine.jpg";
+export const POKEMON_FOUR_IMAGE_PATH = "/images/pokemon/hisuian-typhlosion.jpg";
 export const POKEMON_FIVE_IMAGE_PATH = "/images/pokemon/garchomp.jpg";
 export const POKEMON_SIX_IMAGE_PATH = "/images/pokemon/mega-gallade.jpg";
 

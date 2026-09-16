@@ -2,6 +2,13 @@ packages:
   - "."
   - "packages/*"
 
-ignoredBuiltDependencies:
-  - sharp
-  - unrs-resolver
+allowBuilds:
+  core-js: true
+  unrs-resolver: true
+  sharp: false
+
+minimumReleaseAgeExclude:
+  - "@posthog/core@1.54.2"
+  - "@posthog/types@1.412.1"
+  - "@types/node@22.20.3"
+  - posthog-js@1.433.5

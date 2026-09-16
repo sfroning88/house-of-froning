@@ -64,7 +64,8 @@ export function TownDescription({
     return () => {
       onModalStateChange?.(false);
     };
-  }, [onModalStateChange]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     if (onboarding && onboarding.step === 1) {
       toast(CLICK_LOCATION_MESSAGE, { id: "onboarding-2" });
