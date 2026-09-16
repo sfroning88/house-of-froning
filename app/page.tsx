@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import { Screen } from "@/app/(components)/Screen";
+import { SITE_DESCRIPTION } from "@/lib/constants";
+
+export const metadata: Metadata = {
+  title: "House of Froning",
+  description: SITE_DESCRIPTION,
+  robots: { index: true, follow: true },
+};
 
 export default function Home() {
   return (
