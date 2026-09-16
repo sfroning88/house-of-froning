@@ -3,7 +3,8 @@
 Chicago IL 60610
 [sfroning@alumni.nd.edu](mailto:sfroning@nd.edu)
 (773) 724-0301
-[linkedin.com/in/sean-froning](http://linkedin.com/in/sean-froning)
+[seanfroning.tech](https://seanfroning.tech)
+[linkedin.com/in/sean-froning](https://linkedin.com/in/sean-froning)
 [https://github.com/sfroning88](https://github.com/sfroning88)
 
 Building full stack AI/ML products with a Seed startup accelerating sell-side due diligence and empowering attractive lower-middle market M&A targets. On the side, shipping a two-tier volcanic unrest system that pairs satellite imagery with TinyML seismic models on the edge. Pursuing TinyML techniques as a greener and cost-friendly way to build ClimateTech.
