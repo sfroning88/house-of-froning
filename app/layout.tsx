@@ -18,7 +18,7 @@ const cinzel = Cinzel({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://seanfroning.com"),
+  metadataBase: new URL("https://seanfroning.tech"),
   title: { default: "House of Froning", template: "%s | House of Froning" },
   description: SITE_DESCRIPTION,
   openGraph: {

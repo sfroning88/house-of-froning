@@ -1,6 +1,6 @@
 # House of Froning
 
-Personal website for **Sean Froning** deployed to [seanfroning.com](https://seanfroning.com).
+Personal website for **Sean Froning** deployed to [seanfroning.tech](https://seanfroning.tech).
 
 **Like what you see? Reach out!** I'll spare you from the [**LinkedIn**](https://www.linkedin.com/in/sean-froning/) bio, but I'm always looking to apply full stack AI to problems that actually matter for people.
 
