@@ -30,6 +30,7 @@ Chicago IL _Aug 2026 to Present_
 • Distill "Teacher" into a "Student" edge device CNN with KL plus cross-entropy for on-ground seismic sensors
 • Compress "Student" with iterative prune-then-finetune and PTQ/QAT quantization under flash/peak RAM/MAC budgets
 • Architect promotion per model: "Screener" on recall/FPR, "Teacher" on macro-F1, "Student" on accuracy tradeoff
+• Observability and recovery with MLflow registry aliases, experiment logging, and Hugging Face model checkpointing
 
 **Project: Machine Learning Platform for Senior Housing Investment** _Feature Engineering, MLOps, Full Stack Development | [https://github.com/sfroning88/deep-focus](https://github.com/sfroning88/deep-focus)_
 Chicago IL _Apr 2026 to Jul 2026_
@@ -40,7 +41,7 @@ Chicago IL _Apr 2026 to Jul 2026_
 • Deployed inference with training-serving skew prevention through symmetric imputation and self-contained artifacts
 • Developed investment models for analyzing 450+ senior housing properties to predict financial performance targets
 
-**Software Engineering:** Python, TypeScript, MLOps, PostgreSQL, Prisma, Redis/RQ, FastAPI, React, Turborepo
+**Software Engineering:** Python, TypeScript, MLOps, MLflow, PostgreSQL, Prisma, Redis/RQ, FastAPI, React
 **Machine Learning:** PyTorch, Sklearn, ViTs/CNNs, PEFT/LoRA, distillation, PTQ/QAT quantization, pruning
 **Generative AI:** RAG, embeddings, hybrid retrieval searches, reranking, RAGAS evaluation, RLHF loops
 
