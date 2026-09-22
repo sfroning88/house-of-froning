@@ -17,7 +17,7 @@ Chicago IL _Jul 2025 to Present_
 • Deploy web retrieval with keyword/intent searches, LLM-as-auditor gate, SSRF-safe scraping, and article caching
 • Construct 10+ multi-tenant RLHF closed-loop system for M&A diligence fulfillment documents with self-improving efficacy
 • Design Agentic RAG evaluations using RAGAS, AspectCritic, and M&A compliance metrics with LLM-as-judge approach
-• Configure CI/CD with GitHub Actions, Playwright smoke tests, previews deploy status gates, and code security audits
+• Configure GitHub Actions CI/CD checks, Playwright smoke tests, Sentry event observability, and code security audits
 • Engineer sandboxed agentic automations supporting bankers across 4+ LMM transactions up to $70 M enterprise value
 
 **Project: Geospatial AI for Two-Tiered Volcanic Eruption Monitoring** _TinyML, Fine-Tuning, LoRA, Distillation, Quantization | [https://github.com/sfroning88/fiery-spirit](https://github.com/sfroning88/fiery-spirit)_
