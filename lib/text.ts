@@ -45,8 +45,9 @@ export const ndCareersCourseDescription =
 export const fierySpiritDescription =
   "Two-tier volcanic unrest system that pairs satellite imagery with TinyML seismic models on the edge.";
 export const fierySpiritBullets = FormatBulletPoints([
-  "https://fiery-spirit.earth",
-  "https://github.com/sfroning88/fiery-spirit",
+  "Website: https://fiery-spirit.earth",
+  "GitHub: https://github.com/sfroning88/fiery-spirit",
+  "Whitepaper: https://rb.gy/9luaog",
 ]);
 
 export const fierySpiritMotivationsDescription =
