@@ -154,6 +154,10 @@ export const SEANS_HOUSE_X = 88;
 export const SEANS_HOUSE_Y = 44;
 export const SEANS_HOUSE_IMAGE_PATH = "/images/towns/house.jpeg";
 
+export const SYNOPSIS_AI_X = 104;
+export const SYNOPSIS_AI_Y = 96;
+export const SYNOPSIS_AI_IMAGE_PATH = "/images/towns/synopsisai.jpg";
+
 export const ROWAN_LABS_X = 124;
 export const ROWAN_LABS_Y = 82;
 export const ROWAN_LABS_IMAGE_PATH = "/images/towns/rowanlabs.jpg";

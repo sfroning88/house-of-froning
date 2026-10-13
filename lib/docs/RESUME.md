@@ -7,18 +7,21 @@ Chicago IL 60610
 [linkedin.com/in/sean-froning](https://linkedin.com/in/sean-froning)
 [https://github.com/sfroning88](https://github.com/sfroning88)
 
-Building full stack AI products with a Seed startup accelerating sell-side due diligence and empowering attractive lower middle market M&A targets. On the side, shipping a two-tier volcanic unrest system that pairs satellite imagery with seismic models on the edge. Pursuing TinyML techniques as a greener and cost-friendly way to build climate tech.
+Building full stack software and machine learning pipelines with early stage startups. Shipping a two-tier volcanic unrest system that pairs satellite imagery with seismic models on the edge. Chasing mission-driven projects that serve a higher purpose, and pursuing TinyML techniques as a greener and cost-friendly way to build climate tech.
 
-**Machine Learning Engineer @ Rowan** _Full Stack Development, RAG, Data Infrastructure, Seed Startup_
-Chicago IL _Jul 2025 to Present_
-• Building sell-side diligence platform using React frontend, Fast API backends with RQ Redis for 25+ M&A professionals
-• Architect document ingestion pipeline processing 2+ K files of 1.5+ GB per business into Postgres and pgvector stores
-• Implement adaptive RAG with streaming, hybrid vector/FTS retrievals, reciprocal rank fusion, and cross-encoder rerank
-• Deploy web retrieval with keyword/intent searches, LLM-as-auditor gate, SSRF-safe scraping, and article caching
-• Construct 10+ multi-tenant RLHF closed-loop system for M&A diligence fulfillment documents with self-improving efficacy
-• Design Agentic RAG evaluations using RAGAS, AspectCritic, and M&A compliance metrics with LLM-as-judge approach
-• Configure GitHub Actions CI/CD checks, Playwright smoke tests, Sentry event observability, and code security audits
-• Engineer sandboxed agentic automations supporting bankers across 4+ LMM transactions up to $70 M enterprise value
+**Machine Learning Software Engineer @ Synopsis** _Agentic Memory, LLM Fine-Tuning, Data Integration, Seed Startup_
+Chicago IL _Nov 2026 to Present_
+• Building self-serve data infrastructure with FSP integrations and agentic memory for 10+ client businesses
+
+**Machine Learning Software Engineer @ Rowan** _Full Stack Development, RAG, Data Infrastructure, Seed Startup_
+Chicago IL _Jul 2025 to Oct 2026_
+• Built sell-side M&A platform for 25+ investment bankers and agentic automations supporting $70 M in transaction value
+• Architected document ingestion pipeline processing 2+ K files of 1.5+ GB per business into Postgres and pgvector stores
+• Implemented adaptive RAG with streaming, hybrid vector/FTS retrievals, reciprocal rank fusion, and cross-encoder rerank
+• Deployed web retrieval with keyword/intent searches, LLM-as-auditor gate, SSRF-safe scraping, and article caching
+• Constructed 10+ multi-tenant RLHF closed-system for M&A diligence fulfillment documents with self-improving efficacy
+• Designed Agentic RAG evaluations using RAGAS, AspectCritic, and M&A compliance with LLM-as-judge approach
+• Configured GitHub Actions CI/CD checks, Playwright smoke tests, Sentry event observability, and code security audits
 
 **Project: Geospatial AI for Two-Tiered Volcanic Eruption Monitoring** _TinyML, Fine-Tuning, LoRA, Distillation, Quantization | [https://github.com/sfroning88/fiery-spirit](https://github.com/sfroning88/fiery-spirit)_
 Chicago IL _Aug 2026 to Present_
@@ -34,12 +37,11 @@ Chicago IL _Aug 2026 to Present_
 
 **Project: Machine Learning Platform for Senior Housing Investment** _Feature Engineering, MLOps, Full Stack Development | [https://github.com/sfroning88/deep-focus](https://github.com/sfroning88/deep-focus)_
 Chicago IL _Apr 2026 to Jul 2026_
-• Built full stack AI platform using React dashboard, FastAPI backends with RQ Redis for 10+ investment professionals
+• Built private equity platform for 10+ investment professionals with AI models analyzing 450+ senior housing properties
 • Designed Postgres database with Prisma managing 950+ observations, user identity provenance, and model lineage
 • Engineered scale-invariant orthogonal 15+ feature contract with derived ratios, mean encodings, and temporal series
 • Architected MLOps across 8+ batched trainings, HMAC-SHA256 signatures, hot-swap registry, and challenger promotion
 • Deployed inference with training-serving skew prevention through symmetric imputation and self-contained artifacts
-• Developed investment models for analyzing 450+ senior housing properties to predict financial performance targets
 
 **Software Engineering:** Python, TypeScript, MLOps, MLflow, PostgreSQL, Prisma, Redis/RQ, FastAPI, React
 **Machine Learning:** PyTorch, Sklearn, ViTs/CNNs, PEFT/LoRA, distillation, PTQ/QAT quantization, pruning

@@ -6,6 +6,7 @@ export const chicagoBullets = FormatBulletPoints([
   "Sean's House",
   "Saint Alphonsus Academy",
   "Chicago Warriors Baseball Club",
+  "Synopsis AI",
   "Rowan Labs",
   "Focus Healthcare Partners",
 ]);
@@ -16,8 +17,10 @@ export const saintAlphonsusAcademyDescription =
   "Sean coaches 12u boys basketball for the Alphonsus Academy Rockets, and boasts an undefeated record in Chicago Catholic League play.";
 export const chicagoWarriorsBaseballClubDescription =
   "Sean coaches 17u boys baseball for the Chicago Warriors, and spends his weekends travelling the Midwest for tourney play.";
+export const synopsisAiDescription =
+  "Sean works with Synopsis AI as a Machine Learning Software Engineer, building self-serve data infrastructure, agentic memory systems, and neural networks.";
 export const rowanLabsDescription =
-  "Sean works for Rowan as an M&A Product Engineer, helping transform unsellable industrial small businesses into attractive M&A targets.";
+  "Sean started with Rowan as an Machine Learning Software Engineer, helping transform unsellable industrial small businesses into attractive M&A targets.";
 export const focusHealthcarePartnersDescription =
   "Sean discoverd a love for M&A while being a private equity analyst in lower middle market healthcare, running two full deals.";
 

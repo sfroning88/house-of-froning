@@ -11,6 +11,9 @@ import {
   CHICAGO_WARRIORS_BASEBALL_CLUB_X,
   CHICAGO_WARRIORS_BASEBALL_CLUB_Y,
   CHICAGO_WARRIORS_BASEBALL_CLUB_IMAGE_PATH,
+  SYNOPSIS_AI_X,
+  SYNOPSIS_AI_Y,
+  SYNOPSIS_AI_IMAGE_PATH,
   ROWAN_LABS_X,
   ROWAN_LABS_Y,
   ROWAN_LABS_IMAGE_PATH,
@@ -94,6 +97,13 @@ const chicagoLocations: TownContentConfig["locations"] = [
     y: CHICAGO_WARRIORS_BASEBALL_CLUB_Y,
     imagePath: CHICAGO_WARRIORS_BASEBALL_CLUB_IMAGE_PATH,
     alt: "Chicago Warriors Baseball Club",
+  },
+  {
+    id: HOVER_LOCATION.SYNOPSIS_AI,
+    x: SYNOPSIS_AI_X,
+    y: SYNOPSIS_AI_Y,
+    imagePath: SYNOPSIS_AI_IMAGE_PATH,
+    alt: "Synopsis AI",
   },
   {
     id: HOVER_LOCATION.ROWAN_LABS,

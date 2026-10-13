@@ -16,6 +16,7 @@ import {
   seansHouseDescription,
   saintAlphonsusAcademyDescription,
   chicagoWarriorsBaseballClubDescription,
+  synopsisAiDescription,
   rowanLabsDescription,
   focusHealthcarePartnersDescription,
   duncanHallDescription,
@@ -77,6 +78,7 @@ export enum HOVER_LOCATION {
   SEANS_HOUSE = "sean's house",
   SAINT_ALPHONSUS_ACADEMY = "saint alphonsus academy",
   CHICAGO_WARRIORS_BASEBALL_CLUB = "chicago warriors baseball club",
+  SYNOPSIS_AI = "synopsis ai",
   ROWAN_LABS = "rowan labs",
   FOCUS_HEALTHCARE_PARTNERS = "focus healthcare partners",
   DUNCAN_HALL = "duncan hall",
@@ -117,6 +119,7 @@ export const HoverConfig: Record<HOVER_LOCATION, string> = {
   [HOVER_LOCATION.SAINT_ALPHONSUS_ACADEMY]: saintAlphonsusAcademyDescription,
   [HOVER_LOCATION.CHICAGO_WARRIORS_BASEBALL_CLUB]:
     chicagoWarriorsBaseballClubDescription,
+  [HOVER_LOCATION.SYNOPSIS_AI]: synopsisAiDescription,
   [HOVER_LOCATION.ROWAN_LABS]: rowanLabsDescription,
   [HOVER_LOCATION.FOCUS_HEALTHCARE_PARTNERS]:
     focusHealthcarePartnersDescription,
