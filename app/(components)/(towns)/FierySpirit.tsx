@@ -32,6 +32,7 @@ export function FierySpirit({
       dsInnerScreenSize={dsInnerScreenSize}
       dsInnerScreenCenter={dsInnerScreenCenter}
       mapCenter={mapCenter}
+      isPin
     />
   );
 }

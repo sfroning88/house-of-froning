@@ -23,6 +23,7 @@ type TownDescriptionProps = {
   onClose: () => void;
   dsInnerScreenSize: { width: number; height: number };
   mapCenter: { x: number; y: number };
+  isPin?: boolean;
 };
 
 export function TownDescription({
@@ -32,6 +33,7 @@ export function TownDescription({
   onClose,
   dsInnerScreenSize,
   mapCenter,
+  isPin = false,
 }: TownDescriptionProps) {
   const onboarding = useOnboardingContext();
   const isMobile = !useMediaQuery(`(min-width: ${MOBILE_BREAKPOINT}px)`, true);
@@ -126,9 +128,8 @@ export function TownDescription({
             <div className="text-left min-w-0">
               <p
                 className={`whitespace-pre-line ${isMobile ? "text-xs" : "text-sm"}`}
-              >
-                {config.bullets}
-              </p>
+                dangerouslySetInnerHTML={{ __html: config.bullets }}
+              />
             </div>
             <div
               ref={popularAreaRef}
@@ -153,6 +154,7 @@ export function TownDescription({
                     locations={config.locations}
                     mapImagePath={config.mapImagePath}
                     onModalStateChange={onModalStateChange}
+                    isPin={isPin}
                   />
                 </div>
               </div>

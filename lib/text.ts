@@ -2,14 +2,17 @@ import { FormatBulletPoints } from "./utils";
 
 export const chicagoDescription =
   "The Windy City, Chicago is known for its Midwestern attitude, bustling downtown, and variable climate.";
-export const chicagoBullets = FormatBulletPoints([
-  "Sean's House",
-  "Saint Alphonsus Academy",
-  "Chicago Warriors Baseball Club",
-  "Synopsis AI",
-  "Rowan Labs",
-  "Focus Healthcare Partners",
-]);
+export const chicagoBullets = FormatBulletPoints(
+  [
+    "Sean's House",
+    "Saint Alphonsus Academy",
+    "Chicago Warriors Baseball Club",
+    "Synopsis AI",
+    "Rowan Labs",
+    "Focus Healthcare Partners",
+  ],
+  false,
+);
 
 export const seansHouseDescription =
   "Sean owes everything to his family, and has a lot of fond memories growing up in the city.";
@@ -26,13 +29,16 @@ export const focusHealthcarePartnersDescription =
 
 export const notreDameDescription =
   "Home of Touchdown Jesus and the Fighting Irish, this college town holds a lot of hopes and dreams.";
-export const notreDameBullets = FormatBulletPoints([
-  "Duncan Hall",
-  "ND Listens",
-  "Golden Dome",
-  "The Grotto",
-  "ND Careers Course",
-]);
+export const notreDameBullets = FormatBulletPoints(
+  [
+    "Duncan Hall",
+    "ND Listens",
+    "Golden Dome",
+    "The Grotto",
+    "ND Careers Course",
+  ],
+  false,
+);
 
 export const duncanHallDescription =
   "Sean served as a Resident Assistant in Duncan Hall alongisde lifelong Highlander brothers in Community, Brotherhood, and Respect.";
@@ -47,11 +53,14 @@ export const ndCareersCourseDescription =
 
 export const fierySpiritDescription =
   "Two-tier volcanic unrest system that pairs satellite imagery with TinyML seismic models on the edge.";
-export const fierySpiritBullets = FormatBulletPoints([
-  "Website: https://fiery-spirit.earth",
-  "GitHub: https://github.com/sfroning88/fiery-spirit",
-  "Whitepaper: https://rb.gy/9luaog",
-]);
+export const fierySpiritBullets = FormatBulletPoints(
+  [
+    "Website: https://fiery-spirit.earth",
+    "GitHub: https://github.com/sfroning88/fiery-spirit",
+    "Whitepaper: https://rb.gy/9luaog",
+  ],
+  true,
+);
 
 export const fierySpiritMotivationsDescription =
   "Volcanic monitoring is expensive in remote or inhospitable regions; can TinyML improve monitoring capabilities and protect rural citizens?";

@@ -9,18 +9,21 @@ import {
   LOCAL_MAP_PIXEL_WIDTH,
   LOCAL_MAP_PIXEL_HEIGHT,
   LOCAL_MAP_SCALE,
+  LOCAL_ICON_SIZE,
 } from "@/lib/constants";
 
 type LocalMapProps = {
   locations: TownLocationConfig[];
   mapImagePath: string;
   onModalStateChange?: (isOpen: boolean) => void;
+  isPin?: boolean;
 };
 
 export function LocalMap({
   locations,
   mapImagePath,
   onModalStateChange,
+  isPin = false,
 }: LocalMapProps) {
   const localMapWidth = LOCAL_MAP_PIXEL_WIDTH * LOCAL_MAP_SCALE;
   const localMapHeight = LOCAL_MAP_PIXEL_HEIGHT * LOCAL_MAP_SCALE;
@@ -47,9 +50,17 @@ export function LocalMap({
         backgroundImage: `url(${mapImagePath})`,
       }}
     >
-      {locations.map((loc) => {
-        const x = loc.x * LOCAL_MAP_SCALE;
-        const y = loc.y * LOCAL_MAP_SCALE;
+      {locations.map((loc, index) => {
+        const pinSize = LOCAL_ICON_SIZE * LOCAL_MAP_SCALE;
+        const column = index % 3;
+        const row = Math.floor(index / 3);
+        const x = isPin
+          ? column * (localMapWidth / 3) + (localMapWidth / 3 - pinSize) / 2
+          : loc.x * LOCAL_MAP_SCALE;
+        const y = isPin
+          ? row * (localMapHeight / 3) + (localMapHeight / 3 - pinSize) / 2
+          : loc.y * LOCAL_MAP_SCALE;
+        const lavaPhase = (9 - (index % 9)) % 9;
         return (
           <button
             type="button"
@@ -59,7 +70,21 @@ export function LocalMap({
             onClick={() => setSelectedLocation(loc.id)}
             aria-label={loc.alt}
           >
-            <LocalLocationIcon src={loc.imagePath} alt={loc.alt} />
+            {isPin ? (
+              <span
+                className="lava-pin pointer-events-none"
+                style={{
+                  width: pinSize,
+                  height: pinSize,
+                  fontSize: pinSize * 0.45,
+                  ["--lava-phase" as string]: lavaPhase,
+                }}
+              >
+                <span className="relative z-10">{index + 1}</span>
+              </span>
+            ) : (
+              <LocalLocationIcon src={loc.imagePath} alt={loc.alt} />
+            )}
           </button>
         );
       })}

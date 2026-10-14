@@ -21,6 +21,7 @@ type TownProps = {
   dsInnerScreenSize: { width: number; height: number };
   dsInnerScreenCenter: { x: number; y: number };
   mapCenter: { x: number; y: number };
+  isPin?: boolean;
 };
 
 export function Town({
@@ -32,6 +33,7 @@ export function Town({
   onModalStateChange,
   dsInnerScreenSize,
   mapCenter,
+  isPin = false,
 }: TownProps) {
   const onboarding = useOnboardingContext();
   const iconWidth = mapConfig.width * DS_TO_WEB_SCALE;
@@ -84,6 +86,7 @@ export function Town({
             onClose={closeModal}
             dsInnerScreenSize={dsInnerScreenSize}
             mapCenter={mapCenter}
+            isPin={isPin}
           />
         </>
       )}

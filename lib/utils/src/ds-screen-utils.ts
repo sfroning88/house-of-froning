@@ -1,5 +1,40 @@
-export function FormatBulletPoints(items: string[]): string {
-  return items.map((item) => `• ${item}`).join("\n");
+const HTTPS_URL_IN_TEXT_RE = /https:\/\/[^\s]+/g;
+
+function trustedHttpsClean(raw: string): string | null {
+  try {
+    const url = new URL(raw);
+    if (url.protocol !== "https:") {
+      return null;
+    }
+    return url.href;
+  } catch {
+    return null;
+  }
+}
+
+function linkifyHttpsInItem(item: string): string {
+  return item.replace(HTTPS_URL_IN_TEXT_RE, (match) => {
+    const href = trustedHttpsClean(match);
+    if (!href) {
+      return match;
+    }
+    const label = href.replace(/^https:\/\//, "");
+    return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="text-blue-700 underline hover:text-blue-900">${label}</a>`;
+  });
+}
+
+export function FormatBulletPoints(
+  items: string[],
+  includesLinks: boolean,
+): string {
+  return items
+    .map((item) => {
+      if (includesLinks) {
+        item = linkifyHttpsInItem(item);
+      }
+      return `• ${item}`;
+    })
+    .join("\n");
 }
 
 export function getMapScaleAndPosition(
